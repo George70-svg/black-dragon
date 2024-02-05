@@ -1,0 +1,23 @@
+{
+  "extends": ["react-app", "react-app/jest", "prettier"],
+  "rules": {
+    "prefer-const": "warn",
+    "quotes": ["warn", "single"],
+    "indent": ["warn", 2],
+    "max-len": ["warn", { "code": 140 }],
+    "semi": ["warn", "never"],
+    "object-curly-spacing": ["warn", "always"],
+    "no-multi-spaces": "error",
+    "space-in-parens": "error",
+    "no-multiple-empty-lines": "error",
+    "no-use-before-define": "error",
+    "import/order": [
+      "warn",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+        "newlines-between": "always"
+      }
+    ]
+  },
+  "plugins": ["prettier"]
+}
