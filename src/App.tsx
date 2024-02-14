@@ -1,9 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Routes, Route, RouterProvider } from 'react-router-dom'
+import { RouterProvider } from 'react-router-dom'
 import { IStore } from '@store/store'
-import { Login } from '@components/components/login/login'
-import { CardModes } from '@components/components/card-modes/card-modes'
+import { ShopPage } from '@components/views/shopPage/shopPage'
 
 import { router } from './router/router'
 import { Styles } from './styles'
@@ -19,10 +18,7 @@ export function Root() {
     <>
       <Styles colorTheme={colorTheme} />
 
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/modes" element={<CardModes />} />
-      </Routes>
+      <ShopPage />
     </>
   )
 }

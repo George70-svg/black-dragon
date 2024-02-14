@@ -3,77 +3,61 @@ import { createGlobalStyle } from 'styled-components'
 import { ColorThemeProps, CommonStyle } from '@types/stylesType'
 
 export const Styles = createGlobalStyle<ColorThemeProps>`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
 
-  * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    background: ${(props) => commonStyle[props.colorTheme].backgroundGradient};
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-size: ${() => commonStyle.fonts.fs2};
-  }
-  
-  #root {
-    height: 100%;
-    width: 100%;
-  }
-  
-  a {
-    text-decoration: none;
-    color: ${() => commonStyle.colors.white};
-  }
-  
-  h1, h2, h3 {
-    margin: 0;
-  }
-  
-  p {
-    margin: 0;
-  }
+    * {
+        box-sizing: border-box;
+    }
 
-  .loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-  }
-  
-  .login-container {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .scroll-bar {
-    ::-webkit-scrollbar {
-      width: 7px;
+    body {
+        box-sizing: border-box;
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        background: ${(props) => commonStyle[props.colorTheme].backgroundColor};
+        color: ${(props) => commonStyle[props.colorTheme].color};
+        font-family: 'Roboto', sans-serif;
+        font-size: ${() => commonStyle.fonts.fs12};
     }
-    
-    ::-webkit-scrollbar-thumb {
-      background-color: #ccc;
-      border-radius: 10px;
+
+    #root {
+        height: 100%;
+        width: 100%;
     }
-    
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: #aaa;
+
+    a {
+        text-decoration: none;
+        color: ${() => commonStyle.colors.white};
     }
-  }
-  
-  :root {}
+
+    h1, h2, h3 {
+        margin: 0;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .scroll-bar {
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #aaa;
+        }
+    }
 `
 
 export const commonStyle: CommonStyle = {
@@ -85,7 +69,7 @@ export const commonStyle: CommonStyle = {
     darkBlue: '#1565c0',
     yellow: '#F8D96D',
     darkYellow: '#efbe00',
-    red: '#ED3D3D',
+    red: 'rgba(183, 10, 6, 1)',
     green: '#7DD76F',
     purple: '#ca8eba',
     darkPurple: '#191c29',
@@ -101,15 +85,12 @@ export const commonStyle: CommonStyle = {
     black: '#000000',
   },
   fonts: {
-    fs0: '0.75rem',
-    fs1: '1rem',
-    fs2: '1.2rem',
-    fs3: '1.4rem',
-    fs4: '1.6rem',
-    fs5: '1.8rem',
-    fs6: '2rem',
-    fs7: '2.2rem',
-    fs8: '2.4rem',
+    fs12: '0.75rem',
+    fs14: '0.875rem',
+  },
+  fontStyles: {
+    fw500: '500',
+    fw600: '600',
   },
   shadows: {
     primaryShadow: '0 4px 10px 0 rgba(0 , 0, 0, 25%)',
@@ -118,15 +99,8 @@ export const commonStyle: CommonStyle = {
     halfHorShadow: '4px 0 20px 0 rgba(0 , 0, 0, 25%)',
   },
   radii: {
-    radius1: '0.8rem',
-    radius2: '1rem',
-    radius3: '1.5rem',
-    radius4: '2rem',
-    radius5: '2.5rem',
-    radius6: '3rem',
-    radius7: '3.5rem',
-    radius8: '4rem',
-    radiusFull: '100%',
+    radius8: '0.5rem',
+    fullRadius: '100%',
   },
   times: {
     time1: '0.1',
@@ -137,16 +111,14 @@ export const commonStyle: CommonStyle = {
   },
   darkTheme: {
     color: '#ffffff',
+    secondColor: '#ffffff',
     backgroundColor: '#191c29',
     backgroundGradient: 'linear-gradient(-10deg, rgba(33,33,33,1) 25%, rgba(64,72,94,1) 75%)',
-    widgetBackground: 'rgba(79, 83, 115, 0.5)',
-    widgetBackgroundHover: 'rgba(79, 83, 115, 1)',
   },
   lightTheme: {
-    color: '#000000',
-    backgroundColor: '#ededed',
+    color: 'rgba(30, 30, 30, 1)',
+    secondColor: 'rgba(30, 30, 30, 0.5)',
+    backgroundColor: 'rgba(255, 255, 255, 1)',
     backgroundGradient: 'linear-gradient(150deg, rgba(56,93,166,1) 47%, rgba(202,142,186,1) 93%)',
-    widgetBackground: 'rgba(118, 127, 161, 0.5)',
-    widgetBackgroundHover: 'rgba(104, 112, 143, 1)',
   },
 }

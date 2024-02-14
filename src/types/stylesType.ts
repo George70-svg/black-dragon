@@ -31,15 +31,13 @@ type Colors = {
 }
 
 type Fonts = {
-  fs0: string
-  fs1: string
-  fs2: string
-  fs3: string
-  fs4: string
-  fs5: string
-  fs6: string
-  fs7: string
-  fs8: string
+  fs12: string
+  fs14: string
+}
+
+type FontStyles = {
+  fw500: string
+  fw600: string
 }
 
 type Shadows = {
@@ -50,15 +48,8 @@ type Shadows = {
 }
 
 type Radii = {
-  radius1: string
-  radius2: string
-  radius3: string
-  radius4: string
-  radius5: string
-  radius6: string
-  radius7: string
   radius8: string
-  radiusFull: string
+  fullRadius: string
 }
 
 type Times = {
@@ -71,15 +62,15 @@ type Times = {
 
 type Theme = {
   color: Color
+  secondColor: Color
   backgroundColor: Color
   backgroundGradient: string
-  widgetBackground: Color
-  widgetBackgroundHover: Color
 }
 
 export type CommonStyle = {
   colors: Colors
   fonts: Fonts
+  fontStyles: FontStyles
   shadows: Shadows
   radii: Radii
   times: Times
