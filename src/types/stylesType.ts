@@ -35,6 +35,11 @@ type Fonts = {
   fs14: string
 }
 
+type FontStyles = {
+  fw500: string
+  fw600: string
+}
+
 type Shadows = {
   primaryShadow: string
   smallShadow: string
@@ -57,15 +62,15 @@ type Times = {
 
 type Theme = {
   color: Color
+  secondColor: Color
   backgroundColor: Color
   backgroundGradient: string
-  widgetBackground: Color
-  widgetBackgroundHover: Color
 }
 
 export type CommonStyle = {
   colors: Colors
   fonts: Fonts
+  fontStyles: FontStyles
   shadows: Shadows
   radii: Radii
   times: Times

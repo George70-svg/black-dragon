@@ -69,7 +69,7 @@ export const commonStyle: CommonStyle = {
     darkBlue: '#1565c0',
     yellow: '#F8D96D',
     darkYellow: '#efbe00',
-    red: '#ED3D3D',
+    red: 'rgba(183, 10, 6, 1)',
     green: '#7DD76F',
     purple: '#ca8eba',
     darkPurple: '#191c29',
@@ -86,7 +86,11 @@ export const commonStyle: CommonStyle = {
   },
   fonts: {
     fs12: '0.75rem',
-    fs14: '0.875',
+    fs14: '0.875rem',
+  },
+  fontStyles: {
+    fw500: '500',
+    fw600: '600',
   },
   shadows: {
     primaryShadow: '0 4px 10px 0 rgba(0 , 0, 0, 25%)',
@@ -107,16 +111,14 @@ export const commonStyle: CommonStyle = {
   },
   darkTheme: {
     color: '#ffffff',
+    secondColor: '#ffffff',
     backgroundColor: '#191c29',
     backgroundGradient: 'linear-gradient(-10deg, rgba(33,33,33,1) 25%, rgba(64,72,94,1) 75%)',
-    widgetBackground: 'rgba(79, 83, 115, 0.5)',
-    widgetBackgroundHover: 'rgba(79, 83, 115, 1)',
   },
   lightTheme: {
     color: 'rgba(30, 30, 30, 1)',
+    secondColor: 'rgba(30, 30, 30, 0.5)',
     backgroundColor: 'rgba(255, 255, 255, 1)',
     backgroundGradient: 'linear-gradient(150deg, rgba(56,93,166,1) 47%, rgba(202,142,186,1) 93%)',
-    widgetBackground: 'rgba(118, 127, 161, 0.5)',
-    widgetBackgroundHover: 'rgba(104, 112, 143, 1)',
   },
 }
