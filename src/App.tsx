@@ -8,7 +8,7 @@ import { router } from './router/router'
 import { Styles } from './styles'
 
 function App() {
-  return <RouterProvider router={ router } />
+  return <RouterProvider router={router} />
 }
 
 export function Root() {

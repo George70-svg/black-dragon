@@ -1,24 +1,24 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-import { StyledNewsPage } from '@components/views/newsPage/styles/newsPage.styled'
+import { StyledNews } from '@components/views/teaPage/components/news/styles/news.styled'
+import { useSelector } from 'react-redux'
 import { IStore } from '@store/store'
 
-import { commonStyle } from '../../../styles'
+import { commonStyle } from '../../../../../styles'
 
-export function NewsPage() {
+export function News() {
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
 
   const theme = {
     color: commonStyle[colorTheme].color,
-    secondColor: commonStyle[colorTheme].secondColor
+    secondColor: commonStyle[colorTheme].secondColor,
   }
 
   return (
     <ThemeProvider theme={theme}>
-      <StyledNewsPage>
-        <h1>NewsPage</h1>
-      </StyledNewsPage>
+      <StyledNews>
+        <p>News</p>
+      </StyledNews>
     </ThemeProvider>
   )
 }
