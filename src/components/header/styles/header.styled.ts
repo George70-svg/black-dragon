@@ -7,13 +7,12 @@ export const StyledHeader = styled.div.attrs(() => ({
     flex-direction: column;
     height: 100%;
     width: 100%;
-    border: 1px solid black;
     
     .navigation {
-        flex-basis: 25%;
+        flex-basis: 20%;
     }
     
     .menu {
-        flex-basis: 75%;
+        flex-basis: 80%;
     }
 `

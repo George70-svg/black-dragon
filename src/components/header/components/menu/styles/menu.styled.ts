@@ -4,9 +4,21 @@ export const StyledMenu = styled.div.attrs(() => ({
   className: 'menu',
 }))`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
     width: 100%;
-    border: 1px solid black;
+    padding: 0.5rem 2rem;
+    
+    .menu-logo {
+        flex-basis: 30%;
+    }
+    
+    .menu-search {
+        flex-basis: 40%;
+    }
+    
+    .menu-buttons {
+        flex-basis: 30%;
+    }
 `
