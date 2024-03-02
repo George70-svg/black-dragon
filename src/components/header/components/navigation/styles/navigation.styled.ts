@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+// @ts-ignore
+
+import { commonStyle } from '../../../../../styles'
 
 export const StyledNavigation = styled.div.attrs(() => ({
   className: 'navigation',
@@ -7,11 +10,26 @@ export const StyledNavigation = styled.div.attrs(() => ({
     justify-content: center;
     height: 100%;
     width: 100%;
-    border: 1px solid black;
     
     ul {
         display: flex;
-        justify-content: center;
-        gap: 2.4rem;
+        justify-content: space-between;
+        width: 40%;
+        padding: 0 1rem;
+        
+        li {
+            font-size: ${() => commonStyle.fonts.fs14};
+            cursor: pointer;
+        }
+        
+        .not-active {
+            color: ${props => props.theme.secondColor};
+            transition: color ${() => commonStyle.times.time3};
+        }
+        
+        .active {
+            color: ${props => props.theme.color};
+            transition: color ${() => commonStyle.times.time3};
+        }
     }
 `

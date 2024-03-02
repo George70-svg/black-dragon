@@ -33,6 +33,7 @@ type Colors = {
 type Fonts = {
   fs12: string
   fs14: string
+  fs21: string
 }
 
 type FontStyles = {
@@ -63,6 +64,7 @@ type Times = {
 type Theme = {
   color: Color
   secondColor: Color
+  tertiaryColor: Color
   backgroundColor: Color
   backgroundGradient: string
 }

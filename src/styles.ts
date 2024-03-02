@@ -3,8 +3,6 @@ import { createGlobalStyle } from 'styled-components'
 import { ColorThemeProps, CommonStyle } from '@types/stylesType'
 
 export const Styles = createGlobalStyle<ColorThemeProps>`
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
-
     * {
         box-sizing: border-box;
     }
@@ -16,8 +14,8 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
         margin: 0;
         background: ${(props) => commonStyle[props.colorTheme].backgroundColor};
         color: ${(props) => commonStyle[props.colorTheme].color};
-        font-family: 'Roboto', sans-serif;
         font-size: ${() => commonStyle.fonts.fs12};
+        font-weight: ${() => commonStyle.fontStyles.fw500};
     }
 
     #root {
@@ -44,17 +42,17 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
         margin: 0;
     }
 
-    .scroll-bar {
-        ::-webkit-scrollbar {
-            width: 7px;
+    .scroll-bar-hide {
+        &::-webkit-scrollbar {
+            width: 0;
         }
 
-        ::-webkit-scrollbar-thumb {
+        &::-webkit-scrollbar-thumb {
             background-color: #ccc;
             border-radius: 10px;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
+        &::-webkit-scrollbar-thumb:hover {
             background-color: #aaa;
         }
     }
@@ -78,7 +76,7 @@ export const commonStyle: CommonStyle = {
     grey300: '#e0e0e0',
     grey400: '#bdbdbd',
     grey500: '#9e9e9e',
-    grey600: '#757575',
+    grey600: 'rgba(189, 189, 189, 1)',
     grey700: '#616161',
     grey800: '#424242',
     grey900: '#212121',
@@ -87,13 +85,14 @@ export const commonStyle: CommonStyle = {
   fonts: {
     fs12: '0.75rem',
     fs14: '0.875rem',
+    fs21: '1.3rem',
   },
   fontStyles: {
     fw500: '500',
     fw600: '600',
   },
   shadows: {
-    primaryShadow: '0 4px 10px 0 rgba(0 , 0, 0, 25%)',
+    primaryShadow: '0 0 24px 0 rgba(0, 0, 0, 0.1)',
     smallShadow: '0 0 4px 0 rgba(0 , 0, 0, 25%)',
     secondaryShadow: '0 0 20px 0 rgba(0 , 0, 0, 25%)',
     halfHorShadow: '4px 0 20px 0 rgba(0 , 0, 0, 25%)',
@@ -103,21 +102,23 @@ export const commonStyle: CommonStyle = {
     fullRadius: '100%',
   },
   times: {
-    time1: '0.1',
-    time2: '0.2',
-    time3: '0.3',
-    time4: '0.4',
-    time5: '0.5',
+    time1: '0.1s',
+    time2: '0.2s',
+    time3: '0.3s',
+    time4: '0.4s',
+    time5: '0.5s',
   },
   darkTheme: {
     color: '#ffffff',
-    secondColor: '#ffffff',
+    secondColor: '#cbcbcb',
     backgroundColor: '#191c29',
+    tertiaryColor: 'rgba(30, 30, 30, 0.33)',
     backgroundGradient: 'linear-gradient(-10deg, rgba(33,33,33,1) 25%, rgba(64,72,94,1) 75%)',
   },
   lightTheme: {
     color: 'rgba(30, 30, 30, 1)',
     secondColor: 'rgba(30, 30, 30, 0.5)',
+    tertiaryColor: 'rgba(30, 30, 30, 0.33)',
     backgroundColor: 'rgba(255, 255, 255, 1)',
     backgroundGradient: 'linear-gradient(150deg, rgba(56,93,166,1) 47%, rgba(202,142,186,1) 93%)',
   },
