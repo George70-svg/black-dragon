@@ -1,13 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { ThemeProvider } from 'styled-components'
 // @ts-ignore
 import { Routers } from '@types/routers'
 import Icons from '@icons/icons'
 import { StyledMenuLogo } from '@components/header/components/menu/components/menuLogo/styles/menuLogo.styled'
 import { IStore } from '@store/store'
 import { useNavigate } from 'react-router-dom'
+
 import { commonStyle } from '../../../../../../styles'
-import { ThemeProvider } from 'styled-components'
 
 export function MenuLogo() {
   const navigate = useNavigate()

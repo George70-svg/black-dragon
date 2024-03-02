@@ -14,6 +14,18 @@ export const StyledFilterInput = styled.div.attrs(() => ({
         font-size: ${() => commonStyle.fonts.fs14};
         color: ${props => props.theme.color};
     }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
     
     .prices {
         display: flex;

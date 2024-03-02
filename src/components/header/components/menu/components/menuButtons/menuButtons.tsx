@@ -23,10 +23,10 @@ export function MenuButtons() {
           <p>Профиль</p>
         </div>
 
-        <div className="button-container">
+        {/*<div className="button-container">
           <Icons name="heart" color="#fff" size="24" className="icon" />
           <p>Избранное</p>
-        </div>
+        </div>*/}
 
         <div className="button-container">
           <Icons name="basket" color="#fff" size="24" className="icon" />

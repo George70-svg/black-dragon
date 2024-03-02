@@ -5,10 +5,6 @@ import { commonStyle } from '../../../../../../styles'
 export const StyledTSelector = styled.div.attrs(() => ({
   className: 't-selector',
 }))`
-    font-size: ${() => commonStyle.fonts.fs14};
-    box-shadow: ${() => commonStyle.shadows.primaryShadow};
-    border-radius: ${() => commonStyle.radii.radius8};
-    cursor: pointer;
     
     .selector {
         display: flex;
@@ -16,6 +12,12 @@ export const StyledTSelector = styled.div.attrs(() => ({
         justify-content: space-between;
         gap: 0.5rem;
         padding: 0.5rem;
+        background-color: ${() => commonStyle.colors.white};
+        font-size: ${() => commonStyle.fonts.fs14};
+        box-shadow: ${() => commonStyle.shadows.primaryShadow};
+        border: none;
+        border-radius: ${() => commonStyle.radii.radius8};
+        cursor: pointer;
     }
 
     .MuiFormControl-root {

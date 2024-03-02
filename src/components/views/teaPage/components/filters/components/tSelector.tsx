@@ -17,13 +17,14 @@ export function TSelector(props: TSelectorProps) {
     secondColor: commonStyle[colorTheme].secondColor,
   }
 
-  const [option, setOption] = React.useState<string>(props.options[0].value)
+  const [option, setOption] = React.useState<string>(props.initialValue)
   const [open, setOpen] = React.useState(false)
 
   const handleChange = (event: SelectChangeEvent<typeof option>) => {
     const selectItem = props.options.find(item => item.value === event.target.value)
 
     if(selectItem) {
+      props.onChange(props.filterName, selectItem.value)
       setOption(selectItem.value)
     }
   }
@@ -39,7 +40,7 @@ export function TSelector(props: TSelectorProps) {
   return (
     <ThemeProvider theme={theme}>
       <StyledTSelector>
-        <div className="selector" onClick={handleOpen}>
+        <button className="selector" onClick={handleOpen} disabled={props.isDisabled}>
           <Icons name={props.iconName} color="#fff" size="20" className="icon" />
 
           <p>{ props.options.find(item => item.value === option)?.name }</p>
@@ -48,7 +49,7 @@ export function TSelector(props: TSelectorProps) {
             <Icons name="arrow-up-grey" color="#fff" size="20" className="icon" /> :
             <Icons name="arrow-down-grey" color="#fff" size="20" className="icon" />
           }
-        </div>
+        </button>
 
         <FormControl>
           <Select
@@ -60,7 +61,7 @@ export function TSelector(props: TSelectorProps) {
             onChange={handleChange}
           >
             {props.options.map(item => (
-              <MenuItem value={ item.value } key={item.value + item.name} >{ item.name }</MenuItem>
+              <MenuItem value={ item.value } key={item.name} >{ item.name }</MenuItem>
             ))}
           </Select>
         </FormControl>

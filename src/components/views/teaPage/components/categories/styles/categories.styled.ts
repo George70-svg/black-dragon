@@ -1,8 +1,9 @@
 import styled from 'styled-components'
+
 import { commonStyle } from '../../../../../../styles'
 
 export const StyledCategories = styled.div.attrs(() => ({
-  className: 'categories scroll-bar',
+  className: 'categories scroll-bar-hide',
 }))`
     grid-area: categories;
     display: flex;

@@ -8,7 +8,7 @@ export const StyledTeaPage = styled.div.attrs(() => ({
     grid-template-areas:
     "news news"
     "categories filters"
-    "categories goods";
+    "categories products";
     
     //grid-template-rows: 6.25rem 5.5rem 1fr; //Add for news widget
     grid-template-rows: 0 5.5rem 1fr;
