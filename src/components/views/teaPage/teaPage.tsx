@@ -1,15 +1,21 @@
 import React from 'react'
-import { StyledTeaPage } from '@components/views/teaPage/styles/teaPage.styled'
-import { ThemeProvider } from 'styled-components'
 import { useSelector } from 'react-redux'
-import { IStore } from '@store/store'
+import { ThemeProvider } from 'styled-components'
+import { StyledTeaPage } from '@components/views/teaPage/styles/teaPage.styled'
+import { IStore, useAppDispatch } from '@store/store'
+import { getProductCategories, getProductsThunk } from '@store/products'
 import { Categories } from '@components/views/teaPage/components/categories/categories'
 import { Filters } from '@components/views/teaPage/components/filters/filters'
-import { Goods } from '@components/views/teaPage/components/goods/goods'
+import { Products } from '@components/views/teaPage/components/products/products'
 
 import { commonStyle } from '../../../styles'
 
 export function TeaPage() {
+  const dispatch = useAppDispatch()
+
+  dispatch(getProductsThunk())
+  dispatch(getProductCategories())
+
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
 
   const theme = {
@@ -23,7 +29,7 @@ export function TeaPage() {
         {/*<News />*/}
         <Categories />
         <Filters />
-        <Goods />
+        <Products />
       </StyledTeaPage>
     </ThemeProvider>
   )

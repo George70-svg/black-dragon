@@ -54,13 +54,24 @@ export function FilterCheckbox(props: FilterCheckboxProps) {
     secondColor: commonStyle[colorTheme].secondColor,
   }
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    props.onChange(props.filterName, event.target.checked)
+  }
+
   return (
     <ThemeProvider theme={appTheme}>
       <ThemeProviderMui theme={theme}>
         <StyledFilterCheckbox>
           <FormControlLabel
             control={
-              <Checkbox defaultChecked color='gray' icon={<CheckBoxOutlineBlankIcon color='red' />} checkedIcon={<CheckIcon color='red' />} />
+              <Checkbox
+                checked={ props.initialValue ? props.initialValue : false }
+                color='gray'
+                icon={<CheckBoxOutlineBlankIcon color='red' />}
+                checkedIcon={<CheckIcon color='red' />}
+                onChange={handleChange}
+                disabled={props.isDisabled}
+              />
             }
             label={props.label} />
         </StyledFilterCheckbox>

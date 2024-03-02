@@ -6,6 +6,7 @@ import { Routers } from '@types/routers'
 import { StyledNavigation } from '@components/header/components/navigation/styles/navigation.styled'
 import { useSelector } from 'react-redux'
 import { IStore } from '@store/store'
+
 import { commonStyle } from '../../../../styles'
 
 export function Navigation() {
@@ -30,7 +31,7 @@ export function Navigation() {
           <li className={currentPath === '/price' ? 'active' : 'not-active'} onClick={() => setRouter('price')}>Скачать прайс</li>
           <li className={currentPath === '/delivery' ? 'active' : 'not-active'} onClick={() => setRouter('delivery')}>Доставка</li>
           <li className={currentPath === '/sales' ? 'active' : 'not-active'} onClick={() => setRouter('sales')}>Система скидок</li>
-          <li className={currentPath === '/news' ? 'active' : 'not-active'} onClick={() => setRouter('news')}>Новости</li>
+          {/*<li className={currentPath === '/news' ? 'active' : 'not-active'} onClick={() => setRouter('news')}>Новости</li>*/}
           <li className={currentPath === '/contacts' ? 'active' : 'not-active'} onClick={() => setRouter('contacts')}>Контакты</li>
         </ul>
       </StyledNavigation>

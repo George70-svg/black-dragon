@@ -42,7 +42,7 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
         margin: 0;
     }
 
-    .scroll-bar {
+    .scroll-bar-hide {
         &::-webkit-scrollbar {
             width: 0;
         }
