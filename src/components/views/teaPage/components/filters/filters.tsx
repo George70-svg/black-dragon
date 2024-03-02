@@ -20,7 +20,7 @@ export function Filters() {
 
   const filters = useSelector((state: IStore) => state.products.filters)
   const isDisabledFilters = useSelector((state: IStore) => state.products.isProductsUpdate)
-  const categoriesItems = useSelector((state: IStore) => state.products.categories)
+  const categoriesItems = useSelector((state: IStore) => state.products?.categories[0]?.subItems) || []
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
 
@@ -44,7 +44,7 @@ export function Filters() {
 
   const optionsGroups: SelectorOption[] = [
     { value: '', name: 'Группа товаров' },
-    ...categoriesItems[0].subItems,
+    ...categoriesItems
   ]
 
   const optionsFabrics: SelectorOption[] = [
