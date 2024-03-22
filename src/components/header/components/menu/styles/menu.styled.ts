@@ -8,7 +8,7 @@ export const StyledMenu = styled.div.attrs(() => ({
     align-items: center;
     height: 100%;
     width: 100%;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem;
     
     .menu-logo {
         flex-basis: 30%;

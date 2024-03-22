@@ -3,6 +3,9 @@ import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { StyledProducts } from '@components/views/teaPage/components/products/styles/products.styled'
 import { IStore } from '@store/store'
+import { TableView } from '@components/views/teaPage/components/products/components/tableView/tableView'
+import { BlockView } from '@components/views/teaPage/components/products/components/blockView/blockView'
+import { SeeMore } from '@components/views/teaPage/components/products/components/seeMore/seeMore'
 
 import { commonStyle } from '../../../../../styles'
 
@@ -15,24 +18,18 @@ export function Products() {
   }
 
   const products = useSelector((state: IStore) => state.products.products)
+  const isTableView = useSelector((state: IStore) => state.products.tableView)
 
   return (
     <ThemeProvider theme={theme}>
       <StyledProducts>
-        <div className='headerss'>
-          header
-        </div>
+        {isTableView === 'list' ?
+          <TableView products={products} /> :
+          <BlockView />
+        }
 
-        <div className='tabless'>
-          {
-            products.map(product => (
-              <div key={product.name + product.fullName}>
-                <div>{JSON.stringify(product)}</div>
-                <br/>
-              </div>
-            ))
-          }
-        </div>
+        <SeeMore />
+        {/*<Pagination />*/}
       </StyledProducts>
     </ThemeProvider>
   )

@@ -7,6 +7,7 @@ export const StyledFilterSwitch = styled.div.attrs(() => ({
 }))`
     display: flex;
     gap: 0.5rem;
+    height: 100%;
     padding: 0.5rem 1rem;
     box-shadow: ${() => commonStyle.shadows.primaryShadow};
     border-radius: ${() => commonStyle.radii.radius8};

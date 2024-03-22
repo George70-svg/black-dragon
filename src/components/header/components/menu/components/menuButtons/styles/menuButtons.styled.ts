@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-// @ts-ignore
 
 import { commonStyle } from '../../../../../../../styles'
 
@@ -19,10 +18,6 @@ export const StyledMenuButtons = styled.div.attrs(() => ({
         align-items: center;
         gap: 0.2rem;
         cursor: pointer;
-        
-        .icon {
-            
-        }
         
         p {
             font-size: ${() => commonStyle.fonts.fs14};

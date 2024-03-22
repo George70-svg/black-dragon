@@ -19,7 +19,7 @@ export const StyledTSelector = styled.div.attrs(() => ({
         border-radius: ${() => commonStyle.radii.radius8};
         cursor: pointer;
     }
-
+    
     .MuiFormControl-root {
         display: block;
         visibility: hidden;

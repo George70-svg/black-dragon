@@ -13,13 +13,14 @@ import { commonStyle } from '../../../../../../styles'
 
 declare module '@mui/material/styles' {
   interface Palette {
-    gray: Palette['primary'];
-    red: Palette['primary'];
+    gray: Palette['primary']
+    red: Palette['primary']
+    secondary: Palette['primary']
   }
 
   interface PaletteOptions {
-    gray?: PaletteOptions['primary'];
-    red?: PaletteOptions['primary'];
+    gray?: PaletteOptions['primary']
+    red?: PaletteOptions['primary']
   }
 }
 
@@ -31,7 +32,9 @@ declare module '@mui/material/Checkbox' {
 
 declare module '@mui/material/SvgIcon' {
   interface SvgIconPropsColorOverrides {
-    red: true
+    red: true,
+    gray: true,
+    secondary: true
   }
 }
 
@@ -42,6 +45,9 @@ const theme = createTheme({
     },
     red: {
       main: commonStyle.colors.red,
+    },
+    secondary: {
+      main: commonStyle.colors.grey500,
     }
   },
 })
@@ -67,7 +73,7 @@ export function FilterCheckbox(props: FilterCheckboxProps) {
               <Checkbox
                 checked={ props.initialValue ? props.initialValue : false }
                 color='gray'
-                icon={<CheckBoxOutlineBlankIcon color='red' />}
+                icon={<CheckBoxOutlineBlankIcon color='secondary' />}
                 checkedIcon={<CheckIcon color='red' />}
                 onChange={handleChange}
                 disabled={props.isDisabled}

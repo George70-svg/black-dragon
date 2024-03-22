@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { TextField } from '@mui/material'
 import { IStore } from '@store/store'
+import { debounce } from '@utils/common'
 import { StyledFilterInput } from '@components/views/teaPage/components/filters/styles/filterInput.styled'
 import { FilterInputProps } from '@components/views/teaPage/components/filters/types/types'
+import { ProductFilters } from '@endpoints/endpoints/products/types'
 
 import { commonStyle } from '../../../../../../styles'
-import { ProductFilters } from '@endpoints/endpoints/products/types'
-import { debounce } from '@utils/common'
 
 export function FilterInput(props: FilterInputProps) {
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
@@ -18,13 +18,6 @@ export function FilterInput(props: FilterInputProps) {
     secondColor: commonStyle[colorTheme].secondColor,
   }
 
-  /*const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const filterName = event.target.name as keyof ProductFilters
-    const value = +event.target.value
-
-    props.onChange(filterName, value)
-  }*/
-
   const handleChange = useCallback(
     debounce((event: React.ChangeEvent<HTMLInputElement>) => {
       const filterName = event.target.name as keyof ProductFilters
@@ -33,7 +26,7 @@ export function FilterInput(props: FilterInputProps) {
       props.onChange(filterName, value)
     }, 500),
     [props.onChange]
-  );
+  )
 
   return (
     <ThemeProvider theme={theme}>
