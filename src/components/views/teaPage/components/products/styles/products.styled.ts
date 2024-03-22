@@ -6,18 +6,7 @@ export const StyledProducts = styled.div.attrs(() => ({
     grid-area: products;
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     overflow: auto;
-    border: 1px solid black;
-    
-    .headerss {
-        position: sticky;
-        top: 0;
-        border: 1px solid black;
-        background-color: blue;
-    }
-    
-    .tabless {
-        position: static;
-        border: 1px solid black;
-    }
+    height: 100%;
 `

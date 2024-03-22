@@ -17,7 +17,7 @@ export type Product = {
   step: number
   fullName: string
   price: number
-  currency: string
+  currency: string | 'RUB'
   isNewPosition: boolean
   priceFiveKgCny: number
   priceBoxCny: number
@@ -38,6 +38,8 @@ export type Product = {
 
 export type ProductType = 'SPB_TEA' | 'SPB_DISH' | 'CHINA' | 'CHINA_VIP'
 
+export type TableView = 'list' | 'block'
+
 export type ProductFilters = {
   productType: ProductType
   maybeGroupType: string
@@ -49,13 +51,29 @@ export type ProductFilters = {
   maybePriceEnd: number | null
 }
 
-export type CategoriesItem = {
+export type CategoryName = 'Посуда' | 'Новинки' | 'Товары со скидкой' | 'Пуэр' | 'Улун' | 'Белый чай' | 'Хэй Ча' | 'Аксессуары' | 'Pos group'
+
+export type CategoryValue = 'NEW' | 'SALE' | 'POS_GROUP' | 'PUER' | 'OOLONG' | 'HEY_CHA' | 'WHITE' | 'DISH' | 'ACCESSORIES'
+
+export type CategoryItem = {
   name: string
   value: string
 }
 
-export type CategoriesType = {
-  name: 'Чай' | 'Посуда'
-  value: 'TEA' | 'DISH'
-  subItems: CategoriesItem[]
+export type CategoryType = {
+  name: CategoryName
+  value: CategoryValue
+  subItems: CategoryItem[]
+}
+
+export type CatalogItem = {
+  name: CategoryName,
+  type: CategoryValue,
+  maybeNestedItems?: CatalogSubItem[],
+}
+
+type CatalogSubItem = {
+  name: string,
+  type: string,
+  maybeGroup?: string,
 }

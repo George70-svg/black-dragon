@@ -26,3 +26,7 @@ export function debounce<R>(fn: (...args: any) => R, ms: number) {
     })
   }
 }
+
+export function deduplicate<T> (simpleArray: Array<T>): T[] {
+  return [ ...new Set(simpleArray) ]
+}

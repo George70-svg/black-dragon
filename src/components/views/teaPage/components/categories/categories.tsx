@@ -15,7 +15,8 @@ import { commonStyle } from '../../../../../styles'
 export function Categories() {
   const dispatch = useAppDispatch()
 
-  const categoriesItems = useSelector((state: IStore) => state.products.categories)
+  const catalogItems = useSelector((state: IStore) => state.products.catalog)
+  console.log(catalogItems)
 
   const [open, setOpen] = React.useState(true)
   const [itemValue, setItemNumber] = React.useState('TEA')
@@ -50,29 +51,30 @@ export function Categories() {
     <ThemeProvider theme={theme}>
       <StyledCategories>
         <List component="div">
-          {categoriesItems.map(item => (
-            <div key={item.value}>
+          {catalogItems.map(item => (
+            <div key={item.type}>
               <ListItemButton
-                onClick={item.subItems ? () => handleClick(item.value) : () => {}}
+                onClick={item.maybeNestedItems ? () => handleClick(item.type) : () => {}}
                 disabled={isDisabledFilters}
               >
                 <ListItemText primary={item.name} />
-                {item.subItems ?
+                {item.maybeNestedItems ?
                   <>
-                    {(open && itemValue === item.value) ?
+                    {(open && itemValue === item.type) ?
                       <Icons name="arrow-up-red" color="#fff" size="24" className="icon" /> :
                       <Icons name="arrow-down-red" color="#fff" size="24" className="icon" />
                     }
                   </> : null
                 }
               </ListItemButton>
-              {item.subItems ?
-                <Collapse in={itemValue === item.value && open} timeout="auto" unmountOnExit>
+              {item.maybeNestedItems ?
+                <Collapse in={itemValue === item.type && open} timeout="auto" unmountOnExit>
                   <List component="div">
-                    {item.subItems.map(subItem => (
+                    {item.maybeNestedItems.map(subItem => (
                       <ListItemButton
-                        key={subItem.value} sx={{ pl: 4 }}
-                        onClick={() => handleProductFilterChange('maybeGroupType', subItem.value)}
+                        key={subItem.type} sx={{ pl: 4 }}
+                        onClick={() => handleProductFilterChange('maybeGroupType', subItem.type)}
+                        selected={subItem.type === filters.maybeGroupType}
                         disabled={isDisabledFilters}
                       >
                         <ListItemText primary={ subItem.name } />

@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { StyledFilters } from '@components/views/teaPage/components/filters/styles/filters.styled'
+import { deduplicate } from '@utils/common'
 import { IStore, useAppDispatch } from '@store/store'
 import { updateProductFilterThunk } from '@store/products'
 import { updateProductFilter } from '@components/views/teaPage/utils/common'
@@ -20,7 +21,8 @@ export function Filters() {
 
   const filters = useSelector((state: IStore) => state.products.filters)
   const isDisabledFilters = useSelector((state: IStore) => state.products.isProductsUpdate)
-  const categoriesItems = useSelector((state: IStore) => state.products?.categories[0]?.subItems) || []
+  const categoriesItems = useSelector((state: IStore) => state.products?.catalog[0]?.maybeNestedItems) || []
+  const fabricsItems = useSelector((state: IStore) => state.products?.fabrics) || []
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
 
@@ -44,13 +46,14 @@ export function Filters() {
 
   const optionsGroups: SelectorOption[] = [
     { value: '', name: 'Группа товаров' },
-    ...categoriesItems
+    ...categoriesItems.map(item => {
+      return { value: item.type, name: item.name }
+    })
   ]
 
   const optionsFabrics: SelectorOption[] = [
     { value: '', name: 'Фабрика' },
-    { value: 'SPB', name: 'СПБ' },
-    { value: 'CHINA', name: 'Китай' },
+    ...deduplicate(fabricsItems).map(fabric => ({ value: fabric, name: fabric }))
   ]
 
   return (
@@ -106,13 +109,17 @@ export function Filters() {
               isDisabled={isDisabledFilters}
             />
 
-            <FilterCheckbox
-              filterName="isInStock"
-              initialValue={filters.isInStock}
-              onChange={handleProductFilterChange}
-              label="В наличии"
-              isDisabled={isDisabledFilters}
-            />
+            {/*Этот фильтр нужен только для Санкт-Петербурга*/}
+            {filters.productType === 'SPB_TEA' || filters.productType === 'SPB_DISH' ?
+              <FilterCheckbox
+                filterName="isInStock"
+                initialValue={filters.isInStock}
+                onChange={handleProductFilterChange}
+                label="В наличии"
+                isDisabled={isDisabledFilters}
+              /> :
+              null
+            }
 
             {/*<FilterCheckbox
               filterName="isFavorites"

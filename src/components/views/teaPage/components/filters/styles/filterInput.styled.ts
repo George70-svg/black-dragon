@@ -31,7 +31,7 @@ export const StyledFilterInput = styled.div.attrs(() => ({
         display: flex;
         width: 9.1rem;
         height: 2.25rem;
-        border: 1px solid ${() => commonStyle.colors.grey600};
+        border: 1px solid ${() => commonStyle.colors.grey189};
         border-radius: ${() => commonStyle.radii.radius8};
         
         .MuiFormControl-root {
@@ -67,7 +67,7 @@ export const StyledFilterInput = styled.div.attrs(() => ({
             .separator {
                 width: 1px;
                 height: 100%;
-                background-color: ${() => commonStyle.colors.grey600};
+                background-color: ${() => commonStyle.colors.grey189};
             }
         }
     }

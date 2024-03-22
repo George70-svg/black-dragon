@@ -5,7 +5,7 @@ import { commonStyle } from '../../../../../../styles'
 export const StyledFilterCheckbox = styled.div.attrs(() => ({
   className: 'filter-checkbox',
 }))`
-
+    
     .MuiFormControlLabel-root {
         margin: 0;
 

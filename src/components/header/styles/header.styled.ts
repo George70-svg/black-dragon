@@ -10,6 +10,7 @@ export const StyledHeader = styled.div.attrs(() => ({
     
     .navigation {
         flex-basis: 20%;
+        margin-bottom: -10px;
     }
     
     .menu {

@@ -1,12 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { endpoints } from '@endpoints/endpoints'
-import { CategoriesType, Product, ProductFilters } from '@endpoints/endpoints/products/types'
+import { CatalogItem, Product, ProductFilters, TableView } from '@endpoints/endpoints/products/types'
 import { IStore } from '@store/store'
 
 export interface IProductsState {
   products: Product[]
   filters: ProductFilters
-  categories: CategoriesType[]
+  catalog: CatalogItem[]
+  fabrics: string[]
+  tableView: TableView
   isProductsUpdate: boolean
   isCategoriesUpload: boolean
 }
@@ -23,7 +25,9 @@ const initialState: IProductsState = {
     maybePriceStart: null,
     maybePriceEnd: null,
   },
-  categories: [],
+  catalog: [],
+  fabrics: [],
+  tableView: 'list',
   isProductsUpdate: false,
   isCategoriesUpload: false,
 }
@@ -40,15 +44,24 @@ export const productsSlice = createSlice({
       const newFilters = action.payload
       state.filters = newFilters
     },
-    setCategories: (state, action: { payload: CategoriesType[] }) => {
-      const categories = action.payload
-      state.categories = categories
+    setCatalog: (state, action: { payload: CatalogItem[] }) => {
+      const catalog = action.payload
+      console.log(catalog)
+      state.catalog = catalog
+    },
+    setFabrics: (state, action: { payload: string[] }) => {
+      const fabrics = action.payload
+      state.fabrics = fabrics
     },
     setProductsUpdateStatus: (state, action: { payload: boolean }) => {
       state.isProductsUpdate = action.payload
     },
     setCategoriesUploadStatus: (state, action: { payload: boolean }) => {
       state.isCategoriesUpload = action.payload
+    },
+    setTableView: (state, action: { payload: TableView }) => {
+      const tableView = action.payload
+      state.tableView = tableView
     },
   }
 })
@@ -86,29 +99,15 @@ export const updateProductFilterThunk = createAsyncThunk(
   }
 )
 
-export const getProductCategories = createAsyncThunk(
-  'products/categories',
+export const getProductCatalogThunk = createAsyncThunk(
+  'products/catalog',
   async (_, thunkAPI) => {
     try {
       thunkAPI.dispatch(setCategoriesUploadStatus(true))
 
-      const teaCategories = await endpoints.products.groups('TEA')
-      const dishCategories = await endpoints.products.groups('DISH')
+      const catalog = await endpoints.products.catalog()
 
-      const categoriesData: CategoriesType[] = [
-        {
-          name: 'Чай',
-          value: 'TEA',
-          subItems: teaCategories,
-        },
-        {
-          name: 'Посуда',
-          value: 'DISH',
-          subItems: dishCategories,
-        }
-      ]
-
-      thunkAPI.dispatch(setCategories(categoriesData))
+      thunkAPI.dispatch(setCatalog(catalog))
     } catch (error) {
       console.error(error)
       throw error
@@ -118,12 +117,40 @@ export const getProductCategories = createAsyncThunk(
   }
 )
 
+export const setTableViewThunk = createAsyncThunk(
+  'products/tableView',
+  async (viewType: TableView, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(setTableView(viewType))
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
+  }
+)
+
+export const getProductFabricsThunk = createAsyncThunk(
+  'products/fabrics',
+  async (_, thunkAPI) => {
+    try {
+      const fabrics = await endpoints.products.fabrics()
+
+      thunkAPI.dispatch(setFabrics(fabrics))
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
+  }
+)
+
 export const {
   setProducts,
   setProductsUpdateStatus,
   updateFilter,
-  setCategories,
+  setCatalog,
+  setFabrics,
   setCategoriesUploadStatus,
+  setTableView
 } = productsSlice.actions
 
 export default productsSlice.reducer
