@@ -11,6 +11,7 @@ const articleColumn = {
   body: (product: Product) => <div className={ articleColumn.alignBody }>{product.art}</div>,
   width: '5rem',
   alignHeader: 'top-left',
+  fixedWidth: false,
   alignBody: 'left',
 }
 
@@ -19,6 +20,7 @@ const nameColumn = {
   body: (product: Product) => <div className={ nameColumn.alignBody }>{product.fullName}</div>,
   width: '',
   alignHeader: 'top-left',
+  fixedWidth: false,
   alignBody: 'left',
 }
 
@@ -27,6 +29,7 @@ const minimumOrderColumn = {
   body: (product: Product) => <ItemMinOrder orderNumber={product.minOrder} orderUnit={product.unit} />,
   width: '8rem',
   alignHeader: 'top-left',
+  fixedWidth: false,
   alignBody: 'left',
 }
 
@@ -35,6 +38,7 @@ const priceColumn = {
   body: (product: Product) => <ItemPrice price={product.price} currency={product.currency} />,
   width: '8rem',
   alignHeader: 'top-left',
+  fixedWidth: false,
   alignBody: 'left',
 }
 
@@ -43,6 +47,7 @@ const saleColumn = {
   body: (product: Product) => <div className={ saleColumn.alignBody }> — </div>,
   width: '5rem',
   alignHeader: 'top-left',
+  fixedWidth: false,
   alignBody: 'center',
 }
 
@@ -50,6 +55,7 @@ const orderColumn = {
   header: () => <div/>,
   body: (product: Product) => <ItemNumber />,
   width: '6.75rem',
+  fixedWidth: false,
   alignBody: 'center',
 }
 
@@ -57,6 +63,7 @@ const weightColumn = {
   header: () => <div/>,
   body: (product: Product) => <ItemSelector />,
   width: '5rem',
+  fixedWidth: true,
   alignBody: 'center',
 }
 
@@ -64,6 +71,7 @@ const uncoverColumn = {
   header: () => <div/>,
   body: (product: Product) => <ItemButtons />,
   width: '2.25rem',
+  fixedWidth: false,
   alignBody: 'center',
 }
 

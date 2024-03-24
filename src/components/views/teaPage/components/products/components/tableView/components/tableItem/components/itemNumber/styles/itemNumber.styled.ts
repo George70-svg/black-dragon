@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { commonStyle } from '../../../../../../../../../../../../styles'
 
 type StyledItemNumberProps = {
-  active: boolean
+  active: number
 }
 
 export const StyledItemNumber = styled.div.attrs(() => ({
@@ -20,6 +20,7 @@ export const StyledItemNumber = styled.div.attrs(() => ({
 
     .number {
         font-size: ${() => commonStyle.fonts.fs14};
+        font-weight: ${props => props.active ? commonStyle.fontStyles.fw600 : commonStyle.fontStyles.fw600};
         color: ${props => props.active ? props.theme.color : props.theme.secondColor};
     }
 

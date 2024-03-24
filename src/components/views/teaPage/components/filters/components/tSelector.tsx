@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { useSelector } from 'react-redux'
 import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material'
@@ -19,15 +19,15 @@ export function TSelector(props: TSelectorProps) {
 
   //использую для синхронизации выбора фильтра в категории и в селекторе
   //если категория известна и соовтетсвует опцпиям селектора, то при измении категории изменит селектор
-  useEffect(() => {
+  /*useEffect(() => {
     if(props.options.map(item => item.value).includes(props.initialValue)) {
       setOption(props.initialValue)
     } else {
       setOption(props.options.map(item => item.value)[0])
     }
-  }, [ props.initialValue ])
+  }, [ props.initialValue ])*/
 
-  const [option, setOption] = React.useState<string>(props.initialValue)
+  const [option, setOption] = React.useState<string | null>(props.initialValue)
   const [open, setOpen] = React.useState(false)
 
   const handleChange = (event: SelectChangeEvent<typeof option>) => {
@@ -51,7 +51,10 @@ export function TSelector(props: TSelectorProps) {
     <ThemeProvider theme={theme}>
       <StyledTSelector>
         <button className="selector" onClick={handleOpen} disabled={props.isDisabled}>
-          <Icons name={props.iconName} color="#fff" size="20" className="icon" />
+          { props.iconName ?
+            <Icons name={props.iconName} color="#fff" size="20" className="icon" /> :
+            null
+          }
 
           <p>{ props.options.find(item => item.value === option)?.name }</p>
 

@@ -17,7 +17,7 @@ export const StyledTableView = styled.div.attrs(() => ({
         thead {
             position: sticky;
             top: 0;
-            height: 2.5rem;
+            height: 2rem;
             background-color: ${props => props.theme.backgroundColor};;
             color: ${props => props.theme.secondColor};
             
@@ -34,7 +34,7 @@ export const StyledTableView = styled.div.attrs(() => ({
                         display: flex;
                         justify-content: start;
                         align-items: start;
-                        height: 2.5rem;
+                        height: 2rem;
                     }
                 }
             }
@@ -49,6 +49,9 @@ export const StyledTableView = styled.div.attrs(() => ({
                 td {
                     padding: 0.5rem 0.25rem;
                     
+                    .table-item {
+                        width: 100%;
+                    }
                 }
             }
         }

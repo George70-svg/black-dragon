@@ -1,19 +1,14 @@
 import { AxiosResponse } from 'axios'
 import { axiosInstance } from '@endpoints/axios'
 import { PaginationResult } from '@endpoints/types'
-import {
-  CatalogItem,
-  CategoryItem,
-  CategoryValue,
-  Product,
-  ProductFilters,
-} from '@endpoints/endpoints/products/types'
+import { CatalogItem, GroupItem, Product, ProductFilters, ProductType } from '@endpoints/endpoints/products/types'
 
 export const products = {
   async prices(filters?: ProductFilters): Promise<Product[]> {
     const params = {
       type: filters?.productType,
       group: filters?.maybeGroupType || null,
+      category: filters?.maybeCategoryType || null,
       fabric: filters?.maybeFabrics || null,
       isNew: filters?.isNew ? filters.isNew : null,
       inStock: (filters?.isInStock && (filters?.productType === 'SPB_TEA' || filters?.productType === 'SPB_DISH')) ? filters.isInStock : null,
@@ -39,18 +34,18 @@ export const products = {
         return data.items
       })
   },
-  async groups(type: CategoryValue): Promise<CategoryItem[]> {
+  async groups(type: ProductType): Promise<GroupItem[]> {
     const params = {
       groupsFor: type,
     }
 
     return axiosInstance.get(
-      '/price/catalog',
+      '/price/groups',
       {
         params,
       },
     )
-      .then(({ data }: AxiosResponse<CategoryItem[]>) => {
+      .then(({ data }: AxiosResponse<GroupItem[]>) => {
         return data
       })
   },

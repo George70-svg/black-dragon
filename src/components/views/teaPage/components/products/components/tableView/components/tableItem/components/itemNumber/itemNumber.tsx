@@ -26,7 +26,7 @@ export function ItemNumber() {
 
   return (
     <ThemeProvider theme={theme}>
-      <StyledItemNumber active={!!number} className={number ? 'active' : ''}>
+      <StyledItemNumber active={number} className={number ? 'active' : ''}>
         <div className="decrease calculation" onClick={() => handleClick(number, '-')}>-</div>
 
         <div className="number">{ number }</div>
