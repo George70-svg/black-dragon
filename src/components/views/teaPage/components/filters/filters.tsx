@@ -21,7 +21,7 @@ export function Filters() {
 
   const filters = useSelector((state: IStore) => state.products.filters)
   const isDisabledFilters = useSelector((state: IStore) => state.products.isProductsUpdate)
-  const categoriesItems = useSelector((state: IStore) => state.products?.catalog[0]?.maybeNestedItems) || []
+  const groupItems = useSelector((state: IStore) => state.products?.groups) || []
   const fabricsItems = useSelector((state: IStore) => state.products?.fabrics) || []
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
@@ -31,8 +31,8 @@ export function Filters() {
     secondColor: commonStyle[colorTheme].secondColor,
   }
 
-  const handleProductFilterChange = (filterName: keyof ProductFilters, value: ValueType) => {
-    const newFilters = updateProductFilter(filters, filterName, value)
+  const handleProductFilterChange = (filterName: string, value: ValueType) => {
+    const newFilters = updateProductFilter(filters, filterName as keyof ProductFilters, value)
 
     dispatch(updateProductFilterThunk(newFilters))
   }
@@ -46,9 +46,7 @@ export function Filters() {
 
   const optionsGroups: SelectorOption[] = [
     { value: '', name: 'Группа товаров' },
-    ...categoriesItems.map(item => {
-      return { value: item.type, name: item.name }
-    })
+    ...groupItems
   ]
 
   const optionsFabrics: SelectorOption[] = [

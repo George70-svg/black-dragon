@@ -16,17 +16,17 @@ export function ItemSelector() {
   }
 
   const handleChange = () => {
-    console.log('changed')
+
   }
 
   return (
     <ThemeProvider theme={theme}>
       <StyledItemSelector>
         <TSelector
-          filterName='isNew'
+          filterName='unit'
           iconName=''
-          options={[]}
-          initialValue='1кг'
+          options={[ { value: 'kg', name: 'кг' }, { value: 'pc', name: 'шт' } ]}
+          initialValue='kg'
           onChange={handleChange}
           isDisabled={false}
         />

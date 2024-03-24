@@ -1,6 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { endpoints } from '@endpoints/endpoints'
-import { CatalogItem, Product, ProductFilters, TableView } from '@endpoints/endpoints/products/types'
+import {
+  CatalogItem,
+  GroupItem,
+  Product,
+  ProductFilters,
+  ProductType,
+  TableView,
+} from '@endpoints/endpoints/products/types'
 import { IStore } from '@store/store'
 
 export interface IProductsState {
@@ -8,6 +15,7 @@ export interface IProductsState {
   filters: ProductFilters
   catalog: CatalogItem[]
   fabrics: string[]
+  groups: GroupItem[]
   tableView: TableView
   isProductsUpdate: boolean
   isCategoriesUpload: boolean
@@ -18,6 +26,7 @@ const initialState: IProductsState = {
   filters: {
     productType: 'SPB_TEA',
     maybeGroupType: '',
+    maybeCategoryType: '',
     maybeFabrics: '',
     isNew: null,
     isFavorites: null,
@@ -27,6 +36,7 @@ const initialState: IProductsState = {
   },
   catalog: [],
   fabrics: [],
+  groups: [],
   tableView: 'list',
   isProductsUpdate: false,
   isCategoriesUpload: false,
@@ -46,12 +56,15 @@ export const productsSlice = createSlice({
     },
     setCatalog: (state, action: { payload: CatalogItem[] }) => {
       const catalog = action.payload
-      console.log(catalog)
       state.catalog = catalog
     },
     setFabrics: (state, action: { payload: string[] }) => {
       const fabrics = action.payload
       state.fabrics = fabrics
+    },
+    setGroups: (state, action: { payload: GroupItem[] }) => {
+      const groups = action.payload
+      state.groups = groups
     },
     setProductsUpdateStatus: (state, action: { payload: boolean }) => {
       state.isProductsUpdate = action.payload
@@ -129,6 +142,20 @@ export const setTableViewThunk = createAsyncThunk(
   }
 )
 
+export const getGroupsForFilterThunk = createAsyncThunk(
+  'products/groups',
+  async (type: ProductType, thunkAPI) => {
+    try {
+      const groups = await endpoints.products.groups(type)
+
+      thunkAPI.dispatch(setGroups(groups))
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
+  }
+)
+
 export const getProductFabricsThunk = createAsyncThunk(
   'products/fabrics',
   async (_, thunkAPI) => {
@@ -149,6 +176,7 @@ export const {
   updateFilter,
   setCatalog,
   setFabrics,
+  setGroups,
   setCategoriesUploadStatus,
   setTableView
 } = productsSlice.actions

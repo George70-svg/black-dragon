@@ -28,7 +28,10 @@ export function TableView(props: TableViewProps) {
             {
               columns.map((column, index) => <col
                 key={index}
-                style={column.width ? { width: column.width } : {}}
+                style={column.width ?
+                  column.fixedWidth ? { maxWidth: column.width, minWidth: column.width, width: column.width } : { width: column.width } :
+                  {}
+              }
               />)
             }
           </colgroup>
@@ -36,7 +39,12 @@ export function TableView(props: TableViewProps) {
           <thead>
             <tr>
               {columns.map((column, index) => (
-                <th key={index} style={{ width: column.width }}>{column.header()}</th>
+                <th
+                  key={index}
+                  style={column.width ? column.fixedWidth ? { maxWidth: column.width } : { width: column.width } : {}}
+                >
+                  {column.header()}
+                </th>
               ))}
             </tr>
           </thead>
@@ -47,7 +55,7 @@ export function TableView(props: TableViewProps) {
                 {columns.map((column, colIndex) => (
                   <td
                     key={colIndex}
-                    style={{ width: column.width }}
+                    style={column.width ? column.fixedWidth ? { maxWidth: column.width } : { width: column.width } : {}}
                   >
                     <TableItem class={column.alignBody} item={column.body(product)} />
                   </td>

@@ -42,8 +42,9 @@ export type TableView = 'list' | 'block'
 
 export type ProductFilters = {
   productType: ProductType
-  maybeGroupType: string
-  maybeFabrics: string
+  maybeGroupType: string | null
+  maybeCategoryType: string | null
+  maybeFabrics: string | null
   isNew: boolean | null
   isFavorites: boolean | null
   isInStock: boolean | null
@@ -51,29 +52,27 @@ export type ProductFilters = {
   maybePriceEnd: number | null
 }
 
+export type SelectorTypes = 'unit'
+
 export type CategoryName = 'Посуда' | 'Новинки' | 'Товары со скидкой' | 'Пуэр' | 'Улун' | 'Белый чай' | 'Хэй Ча' | 'Аксессуары' | 'Pos group'
 
 export type CategoryValue = 'NEW' | 'SALE' | 'POS_GROUP' | 'PUER' | 'OOLONG' | 'HEY_CHA' | 'WHITE' | 'DISH' | 'ACCESSORIES'
 
-export type CategoryItem = {
+export type GroupItem = {
   name: string
   value: string
-}
-
-export type CategoryType = {
-  name: CategoryName
-  value: CategoryValue
-  subItems: CategoryItem[]
 }
 
 export type CatalogItem = {
   name: CategoryName,
   type: CategoryValue,
-  maybeNestedItems?: CatalogSubItem[],
+  maybeNestedItems: CatalogSubItem[] | null,
+  maybeGroup: string | null,
 }
 
 type CatalogSubItem = {
   name: string,
   type: string,
-  maybeGroup?: string,
+  maybeGroup: string,
+  maybeNestedItems: CatalogSubItem[] | null,
 }
