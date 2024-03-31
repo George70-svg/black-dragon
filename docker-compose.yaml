@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+
+  black-dragon-web-frontend:
+    image: black-dragon-web-frontend:latest
+    environment:
+      PORT: 3000
+      PROXY_API: http://playground-web-backend:8080/
+    ports:
+      - 3000:3000
