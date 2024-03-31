@@ -15,7 +15,7 @@ export const colorThemeSlice = createSlice({
   initialState,
   reducers: {
     changeTheme: (state) => {
-      state.colorTheme = state.colorTheme === 'darkTheme' ? 'lightTheme' : 'darkTheme'
+      state.colorTheme = state.colorTheme === 'darkTheme' ? 'lightTheme' : 'lightTheme'
       localStorage.setItem('theme_color', state.colorTheme)
     },
   },
