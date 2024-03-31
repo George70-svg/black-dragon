@@ -17,7 +17,7 @@ export function TSelector(props: TSelectorProps) {
     secondColor: commonStyle[colorTheme].secondColor,
   }
 
-  const [option, setOption] = React.useState<string>(props.initialValue)
+  const [option, setOption] = React.useState<string | null>(props.initialValue)
   const [open, setOpen] = React.useState(false)
 
   const handleChange = (event: SelectChangeEvent<typeof option>) => {
@@ -41,7 +41,10 @@ export function TSelector(props: TSelectorProps) {
     <ThemeProvider theme={theme}>
       <StyledTSelector>
         <button className="selector" onClick={handleOpen} disabled={props.isDisabled}>
-          <Icons name={props.iconName} color="#fff" size="20" className="icon" />
+          { props.iconName ?
+            <Icons name={props.iconName} color="#fff" size="20" className="icon" /> :
+            null
+          }
 
           <p>{ props.options.find(item => item.value === option)?.name }</p>
 

@@ -15,12 +15,12 @@ function axiosValidator(item: AxiosStatic | AxiosInstance) {
 
     return new Promise((resolve, reject) => {
       switch (error.response.status) {
-        case 401:
-          console.warn('You are not authorized')
-          break
-        case 500:
-          console.error('Server error occurred', error.response)
-          break
+      case 401:
+        console.warn('You are not authorized')
+        break
+      case 500:
+        console.error('Server error occurred', error.response)
+        break
       }
       reject(error)
     })

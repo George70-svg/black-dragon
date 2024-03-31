@@ -1,4 +1,4 @@
-import { ProductFilters } from '@endpoints/endpoints/products/types'
+import { ProductFilters, SelectorTypes } from '@endpoints/endpoints/products/types'
 
 export type SelectorOption = {
   value: string
@@ -6,11 +6,11 @@ export type SelectorOption = {
 }
 
 export interface TSelectorProps {
-  filterName: keyof ProductFilters,
-  iconName: string,
+  filterName: keyof ProductFilters | SelectorTypes,
+  iconName: string | null,
   options: SelectorOption[],
-  initialValue: string
-  onChange: (name: keyof ProductFilters, value: string) => void
+  initialValue: string | null
+  onChange: (name: string, value: string) => void
   isDisabled: boolean
 }
 

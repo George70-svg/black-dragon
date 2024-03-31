@@ -27,13 +27,19 @@ type Colors = {
   grey700: Color
   grey800: Color
   grey900: Color
+  grey189: Color
+  grey224: Color
+  grey246: Color
   black: Color
 }
 
 type Fonts = {
   fs12: string
   fs14: string
+  fs16: string
+  fs20: string
   fs21: string
+  fs28: string
 }
 
 type FontStyles = {

@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { StyledFilters } from '@components/views/teaPage/components/filters/styles/filters.styled'
+import { deduplicate } from '@utils/common'
 import { IStore, useAppDispatch } from '@store/store'
 import { updateProductFilterThunk } from '@store/products'
 import { updateProductFilter } from '@components/views/teaPage/utils/common'
@@ -20,7 +21,8 @@ export function Filters() {
 
   const filters = useSelector((state: IStore) => state.products.filters)
   const isDisabledFilters = useSelector((state: IStore) => state.products.isProductsUpdate)
-  const categoriesItems = useSelector((state: IStore) => state.products?.categories[0]?.subItems) || []
+  // const groupItems = useSelector((state: IStore) => state.products?.groups) || []
+  const fabricsItems = useSelector((state: IStore) => state.products?.fabrics) || []
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
 
@@ -29,28 +31,36 @@ export function Filters() {
     secondColor: commonStyle[colorTheme].secondColor,
   }
 
-  const handleProductFilterChange = (filterName: keyof ProductFilters, value: ValueType) => {
-    const newFilters = updateProductFilter(filters, filterName, value)
+  const handleProductFilterChange = (filterName: string, value: ValueType) => {
+    let newFilters = { ...filters }
+
+    if(filterName === 'productType') {
+
+    }
+
+    if(filterName === 'maybeGroup') {
+      newFilters = updateProductFilter(filters, 'type' , 'POS_GROUP')
+      newFilters = updateProductFilter(filters, filterName as keyof ProductFilters, value)
+    } else {
+      newFilters = updateProductFilter(filters, filterName as keyof ProductFilters, value)
+    }
 
     dispatch(updateProductFilterThunk(newFilters))
   }
 
   const optionsTypes: SelectorOption[] = [
-    { value: 'SPB_TEA', name: 'СПБ чай' },
-    { value: 'SPB_DISH', name: 'СПБ посуда' },
+    { value: 'SPB', name: 'СПБ' },
     { value: 'CHINA', name: 'Китай' },
-    { value: 'CHINA_VIP', name: 'Китай ВИП' },
   ]
 
-  const optionsGroups: SelectorOption[] = [
+  /*const optionsGroups: SelectorOption[] = [
     { value: '', name: 'Группа товаров' },
-    ...categoriesItems
-  ]
+    ...groupItems
+  ]*/
 
   const optionsFabrics: SelectorOption[] = [
     { value: '', name: 'Фабрика' },
-    { value: 'SPB', name: 'СПБ' },
-    { value: 'CHINA', name: 'Китай' },
+    ...deduplicate(fabricsItems).map(fabric => ({ value: fabric, name: fabric }))
   ]
 
   return (
@@ -67,14 +77,14 @@ export function Filters() {
               isDisabled={isDisabledFilters}
             />
 
-            <TSelector
+            {/*<TSelector
               iconName="list-2"
               options={optionsGroups}
-              initialValue={filters.maybeGroupType}
-              filterName="maybeGroupType"
+              initialValue={filters.maybeGroup}
+              filterName="maybeGroup"
               onChange={handleProductFilterChange}
               isDisabled={isDisabledFilters}
-            />
+            />*/}
 
             <TSelector
               iconName="location"
@@ -106,13 +116,16 @@ export function Filters() {
               isDisabled={isDisabledFilters}
             />
 
-            <FilterCheckbox
-              filterName="isInStock"
-              initialValue={filters.isInStock}
-              onChange={handleProductFilterChange}
-              label="В наличии"
-              isDisabled={isDisabledFilters}
-            />
+            {/*Этот фильтр нужен только для Санкт-Петербурга*/}
+            {filters.productType === 'SPB' &&
+              <FilterCheckbox
+                filterName="isInStock"
+                initialValue={filters.isInStock}
+                onChange={handleProductFilterChange}
+                label="В наличии"
+                isDisabled={isDisabledFilters}
+              />
+            }
 
             {/*<FilterCheckbox
               filterName="isFavorites"

@@ -1,3 +1,5 @@
+import { UnitType } from '@endpoints/endpoints/products/types'
+
 export const capitalizeFirstLetter = (str: string): string => {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
@@ -25,4 +27,16 @@ export function debounce<R>(fn: (...args: any) => R, ms: number) {
       timeoutId = setTimeout(() => resolve(fn(...args)), ms)
     })
   }
+}
+
+export function deduplicate<T> (simpleArray: Array<T>): T[] {
+  return [ ...new Set(simpleArray) ]
+}
+
+export const currencyToCurrency = (currency: string | 'RUB') => {
+  return currency === 'RUB' ? '₽' : currency
+}
+
+export const unitToUnit = (currency: UnitType) => {
+  return currency === 'WEIGHT' ? 'кг' : 'шт'
 }

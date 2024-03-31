@@ -7,7 +7,7 @@ export type Product = {
   season: string
   valueGram: number
   pressForm: string
-  unit: string
+  unit: UnitType
   description: string
   minOrder: number
   photosId: number[]
@@ -17,7 +17,7 @@ export type Product = {
   step: number
   fullName: string
   price: number
-  currency: string
+  currency: string | 'RUB'
   isNewPosition: boolean
   priceFiveKgCny: number
   priceBoxCny: number
@@ -36,26 +36,69 @@ export type Product = {
   diameterCm: number
 }
 
-export type ProductType = 'SPB_TEA' | 'SPB_DISH' | 'CHINA' | 'CHINA_VIP'
+export type ProductType = "SPB" | "CHINA"
+
+export type TableView = 'list' | 'block'
 
 export type ProductFilters = {
   productType: ProductType
-  maybeGroupType: string
-  maybeFabrics: string
+  maybeGroup: string | null
+  type: string | null
+  maybeFabrics: string | null
   isNew: boolean | null
   isFavorites: boolean | null
   isInStock: boolean | null
   maybePriceStart: number | null
   maybePriceEnd: number | null
+  pageNumber: number
 }
 
-export type CategoriesItem = {
+export type SelectorTypes = 'unit'
+
+export type UnitType = 'WEIGHT' | 'QUANTITY'
+
+export type CategoryName = 'Посуда' | 'Новинки' | 'Товары со скидкой' | 'Пуэр' | 'Улун' | 'Белый чай' | 'Хэй Ча' | 'Аксессуары' | 'Pos group'
+
+export type CategoryValue = 'NEW' | 'SALE' | 'POS_GROUP' | 'PUER' | 'OOLONG' | 'HEY_CHA' | 'WHITE' | 'DISH' | 'ACCESSORIES'
+
+export type GroupItem = {
   name: string
   value: string
 }
 
-export type CategoriesType = {
-  name: 'Чай' | 'Посуда'
-  value: 'TEA' | 'DISH'
-  subItems: CategoriesItem[]
+export type CatalogItem = {
+  name: CategoryName
+  type: CategoryValue
+  maybeNestedItems: CatalogSubItem[] | null
+  maybeGroup: string | null
+  availableFor: ProductType[]
+}
+
+export type CatalogSubItem = {
+  name: string
+  type: string
+  maybeGroup: string
+  maybeNestedItems: CatalogSubItem[] | null
+  availableFor: ProductType[]
+}
+
+export type ImagesType = {
+  art: string
+  mainImageId: number
+  imageIds: number[]
+}
+
+export type ImageType = {
+  art: string
+  mainImageId: number
+}
+
+export type ImageRequestType = {
+  art: string
+  imageId: number
+}
+
+export type ImageResponseType = {
+  id: number
+  src: string
 }
