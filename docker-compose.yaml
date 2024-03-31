@@ -4,5 +4,6 @@ services:
 
   black-dragon-frontend:
     build: .
+    restart: always
     ports:
       - "3033:3000"
