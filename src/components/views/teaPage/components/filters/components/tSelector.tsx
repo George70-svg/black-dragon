@@ -17,16 +17,6 @@ export function TSelector(props: TSelectorProps) {
     secondColor: commonStyle[colorTheme].secondColor,
   }
 
-  //использую для синхронизации выбора фильтра в категории и в селекторе
-  //если категория известна и соовтетсвует опцпиям селектора, то при измении категории изменит селектор
-  /*useEffect(() => {
-    if(props.options.map(item => item.value).includes(props.initialValue)) {
-      setOption(props.initialValue)
-    } else {
-      setOption(props.options.map(item => item.value)[0])
-    }
-  }, [ props.initialValue ])*/
-
   const [option, setOption] = React.useState<string | null>(props.initialValue)
   const [open, setOpen] = React.useState(false)
 

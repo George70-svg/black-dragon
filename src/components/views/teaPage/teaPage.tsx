@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { StyledTeaPage } from '@components/views/teaPage/styles/teaPage.styled'
 import { IStore, useAppDispatch } from '@store/store'
-import { getProductCatalogThunk, getProductFabricsThunk, getGroupsForFilterThunk, getProductsThunk } from '@store/products'
+import { getProductCatalogThunk, getProductFabricsThunk, getProductsThunk } from '@store/products'
 import { Categories } from '@components/views/teaPage/components/categories/categories'
 import { Filters } from '@components/views/teaPage/components/filters/filters'
 import { Products } from '@components/views/teaPage/components/products/products'
@@ -18,7 +18,7 @@ export function TeaPage() {
     dispatch(getProductsThunk())
     dispatch(getProductCatalogThunk())
     dispatch(getProductFabricsThunk())
-    dispatch(getGroupsForFilterThunk(productGroup))
+    // dispatch(getGroupsForFilterThunk(productGroup))
   }, [dispatch, productGroup])
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)

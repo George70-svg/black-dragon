@@ -27,5 +27,6 @@ export const StyledItemNumber = styled.div.attrs(() => ({
     .calculation {
         font-size: ${() => commonStyle.fonts.fs16};
         cursor: pointer;
+        user-select: none;
     }
 `

@@ -21,7 +21,7 @@ export function Filters() {
 
   const filters = useSelector((state: IStore) => state.products.filters)
   const isDisabledFilters = useSelector((state: IStore) => state.products.isProductsUpdate)
-  const groupItems = useSelector((state: IStore) => state.products?.groups) || []
+  // const groupItems = useSelector((state: IStore) => state.products?.groups) || []
   const fabricsItems = useSelector((state: IStore) => state.products?.fabrics) || []
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
@@ -32,22 +32,31 @@ export function Filters() {
   }
 
   const handleProductFilterChange = (filterName: string, value: ValueType) => {
-    const newFilters = updateProductFilter(filters, filterName as keyof ProductFilters, value)
+    let newFilters = { ...filters }
+
+    if(filterName === 'productType') {
+
+    }
+
+    if(filterName === 'maybeGroup') {
+      newFilters = updateProductFilter(filters, 'type' , 'POS_GROUP')
+      newFilters = updateProductFilter(filters, filterName as keyof ProductFilters, value)
+    } else {
+      newFilters = updateProductFilter(filters, filterName as keyof ProductFilters, value)
+    }
 
     dispatch(updateProductFilterThunk(newFilters))
   }
 
   const optionsTypes: SelectorOption[] = [
-    { value: 'SPB_TEA', name: 'СПБ чай' },
-    { value: 'SPB_DISH', name: 'СПБ посуда' },
+    { value: 'SPB', name: 'СПБ' },
     { value: 'CHINA', name: 'Китай' },
-    { value: 'CHINA_VIP', name: 'Китай ВИП' },
   ]
 
-  const optionsGroups: SelectorOption[] = [
+  /*const optionsGroups: SelectorOption[] = [
     { value: '', name: 'Группа товаров' },
     ...groupItems
-  ]
+  ]*/
 
   const optionsFabrics: SelectorOption[] = [
     { value: '', name: 'Фабрика' },
@@ -68,14 +77,14 @@ export function Filters() {
               isDisabled={isDisabledFilters}
             />
 
-            <TSelector
+            {/*<TSelector
               iconName="list-2"
               options={optionsGroups}
-              initialValue={filters.maybeGroupType}
-              filterName="maybeGroupType"
+              initialValue={filters.maybeGroup}
+              filterName="maybeGroup"
               onChange={handleProductFilterChange}
               isDisabled={isDisabledFilters}
-            />
+            />*/}
 
             <TSelector
               iconName="location"
@@ -108,15 +117,14 @@ export function Filters() {
             />
 
             {/*Этот фильтр нужен только для Санкт-Петербурга*/}
-            {filters.productType === 'SPB_TEA' || filters.productType === 'SPB_DISH' ?
+            {filters.productType === 'SPB' &&
               <FilterCheckbox
                 filterName="isInStock"
                 initialValue={filters.isInStock}
                 onChange={handleProductFilterChange}
                 label="В наличии"
                 isDisabled={isDisabledFilters}
-              /> :
-              null
+              />
             }
 
             {/*<FilterCheckbox

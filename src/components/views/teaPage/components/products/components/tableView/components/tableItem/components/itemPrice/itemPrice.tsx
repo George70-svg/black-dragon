@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import { IStore } from '@store/store'
 import { StyledItemPrice } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemPrice/styles/itemPrice.styled'
 import { ItemPriceProps } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemPrice/types/types'
+import { currencyToCurrency } from '@utils/common'
 
 import { commonStyle } from '../../../../../../../../../../../styles'
 
@@ -18,7 +19,7 @@ export function ItemPrice(props: ItemPriceProps) {
   return (
     <ThemeProvider theme={theme}>
       <StyledItemPrice>
-        {props.price} {props.currency === 'RUB' ? '₽' : props.currency}
+        {props.price} {currencyToCurrency(props.currency)}
       </StyledItemPrice>
     </ThemeProvider>
   )

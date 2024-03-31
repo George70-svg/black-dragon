@@ -5,8 +5,7 @@ import { useSelector } from 'react-redux'
 import { Collapse, List, ListItemButton, ListItemText } from '@mui/material'
 import Icons from '@icons/icons'
 import { IStore, useAppDispatch } from '@store/store'
-import { ProductFilters } from '@endpoints/endpoints/products/types'
-import { ValueType } from '@components/views/teaPage/types/types'
+import { CatalogItem, CatalogSubItem } from '@endpoints/endpoints/products/types'
 import { updateProductFilterThunk } from '@store/products'
 import { updateProductFilter } from '@components/views/teaPage/utils/common'
 
@@ -42,60 +41,57 @@ export function Categories() {
     }
   }
 
-  const handleProductFilterChange = (filterName: keyof ProductFilters, value: ValueType) => {
+  const handleProductFilterChange = (type: 'item' | 'subItem', value: CatalogItem | CatalogSubItem) => {
     let newFilters = { ...filters }
 
-    //Запрос на поиск по группе и по подгруппе отличается на бэке
-    //Поэтому если ищем подгруппу, то нужно добавить определённое название группы
-    if(filterName === 'maybeGroupType') {
-      newFilters = updateProductFilter(newFilters, 'maybeCategoryType', 'POS_GROUP')
-    } else {
-      newFilters = updateProductFilter(newFilters, 'maybeGroupType', null)
-    }
+    newFilters = updateProductFilter(newFilters, 'type', value.type)
+    newFilters = updateProductFilter(newFilters, 'maybeGroup', value.maybeGroup)
 
-    const finishFilter = updateProductFilter(newFilters, filterName, value)
-
-    dispatch(updateProductFilterThunk(finishFilter))
+    dispatch(updateProductFilterThunk(newFilters))
   }
 
   return (
     <ThemeProvider theme={theme}>
       <StyledCategories>
         <List component="div">
-          {catalogItems.map(item => (
-            <div key={`${item.type}-${item.name}`}>
-              <ListItemButton
-                onClick={() => handleProductFilterChange('maybeCategoryType', item.type)}
-                disabled={isDisabledFilters}
-              >
-                <ListItemText primary={item.name} />
+          {catalogItems
+            .filter(item => item.availableFor.includes(filters.productType))
+            .map(item => (
+              <div key={`${item.type}-${item.name}`}>
+                <ListItemButton
+                  onClick={() => handleProductFilterChange('item', item)}
+                  disabled={isDisabledFilters}
+                >
+                  <ListItemText primary={item.name} />
+                  {item.maybeNestedItems ?
+                    <div onClick={(event) => handleClick(event, item.type)}>
+                      {(open && itemValue === item.type) ?
+                        <Icons name="arrow-up-red" color="#fff" size="24" className="icon" /> :
+                        <Icons name="arrow-down-red" color="#fff" size="24" className="icon" />
+                      }
+                    </div> : null
+                  }
+                </ListItemButton>
                 {item.maybeNestedItems ?
-                  <div onClick={(event) => handleClick(event, item.type)}>
-                    {(open && itemValue === item.type) ?
-                      <Icons name="arrow-up-red" color="#fff" size="24" className="icon" /> :
-                      <Icons name="arrow-down-red" color="#fff" size="24" className="icon" />
-                    }
-                  </div> : null
+                  <Collapse in={itemValue === item.type && open} timeout="auto" unmountOnExit>
+                    <List component="div">
+                      {item.maybeNestedItems
+                        .filter(item => item.availableFor.includes(filters.productType))
+                        .map(subItem => (
+                          <ListItemButton
+                            key={subItem.name} sx={{ pl: 4 }}
+                            onClick={() => handleProductFilterChange('subItem', subItem)}
+                            selected={subItem.maybeGroup === filters.maybeGroup}
+                            disabled={isDisabledFilters}
+                          >
+                            <ListItemText primary={ subItem.name } />
+                          </ListItemButton>
+                      ))}
+                    </List>
+                  </Collapse> : null
                 }
-              </ListItemButton>
-              {item.maybeNestedItems ?
-                <Collapse in={itemValue === item.type && open} timeout="auto" unmountOnExit>
-                  <List component="div">
-                    {item.maybeNestedItems.map(subItem => (
-                      <ListItemButton
-                        key={subItem.name} sx={{ pl: 4 }}
-                        onClick={() => handleProductFilterChange('maybeGroupType', subItem.maybeGroup)}
-                        selected={subItem.maybeGroup === filters.maybeGroupType}
-                        disabled={isDisabledFilters}
-                      >
-                        <ListItemText primary={ subItem.name } />
-                      </ListItemButton>
-                    ))}
-                  </List>
-                </Collapse> : null
-              }
-            </div>
-          ))}
+              </div>
+            ))}
         </List>
       </StyledCategories>
     </ThemeProvider>
