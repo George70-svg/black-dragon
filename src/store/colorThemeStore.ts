@@ -7,7 +7,8 @@ export interface IColorThemeState {
 }
 
 const initialState: IColorThemeState = {
-  colorTheme: (localStorage.getItem('theme_color') as ColorTheme) || 'darkTheme',
+  // colorTheme: (localStorage.getItem('theme_color') as ColorTheme) || 'darkTheme',
+  colorTheme: 'lightTheme'
 }
 
 export const colorThemeSlice = createSlice({
@@ -16,7 +17,7 @@ export const colorThemeSlice = createSlice({
   reducers: {
     changeTheme: (state) => {
       state.colorTheme = state.colorTheme === 'darkTheme' ? 'lightTheme' : 'lightTheme'
-      localStorage.setItem('theme_color', state.colorTheme)
+      //localStorage.setItem('theme_color', state.colorTheme)
     },
   },
 })
