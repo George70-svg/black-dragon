@@ -8,3 +8,12 @@ https://www.maxidom.ru/search/catalog/?q=hexrf&amount= - пример пагин
 
 Нужно испраивит:
 {/*TODO: [@asiuraev 24.03.2024] Нужно здесь указать TableItem*/}
+
+
+Для запуска лучше использовать docker-compose:
+
+```shell
+docker compose -f docker-compose.yaml up
+```
+
+Работать будет по ```http://localhost:3001/``` (ну или ip сервера)
