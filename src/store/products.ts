@@ -1,13 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { endpoints } from '@endpoints/endpoints'
-import {
-  CatalogItem,
-  GroupItem,
-  Product,
-  ProductFilters,
-  ProductType,
-  TableView,
-} from '@endpoints/endpoints/products/types'
+import { CatalogItem, GroupItem, Product, ProductFilters, ProductType, TableView } from '@endpoints/endpoints/products/types'
 import { IStore } from '@store/store'
 
 export interface IProductsState {
@@ -19,20 +12,22 @@ export interface IProductsState {
   tableView: TableView
   isProductsUpdate: boolean
   isCategoriesUpload: boolean
+  totalCount: number
 }
 
 const initialState: IProductsState = {
   products: [],
   filters: {
-    productType: 'SPB_TEA',
-    maybeGroupType: '',
-    maybeCategoryType: '',
+    productType: 'SPB',
+    maybeGroup: '',
+    type: '',
     maybeFabrics: '',
     isNew: null,
     isFavorites: null,
     isInStock: null,
     maybePriceStart: null,
     maybePriceEnd: null,
+    pageNumber: 0
   },
   catalog: [],
   fabrics: [],
@@ -40,6 +35,7 @@ const initialState: IProductsState = {
   tableView: 'list',
   isProductsUpdate: false,
   isCategoriesUpload: false,
+  totalCount: 0
 }
 
 export const productsSlice = createSlice({
@@ -48,7 +44,18 @@ export const productsSlice = createSlice({
   reducers: {
     setProducts: (state, action) => {
       const products = action.payload
-      state.products = products
+
+      // Реализовано дедублирование массива продуктов по свойству 'art'
+      state.products = [ ...state.products, ...products ].reduce((acc, cur) => {
+        if(!acc.find((item: Product) => item.art === cur.art)) {
+          acc.push(cur)
+        }
+
+        return acc
+      }, [])
+    },
+    resetProducts: (state) => {
+      state.products = []
     },
     updateFilter: (state, action: { payload: ProductFilters }) => {
       const newFilters = action.payload
@@ -76,9 +83,18 @@ export const productsSlice = createSlice({
       const tableView = action.payload
       state.tableView = tableView
     },
+    setPage: (state, action: { payload: number }) => {
+      const page = action.payload
+      state.filters.pageNumber = page
+    },
+    setTotalCount: (state, action: { payload: number }) => {
+      const totalCount = action.payload
+      state.totalCount = totalCount
+    }
   }
 })
 
+//Получение списка товаров
 export const getProductsThunk = createAsyncThunk(
   'products/products',
   async (_, thunkAPI) => {
@@ -87,9 +103,10 @@ export const getProductsThunk = createAsyncThunk(
 
       const filters = (thunkAPI.getState() as IStore).products.filters
 
-      const products = await endpoints.products.prices(filters)
+      const productData = await endpoints.products.prices(filters)
 
-      thunkAPI.dispatch(setProducts(products))
+      thunkAPI.dispatch(setProducts(productData.resource))
+      thunkAPI.dispatch(setTotalCount(productData.totalResourceCount))
     } catch (error) {
       console.error(error)
       throw error
@@ -99,12 +116,15 @@ export const getProductsThunk = createAsyncThunk(
   }
 )
 
+//Обновление фильтров товаров
 export const updateProductFilterThunk = createAsyncThunk(
   'products/filter',
   async (filter: ProductFilters, thunkAPI) => {
     try {
-      thunkAPI.dispatch(updateFilter(filter))
-      thunkAPI.dispatch(getProductsThunk())
+      thunkAPI.dispatch(updateFilter(filter)) //Сначала обновляем фильтры для запросы
+      thunkAPI.dispatch(resetProducts()) //Затем сбрасываем все старые товары
+      thunkAPI.dispatch(setPage(0)) //Обнуляем страницу для запроса
+      thunkAPI.dispatch(getProductsThunk()) //Получаем новые товары
     } catch (error) {
       console.error(error)
       throw error
@@ -112,6 +132,7 @@ export const updateProductFilterThunk = createAsyncThunk(
   }
 )
 
+//Получение каталога товаров
 export const getProductCatalogThunk = createAsyncThunk(
   'products/catalog',
   async (_, thunkAPI) => {
@@ -130,18 +151,7 @@ export const getProductCatalogThunk = createAsyncThunk(
   }
 )
 
-export const setTableViewThunk = createAsyncThunk(
-  'products/tableView',
-  async (viewType: TableView, thunkAPI) => {
-    try {
-      thunkAPI.dispatch(setTableView(viewType))
-    } catch (error) {
-      console.error(error)
-      throw error
-    }
-  }
-)
-
+//Получение списка групп для фильтра группы
 export const getGroupsForFilterThunk = createAsyncThunk(
   'products/groups',
   async (type: ProductType, thunkAPI) => {
@@ -156,6 +166,7 @@ export const getGroupsForFilterThunk = createAsyncThunk(
   }
 )
 
+// //Получение списка фабрик для фильтра фабрика
 export const getProductFabricsThunk = createAsyncThunk(
   'products/fabrics',
   async (_, thunkAPI) => {
@@ -170,15 +181,45 @@ export const getProductFabricsThunk = createAsyncThunk(
   }
 )
 
+//Смена списка товаров на плитку товаров
+export const setTableViewThunk = createAsyncThunk(
+  'products/tableView',
+  async (viewType: TableView, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(setTableView(viewType))
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
+  }
+)
+
+//Установка текущей страницы товаров
+export const setPageNumberThunk = createAsyncThunk(
+  'products/pageNumber',
+  async (pageNumber: number, thunkAPI) => {
+    try {
+      thunkAPI.dispatch(setPage(pageNumber))
+      thunkAPI.dispatch(getProductsThunk())
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
+  }
+)
+
 export const {
   setProducts,
+  resetProducts,
   setProductsUpdateStatus,
   updateFilter,
   setCatalog,
   setFabrics,
   setGroups,
   setCategoriesUploadStatus,
-  setTableView
+  setTableView,
+  setPage,
+  setTotalCount
 } = productsSlice.actions
 
 export default productsSlice.reducer

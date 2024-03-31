@@ -5,13 +5,15 @@ import { commonStyle } from '../../../../../../styles'
 export const StyledTSelector = styled.div.attrs(() => ({
   className: 't-selector',
 }))`
-    
+    height: 100%;
+  
     .selector {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 0.5rem;
         padding: 0.5rem;
+        height: 100%;
         background-color: ${() => commonStyle.colors.white};
         font-size: ${() => commonStyle.fonts.fs14};
         box-shadow: ${() => commonStyle.shadows.primaryShadow};

@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { IStore } from '@store/store'
+import { unitToUnit } from '@utils/common'
 import { StyledItemMinOrder } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemMinOrder/styles/itemMinOrder.styled'
 import { ItemMinOrderProps } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemMinOrder/types/types'
 
@@ -18,7 +19,7 @@ export function ItemMinOrder(props: ItemMinOrderProps) {
   return (
     <ThemeProvider theme={theme}>
       <StyledItemMinOrder>
-        {props.orderNumber} {props.orderUnit}
+        {props.orderNumber} {unitToUnit(props.orderUnit)}
       </StyledItemMinOrder>
     </ThemeProvider>
   )

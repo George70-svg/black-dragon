@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { StyledProducts } from '@components/views/teaPage/components/products/styles/products.styled'
 import { IStore } from '@store/store'
+import { CircularProgress } from '@mui/material'
 import { TableView } from '@components/views/teaPage/components/products/components/tableView/tableView'
 import { BlockView } from '@components/views/teaPage/components/products/components/blockView/blockView'
 import { SeeMore } from '@components/views/teaPage/components/products/components/seeMore/seeMore'
@@ -19,6 +20,7 @@ export function Products() {
 
   const products = useSelector((state: IStore) => state.products.products)
   const isTableView = useSelector((state: IStore) => state.products.tableView)
+  const isLoading = useSelector((state: IStore) => state.products.isProductsUpdate)
 
   return (
     <ThemeProvider theme={theme}>
@@ -26,6 +28,12 @@ export function Products() {
         {isTableView === 'list' ?
           <TableView products={products} /> :
           <BlockView />
+        }
+
+        {isLoading &&
+          <div className="loading-container">
+            <CircularProgress color="inherit" />
+          </div>
         }
 
         <SeeMore />

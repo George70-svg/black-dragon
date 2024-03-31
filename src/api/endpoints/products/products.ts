@@ -1,21 +1,29 @@
 import { AxiosResponse } from 'axios'
 import { axiosInstance } from '@endpoints/axios'
 import { PaginationResult } from '@endpoints/types'
-import { CatalogItem, GroupItem, Product, ProductFilters, ProductType } from '@endpoints/endpoints/products/types'
+import {
+  CatalogItem,
+  GroupItem,
+  ImageRequestType, ImageResponseType,
+  ImageType,
+  Product,
+  ProductFilters,
+  ProductType,
+} from '@endpoints/endpoints/products/types'
 
 export const products = {
-  async prices(filters?: ProductFilters): Promise<Product[]> {
+  async prices(filters?: ProductFilters): Promise<PaginationResult<Product[]>> {
     const params = {
-      type: filters?.productType,
-      group: filters?.maybeGroupType || null,
-      category: filters?.maybeCategoryType || null,
+      priceType: filters?.productType,
+      catalogItemType: filters?.type || null,
+      group: filters?.maybeGroup || null,
       fabric: filters?.maybeFabrics || null,
       isNew: filters?.isNew ? filters.isNew : null,
-      inStock: (filters?.isInStock && (filters?.productType === 'SPB_TEA' || filters?.productType === 'SPB_DISH')) ? filters.isInStock : null,
+      inStock: (filters?.isInStock && (filters?.productType === 'SPB')) ? filters.isInStock : null,
       minPrice: filters?.maybePriceStart || null,
       maxPrice: filters?.maybePriceEnd || null,
-      pageZeroBasedNumber: 0,
-      pageSize: 15,
+      pageZeroBasedNumber: filters?.pageNumber || 0,
+      pageSize: 10,
     }
 
     return axiosInstance.get(
@@ -25,7 +33,7 @@ export const products = {
       },
     )
       .then(({ data }: AxiosResponse<PaginationResult<Product[]>>) => {
-        return data.resource
+        return data
       })
   },
   async catalog(): Promise<CatalogItem[]> {
@@ -56,5 +64,27 @@ export const products = {
       .then(({ data }: AxiosResponse<string[]>) => {
         return data
       })
-  }
+  },
+  async getImage(data: ImageType): Promise<ImageResponseType> {
+    const params: ImageRequestType = {
+      art: data.art,
+      imageId: data.mainImageId
+    }
+
+    return axiosInstance.get(
+      '/positions/pool/image/get',
+      {
+        params,
+        responseType: 'blob'
+      }
+    )
+      .then(({ data }: AxiosResponse<Blob>) => {
+        const src = URL.createObjectURL(data)
+
+        return {
+          id: params.imageId,
+          src
+        }
+      })
+  },
 }

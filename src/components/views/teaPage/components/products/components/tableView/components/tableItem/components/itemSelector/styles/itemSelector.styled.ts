@@ -9,7 +9,7 @@ export const StyledItemSelector = styled.div.attrs(() => ({
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    
+  
     .t-selector {
         width: 100%;
         

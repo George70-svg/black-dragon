@@ -9,6 +9,7 @@ import { ItemPrice } from '@components/views/teaPage/components/products/compone
 const articleColumn = {
   header: () => <div className={ articleColumn.alignHeader }>Артикл</div>,
   body: (product: Product) => <div className={ articleColumn.alignBody }>{product.art}</div>,
+  name: 'article',
   width: '5rem',
   alignHeader: 'top-left',
   fixedWidth: false,
@@ -18,6 +19,7 @@ const articleColumn = {
 const nameColumn = {
   header: () => <div className={ nameColumn.alignHeader }>Название</div>,
   body: (product: Product) => <div className={ nameColumn.alignBody }>{product.fullName}</div>,
+  name: 'name',
   width: '',
   alignHeader: 'top-left',
   fixedWidth: false,
@@ -27,6 +29,7 @@ const nameColumn = {
 const minimumOrderColumn = {
   header: () => <div className={ minimumOrderColumn.alignHeader }>Мин. заказ</div>,
   body: (product: Product) => <ItemMinOrder orderNumber={product.minOrder} orderUnit={product.unit} />,
+  name: 'minimumOrder',
   width: '8rem',
   alignHeader: 'top-left',
   fixedWidth: false,
@@ -36,6 +39,7 @@ const minimumOrderColumn = {
 const priceColumn = {
   header: () => <div className={ priceColumn.alignHeader }>Цена</div>,
   body: (product: Product) => <ItemPrice price={product.price} currency={product.currency} />,
+  name: 'price',
   width: '8rem',
   alignHeader: 'top-left',
   fixedWidth: false,
@@ -45,6 +49,7 @@ const priceColumn = {
 const saleColumn = {
   header: () => <div className={ saleColumn.alignHeader }>Скидка</div>,
   body: (product: Product) => <div className={ saleColumn.alignBody }> — </div>,
+  name: 'sale',
   width: '5rem',
   alignHeader: 'top-left',
   fixedWidth: false,
@@ -54,6 +59,7 @@ const saleColumn = {
 const orderColumn = {
   header: () => <div/>,
   body: (product: Product) => <ItemNumber />,
+  name: 'order',
   width: '6.75rem',
   fixedWidth: false,
   alignBody: 'center',
@@ -62,6 +68,7 @@ const orderColumn = {
 const weightColumn = {
   header: () => <div/>,
   body: (product: Product) => <ItemSelector />,
+  name: 'weight',
   width: '5rem',
   fixedWidth: true,
   alignBody: 'center',
@@ -70,6 +77,7 @@ const weightColumn = {
 const uncoverColumn = {
   header: () => <div/>,
   body: (product: Product) => <ItemButtons />,
+  name: 'uncover',
   width: '2.25rem',
   fixedWidth: false,
   alignBody: 'center',

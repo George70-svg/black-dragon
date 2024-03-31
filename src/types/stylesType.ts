@@ -37,7 +37,9 @@ type Fonts = {
   fs12: string
   fs14: string
   fs16: string
+  fs20: string
   fs21: string
+  fs28: string
 }
 
 type FontStyles = {

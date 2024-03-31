@@ -7,7 +7,7 @@ export type Product = {
   season: string
   valueGram: number
   pressForm: string
-  unit: string
+  unit: UnitType
   description: string
   minOrder: number
   photosId: number[]
@@ -36,23 +36,26 @@ export type Product = {
   diameterCm: number
 }
 
-export type ProductType = 'SPB_TEA' | 'SPB_DISH' | 'CHINA' | 'CHINA_VIP'
+export type ProductType = "SPB" | "CHINA"
 
 export type TableView = 'list' | 'block'
 
 export type ProductFilters = {
   productType: ProductType
-  maybeGroupType: string | null
-  maybeCategoryType: string | null
+  maybeGroup: string | null
+  type: string | null
   maybeFabrics: string | null
   isNew: boolean | null
   isFavorites: boolean | null
   isInStock: boolean | null
   maybePriceStart: number | null
   maybePriceEnd: number | null
+  pageNumber: number
 }
 
 export type SelectorTypes = 'unit'
+
+export type UnitType = 'WEIGHT' | 'QUANTITY'
 
 export type CategoryName = 'Посуда' | 'Новинки' | 'Товары со скидкой' | 'Пуэр' | 'Улун' | 'Белый чай' | 'Хэй Ча' | 'Аксессуары' | 'Pos group'
 
@@ -64,15 +67,38 @@ export type GroupItem = {
 }
 
 export type CatalogItem = {
-  name: CategoryName,
-  type: CategoryValue,
-  maybeNestedItems: CatalogSubItem[] | null,
-  maybeGroup: string | null,
+  name: CategoryName
+  type: CategoryValue
+  maybeNestedItems: CatalogSubItem[] | null
+  maybeGroup: string | null
+  availableFor: ProductType[]
 }
 
-type CatalogSubItem = {
-  name: string,
-  type: string,
-  maybeGroup: string,
-  maybeNestedItems: CatalogSubItem[] | null,
+export type CatalogSubItem = {
+  name: string
+  type: string
+  maybeGroup: string
+  maybeNestedItems: CatalogSubItem[] | null
+  availableFor: ProductType[]
+}
+
+export type ImagesType = {
+  art: string
+  mainImageId: number
+  imageIds: number[]
+}
+
+export type ImageType = {
+  art: string
+  mainImageId: number
+}
+
+export type ImageRequestType = {
+  art: string
+  imageId: number
+}
+
+export type ImageResponseType = {
+  id: number
+  src: string
 }
