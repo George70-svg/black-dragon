@@ -9,6 +9,7 @@ import { IStore, useAppDispatch } from '@store/store'
 import { StyledImageSlider } from '@components/views/teaPage/components/products/components/tableView/components/tableCard/components/imageSlider/styles/imageSlider.styled'
 
 import { commonStyle } from '../../../../../../../../../../../styles'
+import Icons from '@icons/icons'
 
 export function ImageSlider(props: ItemInfoProps) {
   const dispatch = useAppDispatch()
@@ -50,13 +51,15 @@ export function ImageSlider(props: ItemInfoProps) {
             )}
 
             {!imagesSrc.length && (
-              <div className="image-not-exist" />
+              <div className="image-not-exist">
+                <Icons name="no-content" color={commonStyle[colorTheme].tertiaryColor} size="36" className="icon" />
+              </div>
             )}
           </div>
         )}
 
         {isLoading && (
-          <div className="loading-container">
+          <div className="spinner-container">
             <CircularProgress color="inherit" />
           </div>
         )}

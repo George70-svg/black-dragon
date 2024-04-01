@@ -6,7 +6,7 @@ import { ItemInfoProps } from '@components/views/teaPage/components/products/com
 import { StyledItemInfo } from '@components/views/teaPage/components/products/components/tableView/components/tableCard/components/itemInfo/styles/itemInfo.styled'
 import { ItemNumber } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemNumber/itemNumber'
 import { ItemSelector } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemSelector/itemSelector'
-import { currencyToCurrency } from '@utils/common'
+import { currencyToCurrency, unitToUnit } from '@utils/common'
 
 import { commonStyle } from '../../../../../../../../../../../styles'
 
@@ -35,7 +35,7 @@ export function ItemInfo(props: ItemInfoProps) {
 
           <div className="info-item art">
             <p className="name">Минимальный заказ</p>
-            <p className="info">{props.product.minOrder} {props.product.unit}</p>
+            <p className="info">{props.product.minOrder} {unitToUnit(props.product.unit)}</p>
           </div>
         </div>
 
@@ -43,7 +43,7 @@ export function ItemInfo(props: ItemInfoProps) {
           <div className="price">{props.product.price} {currencyToCurrency(props.product.currency)}</div>
 
           <div className="number">
-          <ItemNumber />
+            <ItemNumber />
             <ItemSelector />
           </div>
 

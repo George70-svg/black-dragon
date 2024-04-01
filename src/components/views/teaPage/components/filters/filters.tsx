@@ -19,17 +19,17 @@ import { commonStyle } from '../../../../../styles'
 export function Filters() {
   const dispatch = useAppDispatch()
 
-  const filters = useSelector((state: IStore) => state.products.filters)
-  const isDisabledFilters = useSelector((state: IStore) => state.products.isProductsUpdate)
-  // const groupItems = useSelector((state: IStore) => state.products?.groups) || []
-  const fabricsItems = useSelector((state: IStore) => state.products?.fabrics) || []
-
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
 
   const theme = {
     color: commonStyle[colorTheme].color,
     secondColor: commonStyle[colorTheme].secondColor,
   }
+
+  const filters = useSelector((state: IStore) => state.products.filters)
+  const isDisabledFilters = useSelector((state: IStore) => state.products.isProductsUpdate)
+  const fabricsItems = useSelector((state: IStore) => state.products?.fabrics) || []
+  // const groupItems = useSelector((state: IStore) => state.products?.groups) || []
 
   const handleProductFilterChange = (filterName: string, value: ValueType) => {
     let newFilters = { ...filters }

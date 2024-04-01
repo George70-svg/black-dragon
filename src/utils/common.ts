@@ -1,4 +1,4 @@
-import { UnitType } from '@endpoints/endpoints/products/types'
+import { ProductType, UnitType } from '@endpoints/endpoints/products/types'
 
 export const capitalizeFirstLetter = (str: string): string => {
   return str.charAt(0).toUpperCase() + str.slice(1)
@@ -34,7 +34,11 @@ export function deduplicate<T> (simpleArray: Array<T>): T[] {
 }
 
 export const currencyToCurrency = (currency: string | 'RUB') => {
-  return currency === 'RUB' ? '₽' : currency
+  return currency === 'RUB' ? '₽' : '¥'
+}
+
+export const countryToCurrency = (country: ProductType) => {
+  return country === 'SPB' ? '₽' : '¥'
 }
 
 export const unitToUnit = (currency: UnitType) => {
