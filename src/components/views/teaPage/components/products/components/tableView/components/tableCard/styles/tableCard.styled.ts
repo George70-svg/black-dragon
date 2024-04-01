@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { commonStyle } from '../../../../../../../../../../styles'
-
 export const StyledTableCard = styled.div.attrs(() => ({
   className: 'table-card',
 }))`
