@@ -5,16 +5,20 @@ import { ThemeProvider } from 'styled-components'
 import { Routers } from '@types/routers'
 import Icons from '@icons/icons'
 import { StyledMenuLogo } from '@components/header/components/menu/components/menuLogo/styles/menuLogo.styled'
-import { IStore } from '@store/store'
+import { IStore, useAppDispatch } from '@store/store'
 import { useNavigate } from 'react-router-dom'
 
 import { commonStyle } from '../../../../../../styles'
+import { initialFilters, updateProductFilterThunk } from '@store/products'
 
 export function MenuLogo() {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   const setRouter = (routerName: Routers) => {
     navigate(routerName)
+    console.log(initialFilters)
+    dispatch(updateProductFilterThunk(initialFilters))
   }
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)

@@ -40,6 +40,9 @@ export const StyledImageSlider = styled.div.attrs(() => ({
     }
 
     .image-not-exist {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
       height: 100%;
       background-color: ${() => commonStyle.colors.grey200};
@@ -47,11 +50,11 @@ export const StyledImageSlider = styled.div.attrs(() => ({
     }
   }
   
-  .loading-container {
+  .spinner-container {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 25rem;
   }
 `

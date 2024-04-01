@@ -15,20 +15,22 @@ export interface IProductsState {
   totalCount: number
 }
 
+export const initialFilters: ProductFilters = {
+  productType: 'SPB',
+  maybeGroup: '',
+  type: '',
+  maybeFabrics: '',
+  isNew: null,
+  isFavorites: null,
+  isInStock: null,
+  maybePriceStart: null,
+  maybePriceEnd: null,
+  pageNumber: 0
+}
+
 const initialState: IProductsState = {
   products: [],
-  filters: {
-    productType: 'SPB',
-    maybeGroup: '',
-    type: '',
-    maybeFabrics: '',
-    isNew: null,
-    isFavorites: null,
-    isInStock: null,
-    maybePriceStart: null,
-    maybePriceEnd: null,
-    pageNumber: 0
-  },
+  filters: { ...initialFilters },
   catalog: [],
   fabrics: [],
   groups: [],

@@ -41,7 +41,7 @@ export function Categories() {
     }
   }
 
-  const handleProductFilterChange = (type: 'item' | 'subItem', value: CatalogItem | CatalogSubItem) => {
+  const handleProductFilterChange = (value: CatalogItem | CatalogSubItem) => {
     let newFilters = { ...filters }
 
     newFilters = updateProductFilter(newFilters, 'type', value.type)
@@ -59,7 +59,11 @@ export function Categories() {
             .map(item => (
               <div key={`${item.type}-${item.name}`}>
                 <ListItemButton
-                  onClick={() => handleProductFilterChange('item', item)}
+                  onClick={() => handleProductFilterChange(item)}
+                  selected={
+                    (item.maybeNestedItems?.map(item => item.maybeGroup).includes(filters.maybeGroup ? filters.maybeGroup : '')) ||
+                    (item.type === filters.type)
+                  }
                   disabled={isDisabledFilters}
                 >
                   <ListItemText primary={item.name} />
@@ -80,13 +84,13 @@ export function Categories() {
                         .map(subItem => (
                           <ListItemButton
                             key={subItem.name} sx={{ pl: 4 }}
-                            onClick={() => handleProductFilterChange('subItem', subItem)}
+                            onClick={() => handleProductFilterChange(subItem)}
                             selected={subItem.maybeGroup === filters.maybeGroup}
                             disabled={isDisabledFilters}
                           >
-                            <ListItemText primary={ subItem.name } />
+                            <ListItemText primary={subItem.name} />
                           </ListItemButton>
-                      ))}
+                        ))}
                     </List>
                   </Collapse> : null
                 }

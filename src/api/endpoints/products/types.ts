@@ -1,3 +1,5 @@
+export type UnitType = 'WEIGHT' | 'QUANTITY'
+
 export type Product = {
   art: string
   name: string
@@ -36,7 +38,7 @@ export type Product = {
   diameterCm: number
 }
 
-export type ProductType = "SPB" | "CHINA"
+export type ProductType = 'SPB' | 'CHINA'
 
 export type TableView = 'list' | 'block'
 
@@ -55,8 +57,6 @@ export type ProductFilters = {
 
 export type SelectorTypes = 'unit'
 
-export type UnitType = 'WEIGHT' | 'QUANTITY'
-
 export type CategoryName = 'Посуда' | 'Новинки' | 'Товары со скидкой' | 'Пуэр' | 'Улун' | 'Белый чай' | 'Хэй Ча' | 'Аксессуары' | 'Pos group'
 
 export type CategoryValue = 'NEW' | 'SALE' | 'POS_GROUP' | 'PUER' | 'OOLONG' | 'HEY_CHA' | 'WHITE' | 'DISH' | 'ACCESSORIES'
@@ -66,19 +66,19 @@ export type GroupItem = {
   value: string
 }
 
-export type CatalogItem = {
-  name: CategoryName
-  type: CategoryValue
-  maybeNestedItems: CatalogSubItem[] | null
-  maybeGroup: string | null
-  availableFor: ProductType[]
-}
-
 export type CatalogSubItem = {
   name: string
   type: string
   maybeGroup: string
   maybeNestedItems: CatalogSubItem[] | null
+  availableFor: ProductType[]
+}
+
+export type CatalogItem = {
+  name: CategoryName
+  type: CategoryValue
+  maybeNestedItems: CatalogSubItem[] | null
+  maybeGroup: string | null
   availableFor: ProductType[]
 }
 
