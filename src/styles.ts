@@ -86,12 +86,12 @@ export const commonStyle: CommonStyle = {
     black: '#000000',
   },
   fonts: {
-    fs12: '0.75rem',
-    fs14: '0.875rem',
-    fs16: '1rem',
-    fs20: '1.25rem',
-    fs21: '1.3rem',
-    fs28: '1.75rem',
+    fs12: '12px',
+    fs14: '14px',
+    fs16: '16px',
+    fs20: '20px',
+    fs21: '21px',
+    fs28: '28px',
   },
   fontStyles: {
     fw500: '500',

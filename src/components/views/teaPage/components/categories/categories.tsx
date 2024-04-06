@@ -61,8 +61,8 @@ export function Categories() {
                 <ListItemButton
                   onClick={() => handleProductFilterChange(item)}
                   selected={
-                    (item.maybeNestedItems?.map(item => item.maybeGroup).includes(filters.maybeGroup ? filters.maybeGroup : '')) ||
-                    (item.type === filters.type)
+                    (item.maybeNestedItems?.map(item => item.maybeGroup).includes(String(filters.maybeGroup))) ||
+                    (item.id === filters.type || item.id === filters.maybeGroup)
                   }
                   disabled={isDisabledFilters}
                 >
@@ -83,7 +83,7 @@ export function Categories() {
                         .filter(item => item.availableFor.includes(filters.productType))
                         .map(subItem => (
                           <ListItemButton
-                            key={subItem.name} sx={{ pl: 4 }}
+                            key={subItem.name} sx={{ pl: 2, ml: 2 }}
                             onClick={() => handleProductFilterChange(subItem)}
                             selected={subItem.maybeGroup === filters.maybeGroup}
                             disabled={isDisabledFilters}

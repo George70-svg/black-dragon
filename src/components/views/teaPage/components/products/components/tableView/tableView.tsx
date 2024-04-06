@@ -93,9 +93,9 @@ export function TableView(props: TableViewProps) {
           </thead>
 
           <tbody>
-            {props.products.map((product, productIndex) => (
+            {props.products.map((product) => (
               <React.Fragment key={generateItemId(product)}>
-                <tr ref={el => setRowRef(generateItemId(product), el)}>
+                <tr ref={el => setRowRef(generateItemId(product), el)} className={generateItemId(product)}>
                   {columns.map((column, colIndex) => (
                     <td key={colIndex}>
                       {/*TODO: [@asiuraev 24.03.2024] Нужно здесь указать TableItem*/}

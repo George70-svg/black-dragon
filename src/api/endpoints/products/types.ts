@@ -71,6 +71,7 @@ export type CatalogSubItem = {
   type: string
   maybeGroup: string
   maybeNestedItems: CatalogSubItem[] | null
+  id: string
   availableFor: ProductType[]
 }
 
@@ -79,6 +80,7 @@ export type CatalogItem = {
   type: CategoryValue
   maybeNestedItems: CatalogSubItem[] | null
   maybeGroup: string | null
+  id: string
   availableFor: ProductType[]
 }
 
