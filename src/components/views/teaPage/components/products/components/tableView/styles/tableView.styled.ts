@@ -43,6 +43,7 @@ export const StyledTableView = styled.div.attrs(() => ({
     tbody {
 
       tr {
+        scroll-margin-top: 2rem;
         height: 3.25rem;
         border-bottom: 1px solid ${() => commonStyle.colors.grey224};
 

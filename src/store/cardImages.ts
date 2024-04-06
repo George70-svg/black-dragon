@@ -24,6 +24,9 @@ export const cardImagesSlice = createSlice({
         state.currentProductImages = []
       }
     },
+    resetImages: (state) => {
+      state.currentProductImages = []
+    },
     setImageUploadStatus: (state, action: { payload: boolean }) => {
       state.isImagesUpload = action.payload
     },
@@ -35,11 +38,12 @@ export const getCardImagesThunk = createAsyncThunk(
   async (imageData: ImagesType, thunkAPI) => {
     try {
       thunkAPI.dispatch(setImageUploadStatus(true))
+      thunkAPI.dispatch(resetImages())
 
       if(imageData.imageIds.length) {
 
         for (const imageId of imageData.imageIds) {
-          const image = await endpoints.products.getImage({ art: imageData.art, mainImageId: imageData.mainImageId })
+          const image = await endpoints.products.getImage({ art: imageData.art, mainImageId: imageId })
           thunkAPI.dispatch(setImage(image))
         }
 
@@ -57,7 +61,8 @@ export const getCardImagesThunk = createAsyncThunk(
 
 export const {
   setImage,
-  setImageUploadStatus
+  setImageUploadStatus,
+  resetImages
 } = cardImagesSlice.actions
 
 export default cardImagesSlice.reducer
