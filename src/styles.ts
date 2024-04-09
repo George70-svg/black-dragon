@@ -43,6 +43,8 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
     }
 
     .scroll-bar-hide {
+        scrollbar-width: none; //Для Firefox
+      
         &::-webkit-scrollbar {
             width: 0;
         }

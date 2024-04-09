@@ -10,6 +10,7 @@ import { DeliveryPage } from '@components/views/deliveryPage/deliveryPage'
 import { SalesPage } from '@components/views/salesPage/salesPage'
 import { NewsPage } from '@components/views/newsPage/newsPage'
 import { ContactsPage } from '@components/views/contactsPage/contactsPage'
+import { CartPage } from '@components/views/cartPage/cartPage'
 
 import { Styles } from '../../../styles'
 
@@ -28,6 +29,7 @@ export function ShopPage() {
         <Route path="/sales" element={<SalesPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/contacts" element={<ContactsPage />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </StyledShopPage>
   )

@@ -17,7 +17,6 @@ export function MenuLogo() {
 
   const setRouter = (routerName: Routers) => {
     navigate(routerName)
-    console.log(initialFilters)
     dispatch(updateProductFilterThunk(initialFilters))
   }
 

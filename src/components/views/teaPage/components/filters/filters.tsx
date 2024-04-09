@@ -59,7 +59,7 @@ export function Filters() {
   ]*/
 
   const optionsFabrics: SelectorOption[] = [
-    { value: '', name: 'Фабрика' },
+    { value: 'fabric', name: 'Фабрика' },
     ...deduplicate(fabricsItems).map(fabric => ({ value: fabric, name: fabric }))
   ]
 

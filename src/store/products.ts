@@ -19,7 +19,7 @@ export const initialFilters: ProductFilters = {
   productType: 'SPB',
   maybeGroup: '',
   type: '',
-  maybeFabrics: '',
+  maybeFabrics: 'fabric',
   isNew: null,
   isFavorites: null,
   isInStock: null,

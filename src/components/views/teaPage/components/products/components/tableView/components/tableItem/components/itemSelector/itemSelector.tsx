@@ -1,13 +1,15 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-import { StyledItemSelector } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemSelector/styles/itemSelector.styled'
 import { IStore } from '@store/store'
+import { unitToUnit } from '@utils/common'
 import { TSelector } from '@components/views/teaPage/components/filters/components/tSelector'
+import { ItemSelectorProps } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemSelector/types/types'
+import { StyledItemSelector } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemSelector/styles/itemSelector.styled'
 
 import { commonStyle } from '../../../../../../../../../../../styles'
 
-export function ItemSelector() {
+export function ItemSelector(props: ItemSelectorProps) {
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
 
   const theme = {
@@ -25,8 +27,8 @@ export function ItemSelector() {
         <TSelector
           filterName='unit'
           iconName=''
-          options={[ { value: 'kg', name: 'кг' }, { value: 'pc', name: 'шт' } ]}
-          initialValue='kg'
+          options={[ { value: 'кг', name: 'кг' }, { value: 'шт', name: 'шт' } ]}
+          initialValue={unitToUnit(props.product.unit)}
           onChange={handleChange}
           isDisabled={false}
         />

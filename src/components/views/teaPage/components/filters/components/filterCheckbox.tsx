@@ -67,7 +67,7 @@ export function FilterCheckbox(props: FilterCheckboxProps) {
   return (
     <ThemeProvider theme={appTheme}>
       <ThemeProviderMui theme={theme}>
-        <StyledFilterCheckbox>
+        <StyledFilterCheckbox $active={!!props.initialValue}>
           <FormControlLabel
             control={
               <Checkbox
