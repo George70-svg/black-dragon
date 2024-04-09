@@ -17,9 +17,9 @@ export const products = {
       priceType: filters?.productType,
       catalogItemType: filters?.type || null,
       group: filters?.maybeGroup || null,
-      fabric: filters?.maybeFabrics || null,
+      fabric: (filters?.maybeFabrics && filters?.maybeFabrics !== 'fabric') ? filters.maybeFabrics : null, //Ищем все фабрики если по дефолту выбран фильт Фабрика
       isNew: filters?.isNew ? filters.isNew : null,
-      inStock: (filters?.isInStock && (filters?.productType === 'SPB')) ? filters.isInStock : null,
+      inStock: (filters?.isInStock && (filters?.productType === 'SPB')) ? filters.isInStock : null, //Фильтр в наличии работает только для СПБ
       minPrice: filters?.maybePriceStart || null,
       maxPrice: filters?.maybePriceEnd || null,
       pageZeroBasedNumber: filters?.pageNumber || 0,
