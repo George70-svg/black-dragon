@@ -2,9 +2,13 @@ import styled from 'styled-components'
 
 import { commonStyle } from '../../../../../../styles'
 
+type StyledFilterCheckboxProps = {
+  $active: boolean
+}
+
 export const StyledFilterCheckbox = styled.div.attrs(() => ({
   className: 'filter-checkbox',
-}))`
+}))<StyledFilterCheckboxProps>`
     
     .MuiFormControlLabel-root {
         margin: 0;
@@ -16,7 +20,7 @@ export const StyledFilterCheckbox = styled.div.attrs(() => ({
             }
 
             .MuiSvgIcon-root {
-                background-color: rgba(246, 246, 246, 1);
+                background-color: ${props => props.$active ? commonStyle.colors.grey246 : commonStyle.colors.white};
                 border-radius: ${() => commonStyle.radii.radius8};
             }
         }

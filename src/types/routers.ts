@@ -1,1 +1,1 @@
-export type Routers = '/' | 'price' | 'delivery' | 'sales' | 'news' | 'contacts'
+export type Routers = '/' | 'price' | 'delivery' | 'sales' | 'news' | 'contacts' | 'cart'
