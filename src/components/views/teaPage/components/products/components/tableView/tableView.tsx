@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import { useTransition, animated } from '@react-spring/web'
 import { IStore } from '@store/store'
 import { TableViewProps } from '@components/views/teaPage/components/products/components/tableView/types/types'
-import { Product } from '@endpoints/endpoints/products/types'
+import { generateItemId } from '@utils/common'
 import { tableDescription } from '@components/views/teaPage/components/products/components/tableView/utils/tableDescription'
 import { StyledTableView } from '@components/views/teaPage/components/products/components/tableView/styles/tableView.styled'
 import { TableItem } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/tableItem'
@@ -39,10 +39,6 @@ export function TableView(props: TableViewProps) {
   }
 
   const columns = tableDescription.columns
-
-  const generateItemId = (product: Product) => {
-    return `${product.art}-${product.shippingPoint}`
-  }
 
   const toggleRow = (id: string) => {
     if (expandedRow === id) {

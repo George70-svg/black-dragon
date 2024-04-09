@@ -58,7 +58,7 @@ const saleColumn = {
 
 const orderColumn = {
   header: () => <div/>,
-  body: (product: Product) => <ItemNumber />,
+  body: (product: Product) => <ItemNumber product={product}/>,
   name: 'order',
   width: '6.75rem',
   fixedWidth: false,
@@ -67,7 +67,7 @@ const orderColumn = {
 
 const weightColumn = {
   header: () => <div/>,
-  body: (product: Product) => <ItemSelector />,
+  body: (product: Product) => <ItemSelector product={product}/>,
   name: 'weight',
   width: '5rem',
   fixedWidth: true,

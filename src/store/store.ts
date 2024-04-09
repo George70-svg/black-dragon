@@ -3,18 +3,21 @@ import { useDispatch } from 'react-redux'
 import themeReducer, { IColorThemeState } from '@store/colorThemeStore'
 import productsReducer, { IProductsState } from '@store/products'
 import cardImagesReducer, { ICardImagesState } from '@store/cardImages'
+import shoppingCartReducer, { IShoppingCartState } from '@store/shoppingСart'
 
 export interface IStore {
   theme: IColorThemeState
   products: IProductsState
   cardImages: ICardImagesState
+  cart: IShoppingCartState
 }
 
 export const store = configureStore({
   reducer: {
     theme: themeReducer,
     products: productsReducer,
-    cardImages: cardImagesReducer
+    cardImages: cardImagesReducer,
+    cart: shoppingCartReducer
   }
 })
 

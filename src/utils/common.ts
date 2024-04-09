@@ -1,4 +1,4 @@
-import { ProductType, UnitType } from '@endpoints/endpoints/products/types'
+import { Product, ProductType, UnitType } from '@endpoints/endpoints/products/types'
 
 export const capitalizeFirstLetter = (str: string): string => {
   return str.charAt(0).toUpperCase() + str.slice(1)
@@ -51,4 +51,8 @@ export const countryToCurrency = (country: ProductType) => {
 
 export const unitToUnit = (currency: UnitType) => {
   return currency === 'WEIGHT' ? 'кг' : 'шт'
+}
+
+export const generateItemId = (product: Product) => {
+  return `${product.art}-${product.shippingPoint}`
 }

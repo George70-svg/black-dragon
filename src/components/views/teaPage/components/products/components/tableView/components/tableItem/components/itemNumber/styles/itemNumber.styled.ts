@@ -28,6 +28,8 @@ export const StyledItemNumber = styled.div.attrs(() => ({
     min-width: 15px;
     font-size: ${() => commonStyle.fonts.fs16};
     text-align: center;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
     user-select: none;
   }

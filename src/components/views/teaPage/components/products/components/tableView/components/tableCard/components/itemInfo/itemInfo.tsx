@@ -43,8 +43,8 @@ export function ItemInfo(props: ItemInfoProps) {
           <div className="price">{props.product.price} {currencyToCurrency(props.product.currency)}</div>
 
           <div className="number">
-            <ItemNumber />
-            <ItemSelector />
+            <ItemNumber product={props.product}/>
+            <ItemSelector product={props.product}/>
           </div>
 
           <div className="result">
