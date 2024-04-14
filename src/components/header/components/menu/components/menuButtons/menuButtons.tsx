@@ -5,6 +5,7 @@ import Icons from '@icons/icons'
 import { useSelector } from 'react-redux'
 import { IStore } from '@store/store'
 import { StyledMenuButtons } from '@components/header/components/menu/components/menuButtons/styles/menuButtons.styled'
+import { CartInfo } from '@components/header/components/menu/components/menuButtons/components/cartInfo/cartInfo'
 // @ts-ignore
 import { Routers } from '@types/routers'
 
@@ -13,6 +14,7 @@ import { commonStyle } from '../../../../../../styles'
 export function MenuButtons() {
   const navigate = useNavigate()
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
+  const productCartNumber = useSelector((state: IStore) => state.cart.itemCartNumber)
 
   const setRouter = (routerName: Routers) => {
     navigate(routerName)
@@ -40,6 +42,10 @@ export function MenuButtons() {
           <Icons name="basket" color="#fff" size="24" className="icon" />
           <p>Корзина</p>
         </div>
+
+        {!!productCartNumber &&
+          <CartInfo showButton={false}/>
+        }
       </StyledMenuButtons>
     </ThemeProvider>
   )

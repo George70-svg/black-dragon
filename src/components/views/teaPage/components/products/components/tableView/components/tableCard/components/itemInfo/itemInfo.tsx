@@ -6,12 +6,14 @@ import { ItemInfoProps } from '@components/views/teaPage/components/products/com
 import { StyledItemInfo } from '@components/views/teaPage/components/products/components/tableView/components/tableCard/components/itemInfo/styles/itemInfo.styled'
 import { ItemNumber } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemNumber/itemNumber'
 import { ItemSelector } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemSelector/itemSelector'
-import { currencyToCurrency, unitToUnit } from '@utils/common'
+import { currencyToCurrency, generateItemId, unitToUnit } from '@utils/common'
 
 import { commonStyle } from '../../../../../../../../../../../styles'
 
 export function ItemInfo(props: ItemInfoProps) {
+  const productId = generateItemId(props.product)
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
+  const currentProductNumber = useSelector((state: IStore) => state.cart.items[productId]?.number)
 
   const theme = {
     color: commonStyle[colorTheme].color,
@@ -50,7 +52,7 @@ export function ItemInfo(props: ItemInfoProps) {
           <div className="result">
             <p>Итого</p>
             <p className='dotted' />
-            <p>3086 {currencyToCurrency(props.product.currency)}</p>
+            <p>{ currentProductNumber ? currentProductNumber * props.product.price : 0 } {currencyToCurrency(props.product.currency)}</p>
           </div>
         </div>
       </StyledItemInfo>

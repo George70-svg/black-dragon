@@ -20,9 +20,11 @@ export function CartPage() {
     <ThemeProvider theme={theme}>
       <StyledCartPage>
         <h1>CartPage</h1>
-        {Object.values(cartItems).map((cartItem) => (
-          <div>{cartItem.id}</div>
-        ))}
+        <div>
+          {Object.values(cartItems).map((cartItem) => (
+            <div>{cartItem.id}</div>
+          ))}
+        </div>
       </StyledCartPage>
     </ThemeProvider>
   )

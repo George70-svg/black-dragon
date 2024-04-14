@@ -5,16 +5,20 @@ import { useTransition, animated } from '@react-spring/web'
 import { IStore } from '@store/store'
 import { TableViewProps } from '@components/views/teaPage/components/products/components/tableView/types/types'
 import { generateItemId } from '@utils/common'
+import useScrollPosition from '@components/views/teaPage/components/products/components/tableView/utils/useScrollPosition'
 import { tableDescription } from '@components/views/teaPage/components/products/components/tableView/utils/tableDescription'
 import { StyledTableView } from '@components/views/teaPage/components/products/components/tableView/styles/tableView.styled'
 import { TableItem } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/tableItem'
 import { ItemButtons } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemButtons/itemButtons'
 import { TableCard } from '@components/views/teaPage/components/products/components/tableView/components/tableCard/tableCard'
+import { CartInfo } from '@components/header/components/menu/components/menuButtons/components/cartInfo/cartInfo'
 
 import { commonStyle } from '../../../../../../../styles'
 
 export function TableView(props: TableViewProps) {
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
+  const productCartNumber = useSelector((state: IStore) => state.cart.itemCartNumber)
+
   const [expandedRow, setExpandedRow] = useState<string | null>(null)
   const rowRefs = useRef<{ [key: string]: HTMLTableRowElement }>({})
 
@@ -58,9 +62,16 @@ export function TableView(props: TableViewProps) {
     },
   )
 
+  //Отслеживаю скролл страницы для отображения корзины в шапке таблицы
+  const scrollPosition = useScrollPosition()
+
   return (
     <ThemeProvider theme={theme}>
       <StyledTableView>
+        {(scrollPosition > 300 && !!productCartNumber) &&
+          <CartInfo showButton={true}/>
+        }
+
         <table>
           <colgroup>
             {

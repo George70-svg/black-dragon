@@ -1,7 +1,7 @@
 # black-dragon
 Teashop app
 
-http://77.246.98.129:8080/swagger - документация backend
+http://77.246.98.129:8081/swagger - документация backend
 https://www.maxidom.ru/search/catalog/?q=hexrf&amount= - пример пагинации
 Фон в webstorm: Settings > Editor > Font
 

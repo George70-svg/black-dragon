@@ -11,7 +11,6 @@ export const StyledSeeMore = styled.div.attrs(() => ({
     flex-basis: 4rem;
     min-height: 4rem;
     background-color: ${() => commonStyle.colors.grey246};
-  
     border-radius: ${() => commonStyle.radii.radius8};
     cursor: pointer;
     transition: all ${() => commonStyle.times.time3};

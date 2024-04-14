@@ -54,7 +54,6 @@
         <path d="M16.521 6.21497L10.0864 12.2182L16.521 18.2214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
 
-
     <symbol id="icon-arrow-right" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M9.65845 18.2214L16.0931 12.2182L9.65845 6.21502" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
@@ -100,5 +99,9 @@
                 <rect width="12" height="24" fill="white"/>
             </clipPath>
         </defs>
+    </symbol>
+
+    <symbol id="icon-empty-block" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="23" height="23" rx="7.5" stroke="#BDBDBD"/>
     </symbol>
 </svg>
