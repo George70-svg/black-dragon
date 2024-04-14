@@ -18,6 +18,13 @@ export const StyledMenuSearch = styled.div.attrs(() => ({
       width: 100%;
       border-radius: ${() => commonStyle.radii.radius8} !important;
       background-color: rgba(246, 246, 246, 1);
+      
+      .MuiInputBase-root {
+        
+        .MuiInputBase-input {
+          font-size: ${() => commonStyle.fonts.fs14};
+        }
+      }
 
       div {
         height: 2.5rem;

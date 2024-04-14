@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import { Checkbox, FormControlLabel } from '@mui/material'
 import { createTheme, ThemeProvider as ThemeProviderMui } from '@mui/material/styles'
 import CheckIcon from '@mui/icons-material/Check'
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
+import Icons from '@icons/icons'
 import { IStore } from '@store/store'
 import { FilterCheckboxProps } from '@components/views/teaPage/components/filters/types/types'
 import { StyledFilterCheckbox } from '@components/views/teaPage/components/filters/styles/filterCheckboxes.styled'
@@ -73,7 +73,7 @@ export function FilterCheckbox(props: FilterCheckboxProps) {
               <Checkbox
                 checked={ props.initialValue ? props.initialValue : false }
                 color='gray'
-                icon={<CheckBoxOutlineBlankIcon color='secondary' />}
+                icon={<Icons name='empty-block' color='secondary' size="24" className="icon" />}
                 checkedIcon={<CheckIcon color='red' />}
                 onChange={handleChange}
                 disabled={props.isDisabled}

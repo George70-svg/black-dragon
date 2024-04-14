@@ -7,7 +7,7 @@ import { IStore, useAppDispatch } from '@store/store'
 import { updateProductFilterThunk } from '@store/products'
 import { updateProductFilter } from '@components/views/teaPage/utils/common'
 import { TSelector } from '@components/views/teaPage/components/filters/components/tSelector'
-import { FilterSwitch } from '@components/views/teaPage/components/filters/components/filterSwitch'
+//import { FilterSwitch } from '@components/views/teaPage/components/filters/components/filterSwitch'
 import { FilterInput } from '@components/views/teaPage/components/filters/components/filterInput'
 import { FilterCheckbox } from '@components/views/teaPage/components/filters/components/filterCheckbox'
 import { SelectorOption } from '@components/views/teaPage/components/filters/types/types'
@@ -96,7 +96,7 @@ export function Filters() {
             />
           </div>
 
-          <FilterSwitch />
+          {/*<FilterSwitch />*/}
         </div>
 
         <div className="filter-group-2">

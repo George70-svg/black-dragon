@@ -3,61 +3,80 @@ import { createGlobalStyle } from 'styled-components'
 import { ColorThemeProps, CommonStyle } from '@types/stylesType'
 
 export const Styles = createGlobalStyle<ColorThemeProps>`
-    * {
-        box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+
+    scrollbar-width: none; //Для Firefox
+
+    &::-webkit-scrollbar {
+      width: 0;
     }
 
-    body {
-        box-sizing: border-box;
-        height: 100vh;
-        width: 100vw;
-        margin: 0;
-        background: ${(props) => commonStyle[props.colorTheme].backgroundColor};
-        color: ${(props) => commonStyle[props.colorTheme].color};
-        font-size: ${() => commonStyle.fonts.fs12};
-        font-weight: ${() => commonStyle.fontStyles.fw500};
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 10px;
     }
 
-    #root {
-        height: 100%;
-        width: 100%;
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #aaa;
+    }
+  }
+
+  body {
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    background: ${(props) => commonStyle[props.colorTheme].backgroundColor};
+    color: ${(props) => commonStyle[props.colorTheme].color};
+    font-size: ${() => commonStyle.fonts.fs12};
+    font-weight: ${() => commonStyle.fontStyles.fw500};
+  }
+
+  #root {
+    height: 100%;
+    width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: ${() => commonStyle.colors.white};
+  }
+
+  h1, h2, h3 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .scroll-bar-hide {
+    scrollbar-width: none; //Для Firefox
+
+    &::-webkit-scrollbar {
+      width: 0;
     }
 
-    a {
-        text-decoration: none;
-        color: ${() => commonStyle.colors.white};
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 10px;
     }
 
-    h1, h2, h3 {
-        margin: 0;
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #aaa;
     }
-
-    p {
-        margin: 0;
-    }
-
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .scroll-bar-hide {
-        scrollbar-width: none; //Для Firefox
-      
-        &::-webkit-scrollbar {
-            width: 0;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: #ccc;
-            border-radius: 10px;
-        }
-
-        &::-webkit-scrollbar-thumb:hover {
-            background-color: #aaa;
-        }
-    }
+  }
+  
+  .MuiList-root {
+    max-height: 30rem;
+  }
 `
 
 export const commonStyle: CommonStyle = {
@@ -88,9 +107,11 @@ export const commonStyle: CommonStyle = {
     black: '#000000',
   },
   fonts: {
+    fs10: '10px',
     fs12: '12px',
     fs14: '14px',
     fs16: '16px',
+    fs18: '18px',
     fs20: '20px',
     fs21: '21px',
     fs28: '28px',
