@@ -36,7 +36,9 @@ export function Products() {
           </div>
         }
 
-        <SeeMore />
+        {!isLoading &&
+          <SeeMore />
+        }
         {/*<Pagination />*/}
       </StyledProducts>
     </ThemeProvider>

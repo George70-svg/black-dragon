@@ -3,12 +3,19 @@ import styled from 'styled-components'
 import { commonStyle } from '../../../../../../../../styles'
 
 export const StyledTableView = styled.div.attrs(() => ({
-  className: 'table-view scroll-bar-hide',
+  className: 'table-view',
 }))`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  overflow: auto;
+  overflow: visible;
+
+  .cart-info {
+    justify-content: end;
+    position: sticky;
+    top: 0.5rem;
+    z-index: 1;
+  }
   
   table {
     position: relative;
@@ -17,13 +24,13 @@ export const StyledTableView = styled.div.attrs(() => ({
     thead {
       position: sticky;
       top: 0;
-      height: 2rem;
+      height: 3.5rem;
       background-color: ${props => props.theme.backgroundColor};
       color: ${props => props.theme.secondColor};
 
       tr {
         height: 100%;
-        box-shadow: 0 0 1px 1px ${() => commonStyle.colors.grey224};
+        box-shadow: 0 1px 0 0 ${() => commonStyle.colors.grey224};
 
         th {
           height: 100%;
@@ -34,7 +41,12 @@ export const StyledTableView = styled.div.attrs(() => ({
             display: flex;
             justify-content: start;
             align-items: start;
-            height: 2rem;
+          }
+          
+          .center-left {
+            display: flex;
+            justify-content: start;
+            align-items: center;
           }
         }
       }
@@ -43,7 +55,7 @@ export const StyledTableView = styled.div.attrs(() => ({
     tbody {
 
       tr {
-        scroll-margin-top: 2rem;
+        scroll-margin-top: 3.5rem;
         height: 3.25rem;
         border-bottom: 1px solid ${() => commonStyle.colors.grey224};
 

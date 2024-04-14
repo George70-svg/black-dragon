@@ -8,5 +8,4 @@ export const StyledNewsPage = styled.div.attrs(() => ({
     align-items: center;
     height: 100%;
     width: 100%;
-    border: 1px solid black;
 `

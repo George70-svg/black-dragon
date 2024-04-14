@@ -34,9 +34,11 @@ type Colors = {
 }
 
 type Fonts = {
+  fs10: string
   fs12: string
   fs14: string
   fs16: string
+  fs18: string
   fs20: string
   fs21: string
   fs28: string

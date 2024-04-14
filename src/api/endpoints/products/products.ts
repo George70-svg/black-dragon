@@ -72,9 +72,8 @@ export const products = {
     }
 
     return axiosInstance.get(
-      '/positions/pool/image/get',
+      `/price/product/${params.art}/image/${params.imageId}`,
       {
-        params,
         responseType: 'blob'
       }
     )
