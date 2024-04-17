@@ -104,4 +104,12 @@
     <symbol id="icon-empty-block" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <rect x="0.5" y="0.5" width="23" height="23" rx="7.5" stroke="#BDBDBD"/>
     </symbol>
+
+    <symbol id="icon-empty-block-bold" fill="#ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1.5" y="1.5" width="21" height="21" rx="6.5" stroke="#B70A06" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="icon-check" fill="#ffffff" viewBox="0 0 72 44" xmlns="http://www.w3.org/2000/svg">
+        <path d="M68 4L24 48L4 28" stroke="#B70A06" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
 </svg>

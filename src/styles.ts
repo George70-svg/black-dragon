@@ -27,10 +27,25 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
     height: 100vh;
     width: 100vw;
     margin: 0;
-    background: ${(props) => commonStyle[props.colorTheme].backgroundColor};
+    background-color: ${(props) => commonStyle[props.colorTheme].backgroundColor};
     color: ${(props) => commonStyle[props.colorTheme].color};
     font-size: ${() => commonStyle.fonts.fs12};
     font-weight: ${() => commonStyle.fontStyles.fw500};
+    
+    //Стили для модальных окон
+    .registration-modal {
+
+      .modal-content {
+        width: 31.25rem;
+        padding: 3rem 1.5rem;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: ${() => commonStyle.colors.white};
+        border-radius: ${() => commonStyle.radii.radius16};
+      }
+    }
   }
 
   #root {
@@ -89,6 +104,8 @@ export const commonStyle: CommonStyle = {
     yellow: '#F8D96D',
     darkYellow: '#efbe00',
     red: 'rgba(183, 10, 6, 1)',
+    darkRed: 'rgba(195, 15, 10, 1)',
+    lightRed: 'rgba(183, 10, 6, 0.1)',
     green: '#7DD76F',
     purple: '#ca8eba',
     darkPurple: '#191c29',
@@ -115,6 +132,7 @@ export const commonStyle: CommonStyle = {
     fs20: '20px',
     fs21: '21px',
     fs28: '28px',
+    fs32: '32px'
   },
   fontStyles: {
     fw500: '500',
@@ -128,6 +146,7 @@ export const commonStyle: CommonStyle = {
   },
   radii: {
     radius8: '0.5rem',
+    radius16: '1rem',
     fullRadius: '100%',
   },
   times: {

@@ -15,6 +15,8 @@ type Colors = {
   yellow: Color
   darkYellow: Color
   red: Color
+  darkRed: Color
+  lightRed: Color
   green: Color
   purple: Color
   darkPurple: Color
@@ -42,6 +44,7 @@ type Fonts = {
   fs20: string
   fs21: string
   fs28: string
+  fs32: string
 }
 
 type FontStyles = {
@@ -58,6 +61,7 @@ type Shadows = {
 
 type Radii = {
   radius8: string
+  radius16: string
   fullRadius: string
 }
 
