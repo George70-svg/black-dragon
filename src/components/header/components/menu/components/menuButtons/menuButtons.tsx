@@ -2,17 +2,17 @@ import { useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { Box, Button, Modal } from '@mui/material'
+import { Button, Modal } from '@mui/material'
 import { IStore, useAppDispatch } from '@store/store'
 import Icons from '@icons/icons'
 import { StyledMenuButtons } from '@components/header/components/menu/components/menuButtons/styles/menuButtons.styled'
 import { CartInfo } from '@components/header/components/menu/components/menuButtons/components/cartInfo/cartInfo'
 import { Authorization } from '@components/authorization/authorization'
+import { setAuthViewThunk } from '@store/auth'
 // @ts-ignore
 import { Routers } from '@types/routers'
 
 import { commonStyle } from '../../../../../../styles'
-import { setAuthViewThunk } from '@store/auth'
 
 export function MenuButtons() {
   const dispatch = useAppDispatch()
