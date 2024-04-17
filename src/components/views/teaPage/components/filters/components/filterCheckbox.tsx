@@ -79,7 +79,8 @@ export function FilterCheckbox(props: FilterCheckboxProps) {
                 disabled={props.isDisabled}
               />
             }
-            label={props.label} />
+            label={props.label}
+          />
         </StyledFilterCheckbox>
       </ThemeProviderMui>
     </ThemeProvider>

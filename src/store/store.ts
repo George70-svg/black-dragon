@@ -4,12 +4,14 @@ import themeReducer, { IColorThemeState } from '@store/colorThemeStore'
 import productsReducer, { IProductsState } from '@store/products'
 import cardImagesReducer, { ICardImagesState } from '@store/cardImages'
 import shoppingCartReducer, { IShoppingCartState } from '@store/shoppingСart'
+import authReducer, { IAuthState } from '@store/auth'
 
 export interface IStore {
   theme: IColorThemeState
   products: IProductsState
   cardImages: ICardImagesState
   cart: IShoppingCartState
+  auth: IAuthState
 }
 
 export const store = configureStore({
@@ -17,7 +19,8 @@ export const store = configureStore({
     theme: themeReducer,
     products: productsReducer,
     cardImages: cardImagesReducer,
-    cart: shoppingCartReducer
+    cart: shoppingCartReducer,
+    auth: authReducer
   }
 })
 
