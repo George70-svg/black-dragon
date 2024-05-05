@@ -48,7 +48,7 @@ export function TSelector(props: TSelectorProps) {
   return (
     <ThemeProvider theme={theme}>
       <StyledTSelector>
-        <button className="selector" onClick={handleOpen} disabled={props.isDisabled}>
+        <button className={`selector ${props.isDisabled ? 'selector-disabled' : ''}`} onClick={handleOpen} disabled={props.isDisabled}>
           {props.iconName ?
             <Icons name={props.iconName} color="#fff" size="20" className="icon" /> :
             null
@@ -56,8 +56,11 @@ export function TSelector(props: TSelectorProps) {
 
           <p>{props.options.find(item => item.value === option)?.name}</p>
 
-          {open ?
-            <Icons name="arrow-up-grey" color="#fff" size="20" className="icon" /> :
+          {open && !props.isDisabled &&
+            <Icons name="arrow-up-grey" color="#fff" size="20" className="icon" />
+          }
+
+          {!open && !props.isDisabled &&
             <Icons name="arrow-down-grey" color="#fff" size="20" className="icon" />
           }
         </button>

@@ -49,6 +49,10 @@ export const countryToCurrency = (country: ProductType) => {
   return country === 'SPB' ? '₽' : '¥'
 }
 
+export const countryToWeight = (country: ProductType) => {
+  return country === 'SPB' ? 'кг' : 'цзинь'
+}
+
 export const unitToUnit = (unit: UnitType) => {
   return unit === 'WEIGHT' ? 'кг' : 'шт'
 }

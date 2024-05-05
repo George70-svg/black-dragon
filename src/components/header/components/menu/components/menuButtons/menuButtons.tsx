@@ -19,7 +19,7 @@ export function MenuButtons() {
   const navigate = useNavigate()
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
-  const productCartNumber = useSelector((state: IStore) => state.cart.itemCartNumber)
+  const productCartNumber = useSelector((state: IStore) => Object.values(state.cart.items).length)
 
   const setRouter = (routerName: Routers) => {
     navigate(routerName)

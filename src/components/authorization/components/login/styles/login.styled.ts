@@ -11,7 +11,7 @@ export const StyledLogin = styled.div.attrs(() => ({
   align-items: center;
   gap: 2rem;
   width: 100%;
-
+  
   h2 {
     font-size: ${() => commonStyle.fonts.fs32};
     font-weight: ${() => commonStyle.fontStyles.fw600};
@@ -76,6 +76,7 @@ export const StyledLogin = styled.div.attrs(() => ({
       font-family: 'MontserratFont', sans-serif;
       border-radius: ${() => commonStyle.radii.radius16};
       text-transform: inherit;
+      box-shadow: none;
       
       &:hover {
         background-color: ${() => commonStyle.colors.darkRed};

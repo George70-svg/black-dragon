@@ -144,6 +144,7 @@ export const StyledRegistration = styled.div.attrs(() => ({
       font-family: 'MontserratFont', sans-serif;
       border-radius: ${() => commonStyle.radii.radius16};
       text-transform: inherit;
+      box-shadow: none;
 
       &:hover {
         background-color: ${() => commonStyle.colors.darkRed};

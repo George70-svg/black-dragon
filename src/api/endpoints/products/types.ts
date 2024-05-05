@@ -1,5 +1,11 @@
 export type UnitType = 'WEIGHT' | 'QUANTITY'
 
+export type UnitsType = {
+  name: string
+  priceForUnit: number
+  saleForUnit: number
+}
+
 export type Product = {
   art: string
   name: string
@@ -10,6 +16,7 @@ export type Product = {
   valueGram: number
   pressForm: string
   unit: UnitType
+  units: UnitsType[]
   description: string
   minOrder: number
   photosId: number[]

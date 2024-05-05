@@ -19,7 +19,8 @@ export const StyledCartPage = styled.div.attrs(() => ({
     width: 100%;
     
     div {
-      height: 15px;
+      width: 50rem;
+      margin-top: 2rem;
     }
   }
 `
