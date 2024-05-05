@@ -11,9 +11,9 @@ export const StyledTableView = styled.div.attrs(() => ({
   overflow: visible;
 
   .cart-info {
-    justify-content: end;
-    position: sticky;
+    position: fixed;
     top: 0.5rem;
+    right: 2rem;
     z-index: 1;
   }
   
@@ -51,7 +51,7 @@ export const StyledTableView = styled.div.attrs(() => ({
         }
       }
     }
-
+    
     tbody {
 
       tr {

@@ -5,6 +5,8 @@ import { ItemButtons } from '@components/views/teaPage/components/products/compo
 import { ItemSelector } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemSelector/itemSelector'
 import { ItemMinOrder } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemMinOrder/itemMinOrder'
 import { ItemPrice } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemPrice/itemPrice'
+import { ItemSale } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemSale/itemSale'
+import { generateItemId } from '@utils/common'
 
 const articleColumn = {
   header: () => <div className={ articleColumn.alignHeader }>Артикл</div>,
@@ -28,7 +30,7 @@ const nameColumn = {
 
 const minimumOrderColumn = {
   header: () => <div className={ minimumOrderColumn.alignHeader }>Мин. заказ</div>,
-  body: (product: Product) => <ItemMinOrder orderNumber={product.minOrder} orderUnit={product.unit} />,
+  body: (product: Product) => <ItemMinOrder orderNumber={product.minOrder} orderUnit={product.unit} itemId={generateItemId(product)}/>,
   name: 'minimumOrder',
   width: '8rem',
   alignHeader: 'center-left',
@@ -38,7 +40,7 @@ const minimumOrderColumn = {
 
 const priceColumn = {
   header: () => <div className={ priceColumn.alignHeader }>Цена</div>,
-  body: (product: Product) => <ItemPrice price={product.price} currency={product.currency} />,
+  body: (product: Product) => <ItemPrice product={product} itemId={generateItemId(product)}/>,
   name: 'price',
   width: '8rem',
   alignHeader: 'center-left',
@@ -48,7 +50,7 @@ const priceColumn = {
 
 const saleColumn = {
   header: () => <div className={ saleColumn.alignHeader }>Скидка</div>,
-  body: () => <div className={ saleColumn.alignBody }> — </div>,
+  body: (product: Product) => <ItemSale product={product} itemId={generateItemId(product)}/>,
   name: 'sale',
   width: '5rem',
   alignHeader: 'center-left',
@@ -58,7 +60,7 @@ const saleColumn = {
 
 const orderColumn = {
   header: () => <div/>,
-  body: (product: Product) => <ItemNumber product={product}/>,
+  body: (product: Product) => <ItemNumber product={product} itemId={generateItemId(product)}/>,
   name: 'order',
   width: '6.75rem',
   fixedWidth: false,
@@ -67,7 +69,7 @@ const orderColumn = {
 
 const weightColumn = {
   header: () => <div/>,
-  body: (product: Product) => <ItemSelector product={product}/>,
+  body: (product: Product) => <ItemSelector product={product} itemId={generateItemId(product)}/>,
   name: 'weight',
   width: '5rem',
   fixedWidth: true,
@@ -76,7 +78,7 @@ const weightColumn = {
 
 const uncoverColumn = {
   header: () => <div/>,
-  body: () => <ItemButtons />,
+  body: (product: Product) => <ItemButtons itemId={generateItemId(product)}/>,
   name: 'uncover',
   width: '2.25rem',
   fixedWidth: false,
@@ -87,11 +89,11 @@ export const tableDescription = {
   columns: [
     { ...articleColumn },
     { ...nameColumn },
-    { ...minimumOrderColumn },
-    { ...priceColumn },
-    { ...saleColumn },
-    { ...orderColumn },
     { ...weightColumn },
+    { ...priceColumn },
+    { ...minimumOrderColumn },
+    { ...orderColumn },
+    { ...saleColumn },
     { ...uncoverColumn },
   ]
 }

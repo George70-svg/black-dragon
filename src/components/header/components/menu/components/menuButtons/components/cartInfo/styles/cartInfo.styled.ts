@@ -16,6 +16,7 @@ export const StyledCartInfo = styled.div.attrs(() => ({
     padding: 0.5rem 1rem;
     background-color: ${() => commonStyle.colors.grey246};
     border-radius: ${() => commonStyle.radii.radius8};
+    margin-right: 6.2rem;
     
     .icon {
       
@@ -29,6 +30,7 @@ export const StyledCartInfo = styled.div.attrs(() => ({
   .cart-info {
     display: flex;
     flex-direction: column;
+    width: fit-content;
     
     .cart-weight {
       display: flex;

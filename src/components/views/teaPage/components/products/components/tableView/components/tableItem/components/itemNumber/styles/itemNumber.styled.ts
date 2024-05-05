@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { commonStyle } from '../../../../../../../../../../../../styles'
 
 type StyledItemNumberProps = {
-  $active: number
+  $active: number | undefined
 }
 
 export const StyledItemNumber = styled.div.attrs(() => ({

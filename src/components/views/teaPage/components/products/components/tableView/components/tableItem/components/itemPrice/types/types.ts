@@ -1,4 +1,6 @@
+import { Product } from '@endpoints/endpoints/products/types'
+
 export type ItemPriceProps = {
-  price: number
-  currency: string
+  product: Product
+  itemId: string
 }

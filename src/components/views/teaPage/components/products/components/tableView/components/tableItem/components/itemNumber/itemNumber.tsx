@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { IStore, useAppDispatch } from '@store/store'
 import { setCartItemThunk, deleteCartItemThunk } from '@store/shoppingСart'
-import { generateItemId } from '@utils/common'
 import { Product } from '@endpoints/endpoints/products/types'
 import { StyledItemNumber } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemNumber/styles/itemNumber.styled'
 import { ItemNumberProps } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemNumber/types/types'
@@ -15,10 +14,8 @@ import { commonStyle } from '../../../../../../../../../../../styles'
 export function ItemNumber(props: ItemNumberProps) {
   const dispatch = useAppDispatch()
 
-  const productId = generateItemId(props.product)
-
   const colorTheme= useSelector((state: IStore) => state.theme.colorTheme)
-  const currentProductNumber = useSelector((state: IStore) => state.cart.items[productId]?.number)
+  const currentProductNumber = useSelector((state: IStore) => state.cart.items[props.itemId]?.number)
 
   const theme = {
     color: commonStyle[colorTheme].color,
@@ -34,16 +31,15 @@ export function ItemNumber(props: ItemNumberProps) {
       value++
     }
 
-    updateItemToCart(props.product, value, type)
+    updateItemToCart(props.product, value)
   }
 
-  const updateItemToCart = (product: Product, itemNumber: number, actionType: '+' | '-') => {
+  const updateItemToCart = (product: Product, itemNumber: number) => {
     const data: CartItem = {
-      id: productId,
+      id: props.itemId,
       item: props.product,
       number: itemNumber,
       region: props.product.shippingPoint,
-      actionType
     }
 
     if(!!itemNumber) {
