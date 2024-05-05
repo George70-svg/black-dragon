@@ -28,7 +28,7 @@
         <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8401 4.61012C19.8086 3.57811 18.4093 2.99829 16.9501 2.99829C15.491 2.99829 14.0916 3.57811 13.0601 4.61012L12.0001 5.67012L10.9401 4.61012C8.79173 2.46173 5.30851 2.46173 3.16012 4.61012C1.01173 6.7585 1.01173 10.2417 3.16012 12.3901L4.22012 13.4501L12.0001 21.2301L19.7801 13.4501L20.8401 12.3901C21.8721 11.3586 22.4519 9.95925 22.4519 8.50012C22.4519 7.04098 21.8721 5.64164 20.8401 4.61012Z" stroke="#B70A06" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
 
-    <symbol id="icon-basket" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="icon-basket" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M8 23C9.10457 23 10 22.1046 10 21C10 19.8954 9.10457 19 8 19C6.89543 19 6 19.8954 6 21C6 22.1046 6.89543 23 8 23Z" stroke="#B70A06" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M20 23C21.1046 23 22 22.1046 22 21C22 19.8954 21.1046 19 20 19C18.8954 19 18 19.8954 18 21C18 22.1046 18.8954 23 20 23Z" stroke="#B70A06" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M5.67 6H23L21.32 14.39C21.1313 15.3402 20.2886 16.0186 19.32 16H8.75C7.73948 16.0086 6.88134 15.262 6.75 14.26L5.23 2.74C5.09962 1.7456 4.25291 1.00152 3.25 1H1" stroke="#B70A06" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

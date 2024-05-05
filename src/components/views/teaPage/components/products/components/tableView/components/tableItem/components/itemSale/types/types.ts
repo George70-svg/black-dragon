@@ -1,6 +1,5 @@
 import { Product } from '@endpoints/endpoints/products/types'
 
-export type ItemNumberProps = {
+export type ItemSaleProps = {
   product: Product
-  itemId: string
 }

@@ -22,7 +22,7 @@ export function CartPage() {
         <h1>CartPage</h1>
         <div>
           {Object.values(cartItems).map((cartItem) => (
-            <div>{cartItem.id}</div>
+            <div>{ cartItem.id } { cartItem.number }</div>
           ))}
         </div>
       </StyledCartPage>

@@ -6,7 +6,7 @@ export const StyledTSelector = styled.div.attrs(() => ({
   className: 't-selector',
 }))`
   height: 100%;
-
+  
   .selector {
     display: flex;
     align-items: center;
@@ -20,6 +20,10 @@ export const StyledTSelector = styled.div.attrs(() => ({
     border: none;
     border-radius: ${() => commonStyle.radii.radius8};
     cursor: pointer;
+  }
+  
+  .selector-disabled {
+    justify-content: center;
   }
 
   .MuiFormControl-root {

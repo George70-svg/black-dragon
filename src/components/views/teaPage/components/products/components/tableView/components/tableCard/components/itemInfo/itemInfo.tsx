@@ -6,14 +6,13 @@ import { ItemInfoProps } from '@components/views/teaPage/components/products/com
 import { StyledItemInfo } from '@components/views/teaPage/components/products/components/tableView/components/tableCard/components/itemInfo/styles/itemInfo.styled'
 import { ItemNumber } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemNumber/itemNumber'
 import { ItemSelector } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemSelector/itemSelector'
-import { currencyToCurrency, generateItemId, unitToUnit } from '@utils/common'
+import { currencyToCurrency, unitToUnit } from '@utils/common'
 
 import { commonStyle } from '../../../../../../../../../../../styles'
 
 export function ItemInfo(props: ItemInfoProps) {
-  const productId = generateItemId(props.product)
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
-  const currentProductNumber = useSelector((state: IStore) => state.cart.items[productId]?.number)
+  const currentProductNumber = useSelector((state: IStore) => state.cart.items[props.itemId]?.number)
 
   const theme = {
     color: commonStyle[colorTheme].color,
@@ -45,8 +44,8 @@ export function ItemInfo(props: ItemInfoProps) {
           <div className="price">{props.product.price} {currencyToCurrency(props.product.currency)}</div>
 
           <div className="number">
-            <ItemNumber product={props.product}/>
-            <ItemSelector product={props.product}/>
+            <ItemNumber product={props.product} itemId={props.itemId}/>
+            <ItemSelector product={props.product} itemId={props.itemId}/>
           </div>
 
           <div className="result">
