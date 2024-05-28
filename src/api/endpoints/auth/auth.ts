@@ -1,12 +1,12 @@
 import { axiosInstance } from '@endpoints/axios'
 import { LoginData, RegisterData, WhoamiUser } from '@endpoints/endpoints/auth/types'
 
-
 export const auth = {
   async register(registerData: RegisterData): Promise<void> {
     return axiosInstance.post(
       '/user/register',
       {
+        name: registerData.name,
         email: registerData.email,
         password: registerData.password,
         phoneNumber: registerData.phoneNumber
@@ -15,8 +15,8 @@ export const auth = {
   },
   async login(loginData: LoginData): Promise<void> {
     const data = new FormData()
-    data.append("username", loginData.userName)
-    data.append("password", loginData.password)
+    data.append('username', loginData.userName)
+    data.append('password', loginData.password)
 
     return axiosInstance.post(
       '/user/login',

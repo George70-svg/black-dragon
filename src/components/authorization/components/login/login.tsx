@@ -5,6 +5,7 @@ import { Box, Button, TextField } from '@mui/material'
 import { IStore, useAppDispatch } from '@store/store'
 import { loginThunk, setAuthViewThunk } from '@store/auth'
 import { StyledLogin } from '@components/authorization/components/login/styles/login.styled'
+import { AuthError } from '@components/authorization/components/authError/authError'
 
 import { commonStyle } from '../../../../styles'
 
@@ -18,6 +19,7 @@ export function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>()
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
+  const loginError = useSelector((state: IStore) => state.auth.loginServerError)
 
   const theme = {
     color: commonStyle[colorTheme].color,
@@ -65,6 +67,8 @@ export function Login() {
                 {...register('password', { required: true })}
               />
             </Box>
+
+            {loginError && <AuthError field='login'/>}
           </div>
 
           <Button className='enter-button' variant='contained' type='submit'>
