@@ -40,7 +40,7 @@ export function ItemSelector(props: ItemSelectorProps) {
           options={units}
           initialValue={currentProductUnit?.toLowerCase() ?? units[0].name}
           onChange={handleChange}
-          isDisabled={units.length <= 1}
+          isDisabled={units.length <= 1 || props.isDisabled}
         />
       </StyledItemSelector>
     </ThemeProvider>

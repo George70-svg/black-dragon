@@ -1,5 +1,8 @@
 export type ItemButtonsProps = {
-  onClick?: () => void
+  onExpandClick?: () => void
+  onDeleteClick?: () => void
   isExpanded?: boolean
+  canDelete?: boolean
+  canCover?: boolean
   itemId: string
 }

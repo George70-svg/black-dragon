@@ -18,7 +18,7 @@ export function TeaPage() {
     dispatch(getProductsThunk())
     dispatch(getProductCatalogThunk())
     dispatch(getProductFabricsThunk())
-    // dispatch(getGroupsForFilterThunk(productGroup))
+    //dispatch(getGroupsForFilterThunk(productGroup))
   }, [dispatch, productGroup])
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
@@ -33,7 +33,7 @@ export function TeaPage() {
       <StyledTeaPage>
         {/*<News />*/}
         <Categories />
-        <Filters />
+        <Filters productType={true} maybeGroup={true} maybeFabrics={true} price={true} isNew={true} isInStock={true} isFavorites={true} />
         <Products />
       </StyledTeaPage>
     </ThemeProvider>

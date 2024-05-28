@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const StyledShopPage = styled.div.attrs(() => ({
-  className: 'shopPage',
+  className: 'shop-page',
 }))`
   height: 100vh;
   width: 100vw;

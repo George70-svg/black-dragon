@@ -33,7 +33,8 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
     font-weight: ${() => commonStyle.fontStyles.fw500};
     
     //Стили для модальных окон
-    .registration-modal {
+    .registration-modal, .profile-modal, .checkout-problem-modal {
+      border: none;
 
       .modal-content {
         width: 31.25rem;
@@ -43,6 +44,7 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: ${() => commonStyle.colors.white};
+        border: none;
         border-radius: ${() => commonStyle.radii.radius16};
       }
     }
@@ -170,4 +172,9 @@ export const commonStyle: CommonStyle = {
     backgroundColor: 'rgba(255, 255, 255, 1)',
     backgroundGradient: 'linear-gradient(150deg, rgba(56,93,166,1) 47%, rgba(202,142,186,1) 93%)',
   },
+  layers: {
+    firstLayer: 3,
+    secondLayer: 2,
+    thirdLayer: 1,
+  }
 }

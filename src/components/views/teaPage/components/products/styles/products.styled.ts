@@ -7,7 +7,6 @@ export const StyledProducts = styled.div.attrs(() => ({
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  //overflow: auto;
   position: relative;
   height: 100%;
   padding-bottom: 2rem;

@@ -8,6 +8,7 @@ import { Registration } from '@components/authorization/components/registration/
 import { Done } from '@components/authorization/components/done/done'
 
 import { commonStyle } from '../../styles'
+import { useEffect } from 'react'
 
 export function Authorization(props: AuthorizationProps) {
   const authView = useSelector((state: IStore) => state.auth.authView)
@@ -17,6 +18,12 @@ export function Authorization(props: AuthorizationProps) {
     color: commonStyle[colorTheme].color,
     secondColor: commonStyle[colorTheme].secondColor
   }
+
+  useEffect(() => {
+    if(!authView) {
+      props.onClose()
+    }
+  }, [authView])
 
   return (
     <ThemeProvider theme={theme}>

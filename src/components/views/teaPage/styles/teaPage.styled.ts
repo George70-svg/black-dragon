@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 export const StyledTeaPage = styled.div.attrs(() => ({
-  className: 'teaPage page',
+  className: 'tea-page page',
 }))`
   display: grid;
-
+  
   grid-template-areas:
     "news news"
     "categories filters"

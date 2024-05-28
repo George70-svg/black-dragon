@@ -1,4 +1,5 @@
 import { Product } from '@endpoints/endpoints/products/types'
+import { SpecialCondition } from '@endpoints/endpoints/cart/type'
 // @ts-ignore
 import { Cart } from '@types/cartTypes'
 
@@ -91,4 +92,17 @@ export const getCartTotalWeight = (cart: Cart, region?: string) => {
       }
     }, 0)
   }
+}
+
+//Расчёт процента скидки от суммы заказа
+export const getMaxPercentage = (specialConditions: SpecialCondition[], price: number) => {
+  let currentPercentage = 0
+
+  specialConditions.forEach(conditionValue => {
+    if(price >= conditionValue.conditionMinMoney) {
+      currentPercentage = conditionValue.salePercentage
+    }
+  })
+
+  return currentPercentage
 }

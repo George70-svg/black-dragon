@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const StyledContactsPage = styled.div.attrs(() => ({
-  className: 'contactsPage page',
+  className: 'contacts-page page',
 }))`
     display: flex;
     justify-content: center;

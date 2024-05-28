@@ -5,7 +5,6 @@ import { useTransition, animated } from '@react-spring/web'
 import { IStore } from '@store/store'
 import { TableViewProps } from '@components/views/teaPage/components/products/components/tableView/types/types'
 import { generateItemId } from '@utils/common'
-import { tableDescription } from '@components/views/teaPage/components/products/components/tableView/utils/tableDescription'
 import { StyledTableView } from '@components/views/teaPage/components/products/components/tableView/styles/tableView.styled'
 import { TableItem } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/tableItem'
 import { ItemButtons } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemButtons/itemButtons'
@@ -44,8 +43,6 @@ export function TableView(props: TableViewProps) {
     backgroundColor: commonStyle[colorTheme].backgroundColor,
   }
 
-  const columns = tableDescription.columns
-
   const toggleRow = (id: string) => {
     if (expandedRow === id) {
       setExpandedRow(null)
@@ -76,7 +73,7 @@ export function TableView(props: TableViewProps) {
         <table>
           <colgroup>
             {
-              columns.map((column, index) => <col
+              props.tableDescription.columns.map((column, index) => <col
                 key={index}
                 style={column.width ?
                   column.fixedWidth ? { maxWidth: column.width, minWidth: column.width, width: column.width } :
@@ -89,7 +86,7 @@ export function TableView(props: TableViewProps) {
 
           <thead>
             <tr>
-              {columns.map((column, index) => (
+              {props.tableDescription.columns.map((column, index) => (
                 <th
                   key={index}
                   style={column.width ? column.fixedWidth ? { maxWidth: column.width } : { width: column.width } : {}}
@@ -104,13 +101,15 @@ export function TableView(props: TableViewProps) {
             {props.products.map((product) => (
               <React.Fragment key={generateItemId(product)}>
                 <tr ref={el => setRowRef(generateItemId(product), el)} className={generateItemId(product)}>
-                  {columns.map((column, colIndex) => (
+                  {props.tableDescription.columns.map((column, colIndex) => (
                     <td key={colIndex}>
                       {/*TODO: [@asiuraev 24.03.2024] Нужно здесь указать TableItem*/}
-                      {column.name === 'uncover' ? (
+                      {column.name === 'uncover' || column.name === 'delete' ? (
                         <ItemButtons
-                          onClick={() => toggleRow(generateItemId(product))}
+                          onExpandClick={() => toggleRow(generateItemId(product))}
                           isExpanded={expandedRow === generateItemId(product)}
+                          canDelete={props.canDeleteItem}
+                          canCover={props.canCoverItem}
                           itemId={generateItemId(product)}
                         />
                       ) : (
@@ -121,7 +120,7 @@ export function TableView(props: TableViewProps) {
                 </tr>
                 {expandedRow === generateItemId(product) && expandedTransitions((style, item) => (
                   <animated.tr style={style}>
-                    <td colSpan={columns.length}>
+                    <td colSpan={props.tableDescription.columns.length}>
                       <TableCard product={item} />
                     </td>
                   </animated.tr>
