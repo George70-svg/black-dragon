@@ -3,12 +3,10 @@ import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { IStore } from '@store/store'
 import { ItemPriceProps } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemPrice/types/types'
+import { StyledItemFullPrice } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemFullPrice/styles/itemFullPrice.styled'
 import { currencyToCurrency } from '@utils/common'
 
 import { commonStyle } from '../../../../../../../../../../../styles'
-import {
-  StyledItemFullPrice
-} from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemFullPrice/styles/itemFullPrice.styled'
 
 export function ItemFullPrice(props: ItemPriceProps) {
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)

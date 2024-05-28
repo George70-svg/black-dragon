@@ -31,7 +31,12 @@ export function Profile(props: ProfileProps) {
 
         <div className="info-container">
           <div className="name info">
-            <p className="head">Логин: </p>
+            <p className="head">Имя: </p>
+            <p className="text">{user?.name}</p>
+          </div>
+
+          <div className="email info">
+            <p className="head">Почта: </p>
             <p className="text">{user?.email}</p>
           </div>
 

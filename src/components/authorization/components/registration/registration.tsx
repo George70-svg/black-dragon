@@ -65,11 +65,18 @@ const theme = createTheme({
 
 export function Registration() {
   const dispatch = useAppDispatch()
-  const { register, handleSubmit, getValues, formState: { errors } } = useForm<IFormInput>()
+
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors }
+  } = useForm<IFormInput>()
 
   const [passwordsNotEqual, setPasswordsNotEqual] = useState(false)
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
+  const registrationError = useSelector((state: IStore) => state.auth.registerServerError)
 
   const appTheme = {
     color: commonStyle[colorTheme].color,
@@ -112,14 +119,15 @@ export function Registration() {
             <div className='inputs-container'>
               <Box className='input-container'>
                 <TextField
-                  className={`input-na,e input ${errors.name && 'input-error'}`}
+                  className={`input-name input ${errors.name && 'input-error'}`}
                   type='text'
                   placeholder='Имя'
                   color='primary'
                   autoComplete='off'
-                  {...register('name', { required: true })}
+                  {...register('name', { required: true, maxLength: 100 })}
                 />
               </Box>
+              <AuthError validationErrors={errors.name} field='name' />
 
               <Box className='input-container'>
                 <TextField
@@ -128,9 +136,10 @@ export function Registration() {
                   placeholder='Email'
                   color='primary'
                   autoComplete='off'
-                  {...register('email', { required: true })}
+                  {...register('email', { required: true, maxLength: 100 })}
                 />
               </Box>
+              <AuthError validationErrors={errors.email} field='email' />
 
               <Box className="input-container">
                 <TextField
@@ -139,9 +148,15 @@ export function Registration() {
                   placeholder='Пароль'
                   color='primary'
                   autoComplete='off'
-                  {...register('password', { required: true })}
+                  {...register('password', {
+                    pattern: /^(?=.*[A-Z])(?=.*[ !"#$%&'()*+,-./:;<=>?@^_`{|}~])(?=.*[0-9])(?=.*[a-z]).{8,}$/,
+                    required: true,
+                    minLength: 8,
+                    maxLength: 64
+                  })}
                 />
               </Box>
+              <AuthError validationErrors={errors.password} field='password' />
 
               <Box className="input-container">
                 <TextField
@@ -150,7 +165,12 @@ export function Registration() {
                   placeholder='Пароль ещё раз'
                   color='primary'
                   autoComplete='off'
-                  {...register('confirmPassword', { required: true })}
+                  {...register('confirmPassword', {
+                    pattern: /^(?=.*[A-Z])(?=.*[ !"#$%&'()*+,-./:;<=>?@^_`{|}~])(?=.*[0-9])(?=.*[a-z]).{8,}$/,
+                    required: true,
+                    minLength: 8,
+                    maxLength: 64
+                  })}
                 />
               </Box>
               <AuthError validationErrors={errors.confirmPassword} dataErrors={passwordsNotEqual} field='confirmPassword' />
@@ -165,6 +185,7 @@ export function Registration() {
                   {...register('phoneNumber', { required: true })}
                 />
               </Box>
+              <AuthError validationErrors={errors.phoneNumber} field='phoneNumber' />
 
               <div className={`checkbox ${errors.agreeWithLicense && 'checkbox-error'}`}>
                 <FormControlLabel
@@ -181,6 +202,8 @@ export function Registration() {
                 <p className='action-text'>условиями пользования</p>
               </div>
             </div>
+
+            {registrationError && registrationError.code === 1000 && <AuthError field='registration'/>}
 
             <Button className='enter-button' variant='contained' type='submit' onClick={handelClick}>
               Продолжить

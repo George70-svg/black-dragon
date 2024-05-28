@@ -2,19 +2,20 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { PayloadAction } from '@reduxjs/toolkit'
 import { AuthView, LoginData, RegisterData, ServerError, User } from '@endpoints/endpoints/auth/types'
 import { endpoints } from '@endpoints/endpoints'
+import { AxiosError } from 'axios'
 
 export interface IAuthState {
   user: User | null
   authView: AuthView
-  loginServerErrors: ServerError[]
-  registerServerErrors: ServerError[]
+  loginServerError: ServerError | null
+  registerServerError: ServerError | null
 }
 
 const initialState: IAuthState = {
   user: null,
   authView: 'login',
-  loginServerErrors: [],
-  registerServerErrors: []
+  loginServerError: null,
+  registerServerError: null
 }
 
 export const authSlice = createSlice({
@@ -34,13 +35,13 @@ export const authSlice = createSlice({
     deleteUser: (state) => {
       state.user = null
     },
-    setLoginErrors: (state, action) => {
-      const errors = action.payload
-      state.loginServerErrors = errors.response
+    setLoginError: (state, action: PayloadAction<ServerError | null>) => {
+      const error = action.payload
+      state.loginServerError = error
     },
-    setRegisterErrors: (state, action) => {
-      const errors = action.payload
-      state.registerServerErrors = errors.response
+    setRegisterError: (state, action: PayloadAction<ServerError | null>) => {
+      const error = action.payload
+      state.registerServerError = error
     }
   }
 })
@@ -59,9 +60,10 @@ export const registerThunk = createAsyncThunk(
       await endpoints.auth.register(data)
       dispatch(whoamiThunk())
       dispatch(setAuthViewThunk('done'))
+      dispatch(setRegisterError(null))
     } catch(error) {
       console.error(error)
-      dispatch(setRegisterErrors(error))
+      dispatch(setRegisterError((error as AxiosError).response?.data as ServerError ?? null))
       throw error
     }
   }
@@ -74,9 +76,17 @@ export const loginThunk = createAsyncThunk(
       await endpoints.auth.login(data)
       dispatch(setAuthViewThunk(null))
       dispatch(whoamiThunk())
+      dispatch(setLoginError(null))
     } catch(error) {
       console.error(error)
-      dispatch(setLoginErrors(error))
+
+      if((error as AxiosError).response?.status === 401) {
+        dispatch(setLoginError({
+          code: 401,
+          message: 'Неверный логин или пароль',
+          type: 'VALIDATION_DATA'
+        }))
+      }
       throw error
     }
   }
@@ -88,6 +98,8 @@ export const logoutThunk = createAsyncThunk(
     try {
       await endpoints.auth.logout()
       dispatch(deleteUser())
+      dispatch(setLoginError(null))
+      dispatch(setRegisterError(null))
     } catch(error) {
       console.error(error)
     }
@@ -99,7 +111,7 @@ export const whoamiThunk = createAsyncThunk(
   async (_, { dispatch }) => {
     try {
       const user = await endpoints.auth.whoami()
-      dispatch(setUser({ email: user.email, phoneNumber: user.maybePhoneNumber }))
+      dispatch(setUser({ name: user.name, email: user.email, phoneNumber: user.maybePhoneNumber }))
     } catch(error) {
       console.error(error)
     }
@@ -110,8 +122,8 @@ export const {
   setAuthView,
   setUser,
   deleteUser,
-  setLoginErrors,
-  setRegisterErrors
+  setLoginError,
+  setRegisterError
 } = authSlice.actions
 
 export default authSlice.reducer
