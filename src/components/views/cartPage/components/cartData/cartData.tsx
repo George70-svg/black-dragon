@@ -9,12 +9,12 @@ import { StyledCartData } from '@components/views/cartPage/components/cartData/s
 import { CheckoutProblem } from '@components/views/cartPage/components/cartData/components/checkoutProblem/checkoutProblem'
 import { CheckoutDone } from '@components/views/cartPage/components/cartData/components/checkoutDone/checkoutDone'
 import { Product } from '@endpoints/endpoints/products/types'
+import { Orders } from '@endpoints/endpoints/cart/type'
 import { checkoutThunk, setCheckoutDoneStatusThunk, setCheckoutProblemStatusThunk, setProblemOrderStatusThunk } from '@store/shoppingСart'
-
-import { commonStyle } from '../../../../../styles'
 // @ts-ignore
 import { ProblemOrderStatus } from '@types/cartTypes'
-import { Orders } from '@endpoints/endpoints/cart/type'
+
+import { commonStyle } from '../../../../../styles'
 
 export function CartData() {
   const dispatch = useAppDispatch()
@@ -140,7 +140,7 @@ export function CartData() {
           </div>
         </div>
 
-        <Button className="checkout" variant="contained" onClick={handleCheckout}>
+        <Button className="checkout" variant="contained" onClick={handleCheckout} disabled={!user}>
           Оформить
         </Button>
 

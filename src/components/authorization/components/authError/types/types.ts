@@ -1,10 +1,9 @@
 import { FieldError } from 'react-hook-form'
-import { ServerError } from '@endpoints/endpoints/auth/types'
 
-export type Field = 'login' | 'email' | 'password' | 'confirmPassword' | 'serverError'
+export type Field = 'name' | 'email' | 'password' | 'confirmPassword' | 'serverError' | 'phoneNumber' | 'login' | 'registration'
 
 export type AuthErrorProps = {
-  validationErrors: FieldError | ServerError | undefined
+  validationErrors?: FieldError | undefined
   dataErrors?: boolean
   field: Field
 }

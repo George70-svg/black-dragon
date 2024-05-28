@@ -15,10 +15,10 @@ export function Done(props: DoneProps) {
     secondColor: commonStyle[colorTheme].secondColor
   }
 
-  //Закрываем окно готово через 2 секунды после открытия
+  //Закрываем окно готово через 10 секунды после открытия
   setTimeout(() => {
     props.onClose()
-  }, 1500)
+  }, 10000)
 
   return (
     <ThemeProvider theme={theme}>
@@ -26,7 +26,7 @@ export function Done(props: DoneProps) {
         <Icons name="check" color={commonStyle.colors.red} size="64" className="icon" />
 
         <h2>Готово</h2>
-
+        <p>Перед входом вам необходимо подтвердить почту</p>
         <p>Приятных покупок</p>
       </StyledDone>
     </ThemeProvider>

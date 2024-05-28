@@ -13,11 +13,13 @@ export type LoginData = {
 }
 
 export type User = {
-  email: string,
+  name: string
+  email: string
   phoneNumber: string
 }
 
 export type WhoamiUser = {
+  name: string
   email: string
   maybePhoneNumber: string
 }
