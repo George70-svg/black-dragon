@@ -59,6 +59,7 @@ export type ProductFilters = {
   isInStock: boolean | null
   maybePriceStart: number | null
   maybePriceEnd: number | null
+  searchText: string | null
   pageNumber: number
 }
 

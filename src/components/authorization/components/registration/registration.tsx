@@ -1,12 +1,14 @@
 import { useSelector } from 'react-redux'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ThemeProvider } from 'styled-components'
 import { createTheme, ThemeProvider as ThemeProviderMui } from '@mui/material/styles'
 import { Box, Button, Checkbox, FormControlLabel, TextField } from '@mui/material'
 import CheckIcon from '@mui/icons-material/Check'
 import { IStore, useAppDispatch } from '@store/store'
-import { setAuthViewThunk } from '@store/auth'
+import { registerThunk } from '@store/auth'
 import Icons from '@icons/icons'
+import { AuthError } from '@components/authorization/components/authError/authError'
 import { StyledRegistration } from '@components/authorization/components/registration/styles/registration.styled'
 
 import { commonStyle } from '../../../../styles'
@@ -16,6 +18,7 @@ interface IFormInput {
   email: string
   password: string
   confirmPassword: string
+  phoneNumber: number
   agreeWithLicense: boolean
 }
 
@@ -62,7 +65,9 @@ const theme = createTheme({
 
 export function Registration() {
   const dispatch = useAppDispatch()
-  const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>()
+  const { register, handleSubmit, getValues, formState: { errors } } = useForm<IFormInput>()
+
+  const [passwordsNotEqual, setPasswordsNotEqual] = useState(false)
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
 
@@ -72,15 +77,29 @@ export function Registration() {
   }
 
   const onSubmit = async (data: IFormInput) => {
-    const user: IFormInput = {
-      name: data.name,
-      email: data.email,
-      password: data.password,
-      confirmPassword: data.confirmPassword,
-      agreeWithLicense: data.agreeWithLicense
+    if(passwordsNotEqual) {
+      return
     }
 
-    dispatch(setAuthViewThunk('done'))
+    dispatch(registerThunk({
+      name: data.name,
+      email: data.email,
+      phoneNumber: `${data.phoneNumber}`,
+      password: data.password,
+    }))
+  }
+
+  //Проверка совпадения паролей при клике на кнопку "Продолжить"
+  const handelClick = () => {
+    const password1 = getValues('password')
+    const password2 = getValues('confirmPassword')
+
+    if (password1 !== password2) {
+      setPasswordsNotEqual(true)
+      return
+    } else {
+      setPasswordsNotEqual(false)
+    }
   }
 
   return (
@@ -93,8 +112,19 @@ export function Registration() {
             <div className='inputs-container'>
               <Box className='input-container'>
                 <TextField
-                  className={`input-email input ${errors.email && 'input-error'}`}
+                  className={`input-na,e input ${errors.name && 'input-error'}`}
                   type='text'
+                  placeholder='Имя'
+                  color='primary'
+                  autoComplete='off'
+                  {...register('name', { required: true })}
+                />
+              </Box>
+
+              <Box className='input-container'>
+                <TextField
+                  className={`input-email input ${errors.email && 'input-error'}`}
+                  type='email'
                   placeholder='Email'
                   color='primary'
                   autoComplete='off'
@@ -123,15 +153,16 @@ export function Registration() {
                   {...register('confirmPassword', { required: true })}
                 />
               </Box>
+              <AuthError validationErrors={errors.confirmPassword} dataErrors={passwordsNotEqual} field='confirmPassword' />
 
               <Box className='input-container'>
                 <TextField
-                  className={`input-name input ${errors.name && 'input-error'}`}
+                  className={`input-phone-number input ${errors.phoneNumber && 'input-error'}`}
                   type='number'
-                  placeholder='Телефон (необязательно)'
+                  placeholder='Телефон'
                   color='primary'
                   autoComplete='off'
-                  {...register('name', { required: true })}
+                  {...register('phoneNumber', { required: true })}
                 />
               </Box>
 
@@ -151,7 +182,7 @@ export function Registration() {
               </div>
             </div>
 
-            <Button className='enter-button' variant='contained' type='submit'>
+            <Button className='enter-button' variant='contained' type='submit' onClick={handelClick}>
               Продолжить
             </Button>
           </form>

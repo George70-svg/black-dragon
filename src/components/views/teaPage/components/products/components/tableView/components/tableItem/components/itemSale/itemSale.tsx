@@ -29,7 +29,7 @@ export function ItemSale(props: ItemPriceProps) {
       <StyledItemSale>
         {
           productType === 'CHINA' && getChinaSale(currentProductNumber, props.product, currentUnit ? currentUnit : props.product.units[0].name) ?
-            getChinaSale(currentProductNumber, props.product, currentUnit ? currentUnit : props.product.units[0].name) :
+            getChinaSale(currentProductNumber, props.product, currentUnit ? currentUnit : props.product.units[0].name).toFixed(2) :
             '—'
         }
 

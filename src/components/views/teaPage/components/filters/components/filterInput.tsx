@@ -51,25 +51,25 @@ export function FilterInput(props: FilterInputProps) {
       <StyledFilterInput>
         <p>Цена, {countryToCurrency(productType)}</p>
 
-        <div className="prices">
+        <div className='prices'>
           <TextField
-            placeholder="от 1080"
-            variant="standard"
-            type="number"
+            placeholder='от 1080'
+            variant='standard'
+            type='number'
             value={startPrice}
             name={props.filterName[0]}
             onChange={handleChange}
             disabled={props.isDisabled}
           />
 
-          <div className="separator-container">
-            <div className="separator" />
+          <div className='separator-container'>
+            <div className='separator' />
           </div>
 
           <TextField
-            placeholder="до 11500"
-            variant="standard"
-            type="number"
+            placeholder='до 11500'
+            variant='standard'
+            type='number'
             value={endPrice}
             name={props.filterName[1]}
             onChange={handleChange}

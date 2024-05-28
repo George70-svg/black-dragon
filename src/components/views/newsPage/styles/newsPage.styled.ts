@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const StyledNewsPage = styled.div.attrs(() => ({
-  className: 'newsPage page',
+  className: 'news-page page',
 }))`
     display: flex;
     justify-content: center;

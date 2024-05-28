@@ -14,7 +14,7 @@ export const StyledTableView = styled.div.attrs(() => ({
     position: fixed;
     top: 0.5rem;
     right: 2rem;
-    z-index: 1;
+    z-index: ${() => commonStyle.layers.firstLayer};
   }
   
   table {
@@ -23,6 +23,7 @@ export const StyledTableView = styled.div.attrs(() => ({
 
     thead {
       position: sticky;
+      z-index: ${() => commonStyle.layers.secondLayer};
       top: 0;
       height: 3.5rem;
       background-color: ${props => props.theme.backgroundColor};
@@ -35,6 +36,7 @@ export const StyledTableView = styled.div.attrs(() => ({
         th {
           height: 100%;
           padding: 0;
+          background-color: ${props => props.theme.backgroundColor};
           font-weight: ${() => commonStyle.fontStyles.fw500};
 
           .top-left {

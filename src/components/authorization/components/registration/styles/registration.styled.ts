@@ -71,7 +71,6 @@ export const StyledRegistration = styled.div.attrs(() => ({
         }
 
         //Убираем стрелки у input number для Chrome, Safari, Edge, Opera
-
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
           -webkit-appearance: none;
@@ -79,7 +78,6 @@ export const StyledRegistration = styled.div.attrs(() => ({
         }
 
         //Убираем стрелки у input number для Firefox
-
         input[type="number"] {
           -moz-appearance: textfield;
         }

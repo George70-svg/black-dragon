@@ -26,7 +26,7 @@ export const StyledFilterInput = styled.div.attrs(() => ({
   input[type="number"] {
     -moz-appearance: textfield;
   }
-
+  
   .prices {
     display: flex;
     width: 9.1rem;
@@ -38,11 +38,9 @@ export const StyledFilterInput = styled.div.attrs(() => ({
       display: flex;
       justify-content: center;
       align-items: center;
-      //position: static;
       padding: 0;
 
       .MuiInputBase-root {
-        //position: static;
         padding: 0;
 
         .MuiInputBase-input {

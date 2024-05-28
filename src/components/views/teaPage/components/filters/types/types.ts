@@ -1,5 +1,15 @@
 import { ProductFilters, SelectorTypes } from '@endpoints/endpoints/products/types'
 
+export type FiltersProps = {
+  productType: boolean
+  maybeGroup: boolean
+  maybeFabrics: boolean
+  price: boolean
+  isNew: boolean
+  isInStock: boolean
+  isFavorites: boolean
+}
+
 export type SelectorOption = {
   value: string
   name: string

@@ -22,6 +22,7 @@ export const products = {
       inStock: (filters?.isInStock && (filters?.productType === 'SPB')) ? filters.isInStock : null, //Фильтр "В наличии" работает только для СПБ
       minPrice: filters?.maybePriceStart || null,
       maxPrice: filters?.maybePriceEnd || null,
+      searchText: filters?.searchText || null,
       pageZeroBasedNumber: filters?.pageNumber || 0,
       pageSize: 20
     }
