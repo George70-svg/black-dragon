@@ -45,7 +45,7 @@ export function ItemInfo(props: ItemInfoProps) {
 
           <div className="number">
             <ItemNumber product={props.product} itemId={props.itemId}/>
-            <ItemSelector product={props.product} itemId={props.itemId}/>
+            <ItemSelector product={props.product} itemId={props.itemId} isDisabled={false}/>
           </div>
 
           <div className="result">

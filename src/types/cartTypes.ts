@@ -1,4 +1,5 @@
-import { Product } from '@endpoints/endpoints/products/types'
+import { Product, ProductType } from '@endpoints/endpoints/products/types'
+import { Orders } from '@endpoints/endpoints/cart/type'
 
 export type CartItem = {
   id: string
@@ -32,3 +33,13 @@ export type ItemNumber = {
 }
 
 export type Cart = Record<string, CartItem>
+
+export type ProblemOrderStatus = {
+  status: boolean
+  message: string
+}
+
+export type OrderData = {
+  productType: ProductType
+  orders: Orders
+}

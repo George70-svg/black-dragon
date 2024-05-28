@@ -11,7 +11,7 @@ export const StyledMenuButtons = styled.div.attrs(() => ({
   gap: 2rem;
   height: 100%;
   
-  .loginButton {
+  .login-button {
     color: ${props => props.theme.color};
     background-color: ${() => commonStyle.colors.grey200};
     padding: 0.5rem 1rem;
@@ -55,5 +55,17 @@ export const StyledMenuButtons = styled.div.attrs(() => ({
         font-size: ${() => commonStyle.fonts.fs14};
         color: ${props => props.theme.secondColor};
       }
+  }
+
+  .profile-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    position: relative;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
   }
 `

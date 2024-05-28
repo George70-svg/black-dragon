@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const StyledPricePage = styled.div.attrs(() => ({
-  className: 'pricePage page',
+  className: 'price-page page',
 }))`
     display: flex;
     justify-content: center;

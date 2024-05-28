@@ -7,26 +7,28 @@ import { CircularProgress } from '@mui/material'
 import { TableView } from '@components/views/teaPage/components/products/components/tableView/tableView'
 import { BlockView } from '@components/views/teaPage/components/products/components/blockView/blockView'
 import { SeeMore } from '@components/views/teaPage/components/products/components/seeMore/seeMore'
+import { productTableDescription } from '@components/views/teaPage/components/products/components/tableView/utils/tableDescription'
 
 import { commonStyle } from '../../../../../styles'
 
 export function Products() {
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
+  const products = useSelector((state: IStore) => state.products.products)
+  const isTableView = useSelector((state: IStore) => state.products.tableView)
+  const isLoading = useSelector((state: IStore) => state.products.isProductsUpdate)
 
   const theme = {
     color: commonStyle[colorTheme].color,
     secondColor: commonStyle[colorTheme].secondColor,
   }
 
-  const products = useSelector((state: IStore) => state.products.products)
-  const isTableView = useSelector((state: IStore) => state.products.tableView)
-  const isLoading = useSelector((state: IStore) => state.products.isProductsUpdate)
+  const columns = productTableDescription
 
   return (
     <ThemeProvider theme={theme}>
       <StyledProducts>
         {isTableView === 'list' ?
-          <TableView products={products} /> :
+          <TableView products={products} tableDescription={columns} canDeleteItem={false} canCoverItem={true}/> :
           <BlockView />
         }
 

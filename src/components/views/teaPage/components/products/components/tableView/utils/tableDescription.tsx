@@ -1,12 +1,13 @@
 import React from 'react'
 import { Product } from '@endpoints/endpoints/products/types'
+import { generateItemId } from '@utils/common'
 import { ItemNumber } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemNumber/itemNumber'
 import { ItemButtons } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemButtons/itemButtons'
 import { ItemSelector } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemSelector/itemSelector'
 import { ItemMinOrder } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemMinOrder/itemMinOrder'
 import { ItemPrice } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemPrice/itemPrice'
 import { ItemSale } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemSale/itemSale'
-import { generateItemId } from '@utils/common'
+import { ItemFullPrice } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemFullPrice/itemFullPrice'
 
 const articleColumn = {
   header: () => <div className={ articleColumn.alignHeader }>Артикл</div>,
@@ -48,6 +49,16 @@ const priceColumn = {
   alignBody: 'left',
 }
 
+const fullPriceColumn = {
+  header: () => <div className={ priceColumn.alignHeader }>Полная цена</div>,
+  body: (product: Product) => <ItemFullPrice product={product} itemId={generateItemId(product)}/>,
+  name: 'fullPrice',
+  width: '8rem',
+  alignHeader: 'center-left',
+  fixedWidth: false,
+  alignBody: 'left',
+}
+
 const saleColumn = {
   header: () => <div className={ saleColumn.alignHeader }>Скидка</div>,
   body: (product: Product) => <ItemSale product={product} itemId={generateItemId(product)}/>,
@@ -69,7 +80,16 @@ const orderColumn = {
 
 const weightColumn = {
   header: () => <div/>,
-  body: (product: Product) => <ItemSelector product={product} itemId={generateItemId(product)}/>,
+  body: (product: Product) => <ItemSelector product={product} itemId={generateItemId(product)} isDisabled={false}/>,
+  name: 'weight',
+  width: '5rem',
+  fixedWidth: true,
+  alignBody: 'center',
+}
+
+const weightColumnDisabled = {
+  header: () => <div/>,
+  body: (product: Product) => <ItemSelector product={product} itemId={generateItemId(product)} isDisabled={true}/>,
   name: 'weight',
   width: '5rem',
   fixedWidth: true,
@@ -78,22 +98,46 @@ const weightColumn = {
 
 const uncoverColumn = {
   header: () => <div/>,
-  body: (product: Product) => <ItemButtons itemId={generateItemId(product)}/>,
+  body: (product: Product) => <ItemButtons itemId={generateItemId(product)} canDelete={false} canCover={false} />,
   name: 'uncover',
   width: '2.25rem',
   fixedWidth: false,
   alignBody: 'center',
 }
 
-export const tableDescription = {
+const deleteColumn = {
+  header: () => <div/>,
+  body: (product: Product) => <ItemButtons itemId={generateItemId(product)} canDelete={true} canCover={false}/>,
+  name: 'delete',
+  width: '2.25rem',
+  fixedWidth: false,
+  alignBody: 'center',
+}
+
+export const productTableDescription = {
   columns: [
     { ...articleColumn },
     { ...nameColumn },
-    { ...weightColumn },
     { ...priceColumn },
     { ...minimumOrderColumn },
     { ...orderColumn },
+    { ...weightColumn },
+    { ...fullPriceColumn },
     { ...saleColumn },
     { ...uncoverColumn },
+  ]
+}
+
+export const cartTableDescription = {
+  columns: [
+    { ...articleColumn },
+    { ...nameColumn },
+    { ...priceColumn },
+    { ...minimumOrderColumn },
+    { ...orderColumn },
+    { ...weightColumnDisabled },
+    { ...fullPriceColumn },
+    { ...saleColumn },
+    { ...deleteColumn },
   ]
 }

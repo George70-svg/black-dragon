@@ -25,6 +25,7 @@ export const initialFilters: ProductFilters = {
   isInStock: null,
   maybePriceStart: null,
   maybePriceEnd: null,
+  searchText: null,
   pageNumber: 0
 }
 
@@ -99,21 +100,21 @@ export const productsSlice = createSlice({
 //Получение списка товаров
 export const getProductsThunk = createAsyncThunk(
   'products/products',
-  async (_, thunkAPI) => {
+  async (_, { dispatch, getState }) => {
     try {
-      thunkAPI.dispatch(setProductsUpdateStatus(true))
+      dispatch(setProductsUpdateStatus(true))
 
-      const filters = (thunkAPI.getState() as IStore).products.filters
+      const filters = (getState() as IStore).products.filters
 
       const productData = await endpoints.products.prices(filters)
 
-      thunkAPI.dispatch(setProducts(productData.resource))
-      thunkAPI.dispatch(setTotalCount(productData.totalResourceCount))
+      dispatch(setProducts(productData.resource))
+      dispatch(setTotalCount(productData.totalResourceCount))
     } catch (error) {
       console.error(error)
       throw error
     } finally {
-      thunkAPI.dispatch(setProductsUpdateStatus(false))
+      dispatch(setProductsUpdateStatus(false))
     }
   }
 )
@@ -121,12 +122,12 @@ export const getProductsThunk = createAsyncThunk(
 //Обновление фильтров товаров
 export const updateProductFilterThunk = createAsyncThunk(
   'products/filter',
-  async (filter: ProductFilters, thunkAPI) => {
+  async (filter: ProductFilters, { dispatch }) => {
     try {
-      thunkAPI.dispatch(updateFilter(filter)) //Сначала обновляем фильтры для запросы
-      thunkAPI.dispatch(resetProducts()) //Затем сбрасываем все старые товары
-      thunkAPI.dispatch(setPage(0)) //Обнуляем страницу для запроса
-      thunkAPI.dispatch(getProductsThunk()) //Получаем новые товары
+      dispatch(updateFilter(filter)) //Сначала обновляем фильтры для запроса
+      dispatch(resetProducts()) //Затем сбрасываем все старые товары
+      dispatch(setPage(0)) //Обнуляем страницу для запроса
+      dispatch(getProductsThunk()) //Получаем новые товары
     } catch (error) {
       console.error(error)
       throw error
@@ -137,18 +138,18 @@ export const updateProductFilterThunk = createAsyncThunk(
 //Получение каталога товаров
 export const getProductCatalogThunk = createAsyncThunk(
   'products/catalog',
-  async (_, thunkAPI) => {
+  async (_, { dispatch }) => {
     try {
-      thunkAPI.dispatch(setCategoriesUploadStatus(true))
+      dispatch(setCategoriesUploadStatus(true))
 
       const catalog = await endpoints.products.catalog()
 
-      thunkAPI.dispatch(setCatalog(catalog))
+      dispatch(setCatalog(catalog))
     } catch (error) {
       console.error(error)
       throw error
     } finally {
-      thunkAPI.dispatch(setCategoriesUploadStatus(false))
+      dispatch(setCategoriesUploadStatus(false))
     }
   }
 )
@@ -156,11 +157,11 @@ export const getProductCatalogThunk = createAsyncThunk(
 //Получение списка групп для фильтра группы
 export const getGroupsForFilterThunk = createAsyncThunk(
   'products/groups',
-  async (type: ProductType, thunkAPI) => {
+  async (type: ProductType, { dispatch }) => {
     try {
       const groups = await endpoints.products.groups(type)
 
-      thunkAPI.dispatch(setGroups(groups))
+      dispatch(setGroups(groups))
     } catch (error) {
       console.error(error)
       throw error
@@ -168,14 +169,14 @@ export const getGroupsForFilterThunk = createAsyncThunk(
   }
 )
 
-// //Получение списка фабрик для фильтра фабрика
+//Получение списка фабрик для фильтра фабрика
 export const getProductFabricsThunk = createAsyncThunk(
   'products/fabrics',
-  async (_, thunkAPI) => {
+  async (_, { dispatch }) => {
     try {
       const fabrics = await endpoints.products.fabrics()
 
-      thunkAPI.dispatch(setFabrics(fabrics))
+      dispatch(setFabrics(fabrics))
     } catch (error) {
       console.error(error)
       throw error
@@ -186,9 +187,9 @@ export const getProductFabricsThunk = createAsyncThunk(
 //Смена списка товаров на плитку товаров
 export const setTableViewThunk = createAsyncThunk(
   'products/tableView',
-  async (viewType: TableView, thunkAPI) => {
+  async (viewType: TableView, { dispatch }) => {
     try {
-      thunkAPI.dispatch(setTableView(viewType))
+      dispatch(setTableView(viewType))
     } catch (error) {
       console.error(error)
       throw error
@@ -199,10 +200,10 @@ export const setTableViewThunk = createAsyncThunk(
 //Установка текущей страницы товаров
 export const setPageNumberThunk = createAsyncThunk(
   'products/pageNumber',
-  async (pageNumber: number, thunkAPI) => {
+  async (pageNumber: number, { dispatch }) => {
     try {
-      thunkAPI.dispatch(setPage(pageNumber))
-      thunkAPI.dispatch(getProductsThunk())
+      dispatch(setPage(pageNumber))
+      dispatch(getProductsThunk())
     } catch (error) {
       console.error(error)
       throw error

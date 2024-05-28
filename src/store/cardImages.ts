@@ -35,26 +35,26 @@ export const cardImagesSlice = createSlice({
 
 export const getCardImagesThunk = createAsyncThunk(
   'products/cardImages',
-  async (imageData: ImagesType, thunkAPI) => {
+  async (imageData: ImagesType, { dispatch }) => {
     try {
-      thunkAPI.dispatch(setImageUploadStatus(true))
-      thunkAPI.dispatch(resetImages())
+      dispatch(setImageUploadStatus(true))
+      dispatch(resetImages())
 
       if(imageData.imageIds.length) {
 
         for (const imageId of imageData.imageIds) {
           const image = await endpoints.products.getImage({ art: imageData.art, mainImageId: imageId })
-          thunkAPI.dispatch(setImage(image))
+          dispatch(setImage(image))
         }
 
       } else {
-        thunkAPI.dispatch(setImage(null))
+        dispatch(setImage(null))
       }
     } catch (error) {
       console.error(error)
       throw error
     } finally {
-      thunkAPI.dispatch(setImageUploadStatus(false))
+      dispatch(setImageUploadStatus(false))
     }
   }
 )

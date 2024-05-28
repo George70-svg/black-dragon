@@ -3,12 +3,13 @@ import { ThemeProvider } from 'styled-components'
 import { useForm } from 'react-hook-form'
 import { Box, Button, TextField } from '@mui/material'
 import { IStore, useAppDispatch } from '@store/store'
-import { setAuthViewThunk } from '@store/auth'
+import { loginThunk, setAuthViewThunk } from '@store/auth'
 import { StyledLogin } from '@components/authorization/components/login/styles/login.styled'
 
 import { commonStyle } from '../../../../styles'
+
 interface IFormInput {
-  email: string
+  userName: string
   password: string
 }
 
@@ -25,9 +26,11 @@ export function Login() {
 
   const onSubmit = async (data: IFormInput) => {
     const user: IFormInput = {
-      email: data.email,
+      userName: data.userName,
       password: data.password
     }
+
+    dispatch(loginThunk(user))
   }
 
   const handleChangeAuthView = () => {
@@ -43,12 +46,12 @@ export function Login() {
           <div className='inputs-container'>
             <Box className='input-container'>
               <TextField
-                className={`input-email input ${errors.email && 'input-error'}`}
+                className={`input-user-name input ${errors.userName && 'input-error'}`}
                 type='text'
                 placeholder='Email'
                 color='primary'
                 autoComplete='off'
-                {...register('email', { required: true })}
+                {...register('userName', { required: true })}
               />
             </Box>
 

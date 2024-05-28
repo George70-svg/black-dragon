@@ -46,7 +46,7 @@ export function ItemPrice(props: ItemPriceProps) {
     <ThemeProvider theme={theme}>
       <StyledItemPrice>
         {
-          productType === 'CHINA' ? priceForChina : props.product.units[0].priceForUnit
+          productType === 'CHINA' ? priceForChina.toFixed(2) : props.product.units[0].priceForUnit.toFixed(2)
         }
 
         { currencyToCurrency(props.product.currency) }

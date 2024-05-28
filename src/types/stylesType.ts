@@ -73,6 +73,12 @@ type Times = {
   time5: string
 }
 
+export type Layers = {
+  firstLayer: number
+  secondLayer: number
+  thirdLayer: number
+}
+
 type Theme = {
   color: Color
   secondColor: Color
@@ -90,6 +96,7 @@ export type CommonStyle = {
   times: Times
   darkTheme: Theme
   lightTheme: Theme
+  layers: Layers
 }
 
 export type ColorThemeProps = {

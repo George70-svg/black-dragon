@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-// @ts-ignore
 
 import { commonStyle } from '../../../../../styles'
 
