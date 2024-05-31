@@ -3,7 +3,8 @@ version: "3.9"
 services:
 
   black-dragon-frontend:
+    image: tywinlanni/black-dragon-frontend
+    container_name: front
+    network_mode: "host"
     build: .
     restart: always
-    ports:
-      - "3033:3000"

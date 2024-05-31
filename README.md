@@ -27,3 +27,8 @@ docker compose -f docker-compose.yaml up
 ```
 
 Работать будет по ```http://localhost:3001/``` (ну или ip сервера)
+
+
+```bash
+docker build -t tywinlanni/black-dragon-frontend .
+```

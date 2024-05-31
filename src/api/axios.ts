@@ -1,8 +1,8 @@
 import axios, { AxiosInstance, AxiosStatic } from 'axios'
 
 export const axiosInstance = axios.create({
-  //baseURL: 'http://77.246.98.129:8081',
-  baseURL: 'http://localhost:8081/api',
+  baseURL: 'http://77.246.98.129:8081/api',
+  //baseURL: 'http://localhost:8081/api',
   withCredentials: true
 })
 
