@@ -5,6 +5,7 @@ import { StyledDeliveryPage } from '@components/views/deliveryPage/styles/delive
 import { IStore } from '@store/store'
 
 import { commonStyle } from '../../../styles'
+import corgi from '../../../assets/img/corgi.png'
 
 export function DeliveryPage() {
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
@@ -17,7 +18,8 @@ export function DeliveryPage() {
   return (
     <ThemeProvider theme={theme}>
       <StyledDeliveryPage>
-        <h1>DeliveryPage</h1>
+        <img src={corgi} alt='ContactsPage' />
+        <h1>Данная страница пока недоступна</h1>
       </StyledDeliveryPage>
     </ThemeProvider>
   )

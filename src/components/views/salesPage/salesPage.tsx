@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { IStore } from '@store/store'
 
 import { commonStyle } from '../../../styles'
+import corgi from '../../../assets/img/corgi.png'
 
 export function SalesPage() {
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
@@ -17,7 +18,8 @@ export function SalesPage() {
   return (
     <ThemeProvider theme={theme}>
       <StyledSalesPage>
-        <h1>SalesPage</h1>
+        <img src={corgi} alt='ContactsPage' />
+        <h1>Данная страница пока недоступна</h1>
       </StyledSalesPage>
     </ThemeProvider>
   )
