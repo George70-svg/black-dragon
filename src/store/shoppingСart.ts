@@ -21,8 +21,8 @@ const initialState: IShoppingCartState = {
   isCheckoutProblem: false,
   problemOrderStatus: {
     status: false,
-    message: ''
-  }
+    message: '',
+  },
 }
 
 export const shoppingCartSlice = createSlice({
@@ -30,10 +30,10 @@ export const shoppingCartSlice = createSlice({
   initialState,
   reducers: {
     setItem: (state, action: PayloadAction<CartItem>) => {
-      if(state.items[action.payload.id]) {
+      if (state.items[action.payload.id]) {
         state.items[action.payload.id] = {
           ...state.items[action.payload.id],
-          ...action.payload
+          ...action.payload,
         }
       } else {
         //Если первоначально пользователь добавляет товар, но ещё не выбрал единицу, то ставлю первую из списка
@@ -41,7 +41,7 @@ export const shoppingCartSlice = createSlice({
           ...action.payload,
           unit: action.payload.unit ?
             action.payload.unit :
-            action.payload.item?.units[0] ? action.payload.item.units[0].name : ''
+            action.payload.item?.units[0] ? action.payload.item.units[0].name : '',
         }
       }
     },
@@ -49,12 +49,12 @@ export const shoppingCartSlice = createSlice({
       state.items[action.payload.id] = { id: action.payload.id, unit: action.payload.unit }
     },
     setItemPrice: (state, action: PayloadAction<ItemPrice>) => {
-      if(state.items[action.payload.id]) {
+      if (state.items[action.payload.id]) {
         state.items[action.payload.id].price = action.payload.price
       }
     },
     deleteItem: (state, action: PayloadAction<string>) => {
-      if(state.items[action.payload]) {
+      if (state.items[action.payload]) {
         delete state.items[action.payload]
       }
     },
@@ -69,8 +69,8 @@ export const shoppingCartSlice = createSlice({
     },
     setCheckoutProblemStatus: (state, action: PayloadAction<boolean>) => {
       state.isCheckoutProblem = action.payload
-    }
-  }
+    },
+  },
 })
 
 export const setCartItemThunk = createAsyncThunk(
@@ -82,7 +82,7 @@ export const setCartItemThunk = createAsyncThunk(
       console.error(error)
       throw error
     }
-  }
+  },
 )
 
 export const deleteCartItemThunk = createAsyncThunk(
@@ -94,7 +94,7 @@ export const deleteCartItemThunk = createAsyncThunk(
       console.error(error)
       throw error
     }
-  }
+  },
 )
 
 export const setItemUnitThunk = createAsyncThunk(
@@ -108,7 +108,7 @@ export const setItemUnitThunk = createAsyncThunk(
       console.error(error)
       throw error
     }
-  }
+  },
 )
 
 export const setItemPriceThunk = createAsyncThunk(
@@ -120,7 +120,7 @@ export const setItemPriceThunk = createAsyncThunk(
       console.error(error)
       throw error
     }
-  }
+  },
 )
 
 export const setCartConditionThunk = createAsyncThunk(
@@ -133,7 +133,7 @@ export const setCartConditionThunk = createAsyncThunk(
       console.error(error)
       throw error
     }
-  }
+  },
 )
 
 export const setProblemOrderStatusThunk = createAsyncThunk(
@@ -141,7 +141,7 @@ export const setProblemOrderStatusThunk = createAsyncThunk(
   async (orderStatus: ProblemOrderStatus, { dispatch, getState }) => {
     dispatch(setProblemOrderStatus(orderStatus))
 
-    if(orderStatus.status) {
+    if (orderStatus.status) {
       dispatch(setCheckoutProblemStatus(true))
       dispatch(setCheckoutDoneStatus(false))
     } else {
@@ -150,7 +150,7 @@ export const setProblemOrderStatusThunk = createAsyncThunk(
     }
 
     return (getState() as IStore).cart.problemOrderStatus
-  }
+  },
 )
 
 export const checkoutThunk = createAsyncThunk(
@@ -163,19 +163,19 @@ export const checkoutThunk = createAsyncThunk(
       console.error(error)
       throw error
     }
-  }
+  },
 )
 
 export const setCheckoutDoneStatusThunk = createAsyncThunk(
   'shoppingCart/setCheckoutDoneStatus',
-   (_, { dispatch }) => {
+  (_, { dispatch }) => {
     try {
       dispatch(setCheckoutDoneStatus(false))
     } catch (error) {
       console.error(error)
       throw error
     }
-  }
+  },
 )
 
 export const setCheckoutProblemStatusThunk = createAsyncThunk(
@@ -187,7 +187,7 @@ export const setCheckoutProblemStatusThunk = createAsyncThunk(
       console.error(error)
       throw error
     }
-  }
+  },
 )
 
 export const {
@@ -198,7 +198,7 @@ export const {
   setCondition,
   setProblemOrderStatus,
   setCheckoutDoneStatus,
-  setCheckoutProblemStatus
+  setCheckoutProblemStatus,
 } = shoppingCartSlice.actions
 
 export default shoppingCartSlice.reducer

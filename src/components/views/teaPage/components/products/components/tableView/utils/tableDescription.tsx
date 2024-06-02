@@ -31,7 +31,12 @@ const nameColumn = {
 
 const minimumOrderColumn = {
   header: () => <div className={ minimumOrderColumn.alignHeader }>Мин. заказ</div>,
-  body: (product: Product) => <ItemMinOrder orderNumber={product.minOrder} orderUnit={product.unit} itemId={generateItemId(product)}/>,
+  body: (product: Product) => <ItemMinOrder
+    orderNumber={product.minOrder}
+    orderUnit={product.unit}
+    productType={product.shippingPoint === 'CПБ' ? 'SPB' : 'CHINA'}
+    itemId={generateItemId(product)}
+  />,
   name: 'minimumOrder',
   width: '8rem',
   alignHeader: 'center-left',
