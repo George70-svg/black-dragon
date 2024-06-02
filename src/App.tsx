@@ -2,12 +2,12 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { RouterProvider } from 'react-router-dom'
 import { IStore, useAppDispatch } from '@store/store'
+import { whoamiThunk } from '@store/auth'
+import { setCartConditionThunk } from '@store/shoppingСart'
 import { ShopPage } from '@components/views/shopPage/shopPage'
 
 import { router } from './router/router'
 import { Styles } from './styles'
-import { whoamiThunk } from '@store/auth'
-import { setCartConditionThunk } from '@store/shoppingСart'
 
 function App() {
   return <RouterProvider router={router} />

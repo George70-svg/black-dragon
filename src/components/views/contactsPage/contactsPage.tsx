@@ -5,6 +5,7 @@ import { StyledContactsPage } from '@components/views/contactsPage/styles/contac
 import { IStore } from '@store/store'
 
 import { commonStyle } from '../../../styles'
+import corgi from '../../../assets/img/corgi.png'
 
 export function ContactsPage() {
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
@@ -17,7 +18,8 @@ export function ContactsPage() {
   return (
     <ThemeProvider theme={theme}>
       <StyledContactsPage>
-        <h1>ContactsPage</h1>
+        <img src={corgi} alt='ContactsPage' />
+        <h1>Данная страница пока недоступна</h1>
       </StyledContactsPage>
     </ThemeProvider>
   )

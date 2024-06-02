@@ -53,8 +53,8 @@ export const countryToWeight = (country: ProductType) => {
   return country === 'SPB' ? 'кг' : 'цзинь'
 }
 
-export const unitToUnit = (unit: UnitType) => {
-  return unit === 'WEIGHT' ? 'кг' : 'шт'
+export const unitToUnit = (unit: UnitType, country: ProductType) => {
+  return unit === 'WEIGHT' ? country === 'SPB' ? 'кг' : 'Цзинь' : 'шт'
 }
 
 export const generateItemId = (product: Product) => {

@@ -21,6 +21,7 @@
       "@store/*": ["store/*"],
       "@endpoints/*": ["api/*"],
       "@components/*": ["components/*"],
+      "@assets/*": ["assets/*"],
       "@types/*": ["types/*"],
       "@utils/*": ["utils/*"],
       "@icons/*": ["assets/icons/*"]

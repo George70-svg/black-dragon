@@ -5,6 +5,7 @@ import { StyledPricePage } from '@components/views/pricePage/styles/pricePage.st
 import { IStore } from '@store/store'
 
 import { commonStyle } from '../../../styles'
+import corgi from '../../../assets/img/corgi.png'
 
 export function PricePage() {
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
@@ -17,7 +18,8 @@ export function PricePage() {
   return (
     <ThemeProvider theme={theme}>
       <StyledPricePage>
-        <h1>PricePage</h1>
+        <img src={corgi} alt='ContactsPage' />
+        <h1>Данная страница пока недоступна</h1>
       </StyledPricePage>
     </ThemeProvider>
   )

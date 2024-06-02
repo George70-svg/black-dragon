@@ -53,9 +53,9 @@ export function MenuButtons() {
       <StyledMenuButtons>
         {!user && (
           <Button
-          variant="text"
-          className="login-button"
-          onClick={handleLoginOpen}
+            variant="text"
+            className="login-button"
+            onClick={handleLoginOpen}
           >
             Войти
           </Button>
@@ -63,9 +63,9 @@ export function MenuButtons() {
 
         {user && (
           <button
-              className="button-container profile-button"
-              onClick={handleProfileOpen}
-            >
+            className="button-container profile-button"
+            onClick={handleProfileOpen}
+          >
             <Icons name="profile" color="#fff" size="24" className="icon" />
             <p>Профиль</p>
           </button>
@@ -82,7 +82,7 @@ export function MenuButtons() {
         </div>
 
         {!!productCartNumber &&
-          <CartInfo showButton={false}/>
+          <CartInfo showButton={false} />
         }
 
         <Modal
@@ -90,10 +90,10 @@ export function MenuButtons() {
           onClose={handleLoginClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
-          className='registration-modal'
+          className="registration-modal"
         >
-          <div className='modal-content'>
-            <Authorization onClose={handleLoginClose}/>
+          <div className="modal-content">
+            <Authorization onClose={handleLoginClose} />
           </div>
         </Modal>
 
@@ -102,10 +102,10 @@ export function MenuButtons() {
           onClose={handleProfileClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
-          className='profile-modal'
+          className="profile-modal"
         >
-          <div className='modal-content'>
-            <Profile onClose={handleProfileClose}/>
+          <div className="modal-content">
+            <Profile onClose={handleProfileClose} />
           </div>
         </Modal>
       </StyledMenuButtons>

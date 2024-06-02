@@ -4,6 +4,7 @@ import { IStore } from '@store/store'
 import { DoneProps } from '@components/authorization/components/done/types/types'
 import { StyledDone } from '@components/authorization/components/done/styles/done.styled'
 import Icons from '@icons/icons'
+
 import { commonStyle } from '../../../../../../../styles'
 
 export function CheckoutDone(props: DoneProps) {

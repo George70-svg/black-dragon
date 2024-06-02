@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { IStore } from '@store/store'
 import { ThemeProvider } from 'styled-components'
@@ -8,7 +9,6 @@ import { Registration } from '@components/authorization/components/registration/
 import { Done } from '@components/authorization/components/done/done'
 
 import { commonStyle } from '../../styles'
-import { useEffect } from 'react'
 
 export function Authorization(props: AuthorizationProps) {
   const authView = useSelector((state: IStore) => state.auth.authView)
