@@ -61,6 +61,7 @@ export type ProductFilters = {
   maybePriceEnd: number | null
   searchText: string | null
   pageNumber: number
+  pageSize: number
 }
 
 export type SelectorTypes = 'unit'

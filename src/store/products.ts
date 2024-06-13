@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { endpoints } from '@endpoints/endpoints'
 import { CatalogItem, GroupItem, Product, ProductFilters, ProductType, TableView } from '@endpoints/endpoints/products/types'
 import { IStore } from '@store/store'
+import { PaginationResult } from '@endpoints/types'
 
 export interface IProductsState {
   products: Product[]
@@ -26,7 +27,8 @@ export const initialFilters: ProductFilters = {
   maybePriceStart: null,
   maybePriceEnd: null,
   searchText: null,
-  pageNumber: 0
+  pageNumber: 0,
+  pageSize: 10
 }
 
 const initialState: IProductsState = {
@@ -104,9 +106,19 @@ export const getProductsThunk = createAsyncThunk(
     try {
       dispatch(setProductsUpdateStatus(true))
 
-      const filters = (getState() as IStore).products.filters
+      let productData: PaginationResult<Product[]> = {
+        pageSize: 0,
+        pageZeroNumber: 0,
+        resource: [],
+        totalResourceCount: 0
+      }
 
-      const productData = await endpoints.products.prices(filters)
+      const filters = (getState() as IStore).products.filters
+      const count = (getState() as IStore).products.totalCount
+
+      if(count === 0 || count >= filters.pageNumber * filters.pageSize) {
+        productData = await endpoints.products.prices(filters)
+      }
 
       dispatch(setProducts(productData.resource))
       dispatch(setTotalCount(productData.totalResourceCount))

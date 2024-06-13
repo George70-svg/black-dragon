@@ -7,7 +7,6 @@ import { StyledItemInfo } from '@components/views/teaPage/components/products/co
 import { ItemNumber } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemNumber/itemNumber'
 import { ItemSelector } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemSelector/itemSelector'
 import { currencyToCurrency, unitToUnit } from '@utils/common'
-import { ProductType } from '@endpoints/endpoints/products/types'
 
 import { commonStyle } from '../../../../../../../../../../../styles'
 
@@ -19,8 +18,6 @@ export function ItemInfo(props: ItemInfoProps) {
     color: commonStyle[colorTheme].color,
     secondColor: commonStyle[colorTheme].secondColor,
   }
-
-  const productType: ProductType = props.product.shippingPoint === 'СПБ' ? 'SPB' : 'CHINA'
 
   return (
     <ThemeProvider theme={theme}>
@@ -39,7 +36,7 @@ export function ItemInfo(props: ItemInfoProps) {
 
           <div className="info-item art">
             <p className="name">Минимальный заказ</p>
-            <p className="info">{props.product.minOrder} {unitToUnit(props.product.unit, productType)}</p>
+            <p className="info">{props.product.minOrder} {unitToUnit(props.product.unit)}</p>
           </div>
         </div>
 

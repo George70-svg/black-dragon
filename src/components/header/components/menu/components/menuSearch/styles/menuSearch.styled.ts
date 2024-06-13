@@ -10,7 +10,7 @@ export const StyledMenuSearch = styled.div.attrs(() => ({
   align-items: center;
   height: 100%;
   width: 100%;
-
+  
   .input-container {
     width: 100%;
 

@@ -37,7 +37,7 @@ export function MenuLogo() {
         <div className="name-container" onClick={() => setRouter('/')}>
           <h2>Чай без церемоний</h2>
 
-          <p>Оптовые продажи</p>
+          <p>Оптом</p>
         </div>
       </StyledMenuLogo>
     </ThemeProvider>

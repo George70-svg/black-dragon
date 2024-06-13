@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import { commonStyle } from '../../../../../../../../styles'
 
 export const StyledCheckoutDone = styled.div.attrs(() => ({

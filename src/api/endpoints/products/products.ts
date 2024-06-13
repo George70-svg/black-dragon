@@ -24,7 +24,7 @@ export const products = {
       maxPrice: filters?.maybePriceEnd || null,
       searchText: filters?.searchText || null,
       pageZeroBasedNumber: filters?.pageNumber || 0,
-      pageSize: 20
+      pageSize: filters?.pageSize || 10
     }
 
     return axiosInstance.get(

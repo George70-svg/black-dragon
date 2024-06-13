@@ -3,8 +3,8 @@ import styled from 'styled-components'
 export const StyledShopPage = styled.div.attrs(() => ({
   className: 'shop-page',
 }))`
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   padding: var(--padding-size);
 
   .header {
