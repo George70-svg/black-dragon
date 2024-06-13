@@ -3,10 +3,8 @@ import { useSelector } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import { StyledProducts } from '@components/views/teaPage/components/products/styles/products.styled'
 import { IStore } from '@store/store'
-import { CircularProgress } from '@mui/material'
 import { TableView } from '@components/views/teaPage/components/products/components/tableView/tableView'
 import { BlockView } from '@components/views/teaPage/components/products/components/blockView/blockView'
-import { SeeMore } from '@components/views/teaPage/components/products/components/seeMore/seeMore'
 import { productTableDescription } from '@components/views/teaPage/components/products/components/tableView/utils/tableDescription'
 
 import { commonStyle } from '../../../../../styles'
@@ -15,7 +13,6 @@ export function Products() {
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
   const products = useSelector((state: IStore) => state.products.products)
   const isTableView = useSelector((state: IStore) => state.products.tableView)
-  const isLoading = useSelector((state: IStore) => state.products.isProductsUpdate)
 
   const theme = {
     color: commonStyle[colorTheme].color,
@@ -31,17 +28,6 @@ export function Products() {
           <TableView products={products} tableDescription={columns} canDeleteItem={false} canCoverItem={true}/> :
           <BlockView />
         }
-
-        {isLoading &&
-          <div className="loading-container">
-            <CircularProgress color="inherit" />
-          </div>
-        }
-
-        {!isLoading &&
-          <SeeMore />
-        }
-        {/*<Pagination />*/}
       </StyledProducts>
     </ThemeProvider>
   )

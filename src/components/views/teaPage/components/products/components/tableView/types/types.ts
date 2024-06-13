@@ -15,3 +15,8 @@ export type TableViewProps = {
     }[]
   }
 }
+
+export type GroupsItem = {
+  name: string
+  type: string
+}

@@ -19,7 +19,7 @@ export function ItemMinOrder(props: ItemMinOrderProps) {
   return (
     <ThemeProvider theme={theme}>
       <StyledItemMinOrder>
-        {props.orderNumber} {unitToUnit(props.orderUnit, props.productType)}
+        {props.orderNumber} {unitToUnit(props.orderUnit)}
       </StyledItemMinOrder>
     </ThemeProvider>
   )

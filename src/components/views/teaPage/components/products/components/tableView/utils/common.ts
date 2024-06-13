@@ -3,6 +3,7 @@ import { SpecialCondition } from '@endpoints/endpoints/cart/type'
 // @ts-ignore
 import { Cart } from '@types/cartTypes'
 
+//Если кор. то цену беру цену priceForUnit из units
 //Расчёт цены для китайского прайса
 export const getPriceForChina = (productNumber: number | undefined, product: Product, unit: string) => {
   if(productNumber && productNumber >= product.valueInBox){
@@ -82,7 +83,7 @@ export const getCartTotalWeight = (cart: Cart, region?: string) => {
           return accumulator + (currentValue.item.valueGram * currentValue.number / 1000)
         } else if(currentValue.unit.toLowerCase() === 'кор.') {
           return accumulator + (currentValue.item.valueGram * currentValue.item.valueInBox * currentValue.number / 1000)
-        } else if(currentValue.unit.toLowerCase() === 'цзинь') {
+        } else if(currentValue.unit.toLowerCase() === 'кг') {
           return accumulator + (currentValue.item.valueGram * currentValue.item.step * currentValue.number / 1000)
         } else {
           return accumulator
