@@ -6,10 +6,8 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
   * {
     box-sizing: border-box;
 
-    scrollbar-width: none; //Для Firefox
-
     &::-webkit-scrollbar {
-      width: 0;
+      width: var(--scroll-bar-width);
     }
 
     &::-webkit-scrollbar-thumb {
@@ -25,7 +23,7 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
   body {
     box-sizing: border-box;
     height: 100vh;
-    width: 100vw;
+    width: calc(100vw - var(--scroll-bar-width));
     margin: 0;
     background-color: ${(props) => commonStyle[props.colorTheme].backgroundColor};
     color: ${(props) => commonStyle[props.colorTheme].color};
@@ -48,11 +46,54 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
         border-radius: ${() => commonStyle.radii.radius16};
       }
     }
+    
+    //Стили для mui dropdown
+    .MuiPopover-root {
+      
+      .MuiMenu-paper {
+        scrollbar-width: none; //Для Firefox
+
+        &::-webkit-scrollbar {
+          width: 0;
+        }
+        
+        ul {
+          padding-top: 0;
+          padding-bottom: 0;
+          
+          //Стиль для поиска в селекторе
+          .input-container {
+            width: 8rem;
+            
+            .input-search {
+              width: 100%;
+
+              .MuiInputBase-root {
+                padding: 0;
+
+                .MuiInputBase-input {
+                  font-size: ${() => commonStyle.fonts.fs14};
+                }
+              }
+
+              div {
+                height: 2.5rem;
+                font-family: 'MontserratFont', sans-serif;
+
+                .MuiOutlinedInput-notchedOutline {
+                  border: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   #root {
     height: 100%;
-    width: 100%;
+    width: calc(100vw - var(--scroll-bar-width));
   }
 
   a {
@@ -72,23 +113,6 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
     list-style: none;
     padding: 0;
     margin: 0;
-  }
-
-  .scroll-bar-hide {
-    scrollbar-width: none; //Для Firefox
-
-    &::-webkit-scrollbar {
-      width: 0;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #ccc;
-      border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background-color: #aaa;
-    }
   }
   
   .MuiList-root {

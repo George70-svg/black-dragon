@@ -17,6 +17,13 @@ export const StyledTableView = styled.div.attrs(() => ({
     z-index: ${() => commonStyle.layers.firstLayer};
   }
   
+  .up-button {
+    position: fixed;
+    bottom: 5rem;
+    left: 8rem;
+    z-index: ${() => commonStyle.layers.firstLayer};
+  }
+  
   table {
     position: relative;
     border-collapse: collapse;
@@ -69,6 +76,30 @@ export const StyledTableView = styled.div.attrs(() => ({
           }
         }
       }
+
+      tr.tea-group-separate {
+        background-color: ${() => commonStyle.colors.grey224};
+        
+        td {
+          
+          .product-group {
+            font-size: ${() => commonStyle.fonts.fs20};
+            font-weight: ${() => commonStyle.fontStyles.fw600};
+          }
+        }
+      }
+    }
+  }
+  
+  .load-element {
+    height: 5rem;
+    position: relative;
+    
+    .loading-spinner {
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 `

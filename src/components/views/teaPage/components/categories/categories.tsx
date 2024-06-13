@@ -16,8 +16,7 @@ export function Categories() {
 
   const catalogItems = useSelector((state: IStore) => state.products.catalog)
 
-  const [open, setOpen] = React.useState(true)
-  const [itemValue, setItemNumber] = React.useState('')
+  const [openItems, setItem] = React.useState([] as string[])
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
   const isDisabledFilters = useSelector((state: IStore) => state.products.isProductsUpdate)
@@ -31,13 +30,10 @@ export function Categories() {
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, itemId: string) => {
     event.stopPropagation()
 
-    if(itemId === itemValue) {
-      setOpen(!open)
-    } else if(open) {
-      setItemNumber(itemId)
+    if(openItems.includes(itemId)) {
+      setItem([ ...openItems.filter(id => id !== itemId) ])
     } else {
-      setOpen(!open)
-      setItemNumber(itemId)
+      setItem([ ...openItems, itemId ])
     }
   }
 
@@ -69,15 +65,15 @@ export function Categories() {
                   <ListItemText primary={item.name} />
                   {item.maybeNestedItems ?
                     <div onClick={(event) => handleClick(event, item.type)}>
-                      {(open && itemValue === item.type) ?
-                        <Icons name="arrow-up-red" color="#fff" size="24" className="icon" /> :
-                        <Icons name="arrow-down-red" color="#fff" size="24" className="icon" />
+                      {(openItems.includes(item.type)) ?
+                        <Icons name='arrow-up-red' color='#fff' size='24' className='icon' /> :
+                        <Icons name='arrow-down-red' color='#fff' size='24' className='icon' />
                       }
                     </div> : null
                   }
                 </ListItemButton>
                 {item.maybeNestedItems ?
-                  <Collapse in={itemValue === item.type && open} timeout="auto" unmountOnExit>
+                  <Collapse in={openItems.includes(item.type)} timeout="auto" unmountOnExit>
                     <List component="div">
                       {item.maybeNestedItems
                         .filter(item => item.availableFor.includes(filters.productType))

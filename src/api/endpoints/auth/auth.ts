@@ -29,7 +29,6 @@ export const auth = {
   async whoami(): Promise<WhoamiUser> {
     return axiosInstance.get('/user/whoami')
       .then(data => {
-        console.log(data)
         return data.data
       })
   },

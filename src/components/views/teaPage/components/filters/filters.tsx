@@ -7,6 +7,7 @@ import { IStore, useAppDispatch } from '@store/store'
 import { updateProductFilterThunk } from '@store/products'
 import { updateProductFilter } from '@components/views/teaPage/utils/common'
 import { TSelector } from '@components/views/teaPage/components/filters/components/tSelector'
+import { TSearchSelector } from '@components/views/teaPage/components/filters/components/tSearchSelector'
 import { FilterInput } from '@components/views/teaPage/components/filters/components/filterInput'
 import { FilterCheckbox } from '@components/views/teaPage/components/filters/components/filterCheckbox'
 import { FiltersProps, SelectorOption } from '@components/views/teaPage/components/filters/types/types'
@@ -84,7 +85,7 @@ export function Filters(props: FiltersProps) {
               isDisabled={isDisabledFilters}
             /}*/}
 
-            {props.maybeFabrics && <TSelector
+            {props.maybeFabrics && <TSearchSelector
               iconName="location"
               options={optionsFabrics}
               initialValue={filters.maybeFabrics}

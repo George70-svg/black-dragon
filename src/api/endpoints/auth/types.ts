@@ -24,7 +24,7 @@ export type WhoamiUser = {
   maybePhoneNumber: string
 }
 
-type ServerErrorType = "VALIDATION_DATA"
+type ServerErrorType = 'VALIDATION_DATA'
 
 export type ServerError = {
   code: number

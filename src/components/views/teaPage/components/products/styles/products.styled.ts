@@ -10,7 +10,7 @@ export const StyledProducts = styled.div.attrs(() => ({
   position: relative;
   height: 100%;
   padding-bottom: 2rem;
-
+  
   .loading-container {
     position: absolute;
     top: 50%;

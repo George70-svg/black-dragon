@@ -38,9 +38,9 @@ export function ItemNumber(props: ItemNumberProps) {
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(event.target.value, 10);
+    const value = parseInt(event.target.value, 10)
     if (value >= 0 && value < 1000) {
-      updateItemToCart(value);
+      updateItemToCart(value)
     }
   }
 
@@ -84,7 +84,7 @@ export function ItemNumber(props: ItemNumberProps) {
           <TextField
             variant='standard'
             type='number'
-            inputProps={{ step: "1" }}
+            inputProps={{ step: '1' }}
             value={currentProductNumber ? currentProductNumber : stubInput ? '' : '0'}
             onChange={handleChange}
             onFocus={handleFocus}
