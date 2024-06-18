@@ -5,4 +5,5 @@ export type ItemButtonsProps = {
   canDelete?: boolean
   canCover?: boolean
   itemId: string
+  disabled: boolean
 }

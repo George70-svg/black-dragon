@@ -168,9 +168,12 @@ export function TableView(props: TableViewProps) {
               )}
 
               {/*Строка товара*/}
-              <tr ref={el => setRowRef(generateItemId(product), el)} className={generateItemId(product)}>
+              <tr
+                ref={el => setRowRef(generateItemId(product), el)}
+                className={generateItemId(product)}
+              >
                 {props.tableDescription.columns.map((column, colIndex) => (
-                  <td key={colIndex}>
+                  <td key={colIndex} style={!product.inStock ? { color: '' } : {}}>
                     {/*TODO: [@asiuraev 24.03.2024] Нужно здесь указать TableItem*/}
                     {column.name === 'uncover' || column.name === 'delete' ? (
                       <ItemButtons
@@ -179,9 +182,14 @@ export function TableView(props: TableViewProps) {
                         canDelete={props.canDeleteItem}
                         canCover={props.canCoverItem}
                         itemId={generateItemId(product)}
+                        disabled={!product.inStock}
                       />
                     ) : (
-                      <TableItem class={column.alignBody} item={column.body(product)} />
+                      <TableItem
+                        class={column.alignBody}
+                        item={column.body(product)}
+                        inStoke={product.inStock}
+                      />
                     )}
                   </td>
                 ))}

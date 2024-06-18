@@ -30,10 +30,10 @@ export function ItemButtons(props: ItemButtonsProps) {
           <Icons name="heart" color={commonStyle.colors.red} size="20" className="icon" />
         </div>*/}
 
-        {props.canCover && <div className="button-container" onClick={props.onExpandClick}>
+        {props.canCover && <div className="button-container" onClick={!props.disabled ? props.onExpandClick : () => {}}>
           {props.isExpanded ?
-            <Icons name="arrow-up-red" color="#fff" size="24" className="icon" /> :
-            <Icons name="arrow-down-red" color="#fff" size="24" className="icon" />
+            !props.disabled ? <Icons name="arrow-up-red" color="#fff" size="24" className="icon" /> : <Icons name="arrow-up-grey" color="#fff" size="24" className="icon" /> :
+            !props.disabled ? <Icons name="arrow-down-red" color="#fff" size="24" className="icon" /> : <Icons name="arrow-down-grey" color="#fff" size="24" className="icon" />
           }
         </div>}
 
