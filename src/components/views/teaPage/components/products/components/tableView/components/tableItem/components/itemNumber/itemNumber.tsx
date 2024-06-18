@@ -89,12 +89,14 @@ export function ItemNumber(props: ItemNumberProps) {
             onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
+            disabled={!props.disabled}
           />
         </div>
 
         <button
           className="increase calculation"
           onClick={() => handleClick('+')}
+          disabled={!props.disabled}
         >
           +
         </button>

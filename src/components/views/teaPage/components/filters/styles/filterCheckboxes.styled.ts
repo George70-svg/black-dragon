@@ -9,29 +9,30 @@ type StyledFilterCheckboxProps = {
 export const StyledFilterCheckbox = styled.div.attrs(() => ({
   className: 'filter-checkbox',
 }))<StyledFilterCheckboxProps>`
-    
-    .MuiFormControlLabel-root {
-        margin: 0;
 
-        .MuiButtonBase-root {
+  .MuiFormControlLabel-root {
+    margin: 0;
 
-            .PrivateSwitchBase-input {
-                
-            }
+    .MuiButtonBase-root {
 
-            .MuiSvgIcon-root {
-                background-color: ${props => props.$active ? commonStyle.colors.grey246 : commonStyle.colors.white};
-                border-radius: ${() => commonStyle.radii.radius8};
-            }
-        }
+      .PrivateSwitchBase-input {
 
-        .MuiTypography-root {font-family: 'MontserratFont', sans-serif;
-            font-size: ${() => commonStyle.fonts.fs14};
-            color: ${props => props.theme.color};
-        }
+      }
 
-        .Mui-checked {
-
-        }
+      .MuiSvgIcon-root {
+        background-color: ${props => props.$active ? commonStyle.colors.grey246 : commonStyle.colors.white};
+        border-radius: ${() => commonStyle.radii.radius8};
+      }
     }
+
+    .MuiTypography-root {
+      font-family: 'MontserratFont', sans-serif;
+      font-size: ${() => commonStyle.fonts.fs14};
+      color: ${props => props.theme.color};
+    }
+
+    .Mui-checked {
+
+    }
+  }
 `

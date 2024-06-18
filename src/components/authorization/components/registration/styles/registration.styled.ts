@@ -71,6 +71,7 @@ export const StyledRegistration = styled.div.attrs(() => ({
         }
 
         //Убираем стрелки у input number для Chrome, Safari, Edge, Opera
+
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
           -webkit-appearance: none;
@@ -78,6 +79,7 @@ export const StyledRegistration = styled.div.attrs(() => ({
         }
 
         //Убираем стрелки у input number для Firefox
+
         input[type="number"] {
           -moz-appearance: textfield;
         }
@@ -146,6 +148,46 @@ export const StyledRegistration = styled.div.attrs(() => ({
 
       &:hover {
         background-color: ${() => commonStyle.colors.darkRed};
+      }
+    }
+  }
+
+  @media screen and (max-height: 820px) {
+    gap: 1rem;
+
+    h2 {
+      font-size: ${() => commonStyle.fonts.fs28};
+    }
+
+    form {
+      gap: 0.5rem;
+
+      .inputs-container {
+        gap: 0.5rem;
+
+        .input-container {
+          .input {
+            .MuiInputBase-root {
+              .MuiInputBase-input {
+                font-size: ${() => commonStyle.fonts.fs14};
+              }
+            }
+
+            div {
+              height: 3rem;
+            }
+          }
+        }
+
+        .checkbox {
+          font-size: ${() => commonStyle.fonts.fs14};
+        }
+      }
+
+      .enter-button {
+        height: 3rem;
+        font-size: ${() => commonStyle.fonts.fs18};
+        border-radius: ${() => commonStyle.radii.radius16};
       }
     }
   }
