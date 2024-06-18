@@ -17,7 +17,7 @@ export function TableItem(props: TableItemProps) {
 
   return (
     <ThemeProvider theme={theme}>
-      <StyledTableItem>
+      <StyledTableItem $inStoke={props.inStoke}>
         { props.item }
       </StyledTableItem>
     </ThemeProvider>

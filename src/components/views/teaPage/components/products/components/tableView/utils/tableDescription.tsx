@@ -76,7 +76,7 @@ const saleColumn = {
 
 const orderColumn = {
   header: () => <div/>,
-  body: (product: Product) => <ItemNumber product={product} itemId={generateItemId(product)}/>,
+  body: (product: Product) => <ItemNumber product={product} itemId={generateItemId(product)} disabled={product.inStock}/>,
   name: 'order',
   width: '6.75rem',
   fixedWidth: false,
@@ -85,7 +85,7 @@ const orderColumn = {
 
 const weightColumn = {
   header: () => <div/>,
-  body: (product: Product) => <ItemSelector product={product} itemId={generateItemId(product)} isDisabled={false}/>,
+  body: (product: Product) => <ItemSelector product={product} itemId={generateItemId(product)} isDisabled={!product.inStock}/>,
   name: 'weight',
   width: '5rem',
   fixedWidth: true,
@@ -103,7 +103,7 @@ const weightColumnDisabled = {
 
 const uncoverColumn = {
   header: () => <div/>,
-  body: (product: Product) => <ItemButtons itemId={generateItemId(product)} canDelete={false} canCover={false} />,
+  body: (product: Product) => <ItemButtons itemId={generateItemId(product)} canDelete={false} canCover={false} disabled={!product.inStock} />,
   name: 'uncover',
   width: '2.25rem',
   fixedWidth: false,
@@ -112,7 +112,7 @@ const uncoverColumn = {
 
 const deleteColumn = {
   header: () => <div/>,
-  body: (product: Product) => <ItemButtons itemId={generateItemId(product)} canDelete={true} canCover={false}/>,
+  body: (product: Product) => <ItemButtons itemId={generateItemId(product)} canDelete={true} canCover={false} disabled={false}/>,
   name: 'delete',
   width: '2.25rem',
   fixedWidth: false,

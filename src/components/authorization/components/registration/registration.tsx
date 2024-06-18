@@ -149,7 +149,6 @@ export function Registration() {
                   color='primary'
                   autoComplete='off'
                   {...register('password', {
-                    pattern: /^(?=.*[A-Z])(?=.*[ !"#$%&'()*+,-./:;<=>?@^_`{|}~])(?=.*[0-9])(?=.*[a-z]).{8,}$/,
                     required: true,
                     minLength: 8,
                     maxLength: 64
@@ -166,7 +165,6 @@ export function Registration() {
                   color='primary'
                   autoComplete='off'
                   {...register('confirmPassword', {
-                    pattern: /^(?=.*[A-Z])(?=.*[ !"#$%&'()*+,-./:;<=>?@^_`{|}~])(?=.*[0-9])(?=.*[a-z]).{8,}$/,
                     required: true,
                     minLength: 8,
                     maxLength: 64
@@ -182,10 +180,9 @@ export function Registration() {
                   placeholder='Телефон'
                   color='primary'
                   autoComplete='off'
-                  {...register('phoneNumber', { required: true })}
+                  {...register('phoneNumber')}
                 />
               </Box>
-              <AuthError validationErrors={errors.phoneNumber} field='phoneNumber' />
 
               <div className={`checkbox ${errors.agreeWithLicense && 'checkbox-error'}`}>
                 <FormControlLabel

@@ -19,16 +19,13 @@ export function AuthError(props: AuthErrorProps) {
     nameMaxLength: string
     requiredEmail: string
     emailMaxLength: string
-    wrongPasswordPattern: string
     requiredPassword: string
     passwordMinLength: string
     passwordMaxLength: string
-    wrongConfirmPasswordPattern: string
     requiredConfirmPassword: string
     confirmPasswordMinLength: string
     confirmPasswordMaxLength: string
     passwordsNotEqual: string
-    requiredPhone: string
     wrongLogin: string
     wrongRegistration: string
     default: string
@@ -39,16 +36,13 @@ export function AuthError(props: AuthErrorProps) {
     nameMaxLength: 'Длина имени не должна превышать 100 символов',
     requiredEmail: 'Почта обязательна',
     emailMaxLength: 'Длина почты не должна превышать 100 символов',
-    wrongPasswordPattern: 'Пароль должен содержать заглавные и строчные латинские буквы, цифры и специальные символы',
     requiredPassword: 'Пароль обязателен',
     passwordMinLength: 'Длина пароля не должна быть меньше 8 символов',
     passwordMaxLength: 'Длина пароля не должна превышать 64 символов',
-    wrongConfirmPasswordPattern: 'Пароль должен содержать заглавные и строчные латинские буквы, цифры и специальные символы',
     requiredConfirmPassword: 'Пароль обязателен',
     confirmPasswordMinLength: 'Длина пароля не должна быть меньше 8 символов',
     confirmPasswordMaxLength: 'Длина пароля не должна превышать 64 символов',
     passwordsNotEqual: 'Ваши пароли не совпадают',
-    requiredPhone: 'Телефон обязателен',
     wrongLogin: 'Некорректные логин или пароль',
     wrongRegistration: 'Такой пользователь уже существует',
     default: 'Неизвестная ошибка'
@@ -73,10 +67,6 @@ export function AuthError(props: AuthErrorProps) {
           <p className='error-text'>{errorMessages.emailMaxLength}</p>
         }
 
-        {props.field === 'password' && props.validationErrors?.type === 'pattern' &&
-          <p className='error-text'>{errorMessages.wrongPasswordPattern}</p>
-        }
-
         {props.field === 'password' && props.validationErrors?.type === 'required' &&
           <p className='error-text'>{errorMessages.requiredPassword}</p>
         }
@@ -87,10 +77,6 @@ export function AuthError(props: AuthErrorProps) {
 
         {props.field === 'password' && props.validationErrors?.type === 'maxLength' &&
           <p className='error-text'>{errorMessages.passwordMaxLength}</p>
-        }
-
-        {props.field === 'confirmPassword' && props.validationErrors?.type === 'pattern' &&
-          <p className='error-text'>{errorMessages.wrongConfirmPasswordPattern}</p>
         }
 
         {props.field === 'confirmPassword' && props.validationErrors?.type === 'required' &&
@@ -107,10 +93,6 @@ export function AuthError(props: AuthErrorProps) {
 
         {props.field === 'confirmPassword' && props.dataErrors &&
           <p className='error-text'>{errorMessages.passwordsNotEqual}</p>
-        }
-
-        {props.field === 'phoneNumber' && props.validationErrors?.type === 'required' &&
-          <p className='error-text'>{errorMessages.requiredPhone}</p>
         }
 
         {props.field === 'login' &&
