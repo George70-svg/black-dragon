@@ -6,9 +6,11 @@ import { Cart } from '@types/cartTypes'
 //Если кор. то цену беру цену priceForUnit из units
 //Расчёт цены для китайского прайса
 export const getPriceForChina = (productNumber: number | undefined, product: Product, unit: string) => {
-  if(productNumber && productNumber >= product.valueInBox){
+  if(productNumber && productNumber >= product.valueInBox && unit.toLowerCase() !== 'кор.'){
+    //Если есть продукт и количество продукта больше чем количество в стандартной коробке и единица измерения не коробка, то возвращаем цену за коробку
     return product.priceBoxCny
-  } else if(productNumber && productNumber * product.valueGram >= 5000) {
+  } else if(productNumber && productNumber * product.valueGram >= 5000 && unit.toLowerCase() !== 'кор.') {
+    //Если есть продукт, суммарная масса больше 5 кг и единица измерения не коробка
     return product.priceFiveKgCny
   } else {
     const priceForUnit = product.units.find(unitItem => unitItem.name.toLowerCase() === unit.toLowerCase())?.priceForUnit ?? product.price
@@ -30,6 +32,7 @@ export const getChinaSale = (productNumber: number | undefined, product: Product
   }
 }
 
+//Расчёт общей цены корзины для региона (Регион не обязателен, т.к. проверяю только СПБ, если пусто, то Китай)
 export const getCartTotalPrice = (cart: Cart, region?: string) => {
   const items = Object.values(cart)
 
@@ -56,6 +59,7 @@ export const getCartTotalPrice = (cart: Cart, region?: string) => {
   }
 }
 
+//Расчёт общего веса корзины для региона (Регион не обязателен, т.к. проверяю только СПБ, если пусто, то Китай)
 export const getCartTotalWeight = (cart: Cart, region?: string) => {
   const items = Object.values(cart)
   if(region === 'СПБ') {

@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ThemeProvider } from 'styled-components'
 import { createTheme, ThemeProvider as ThemeProviderMui } from '@mui/material/styles'
-import { Box, Button, Checkbox, FormControlLabel, TextField } from '@mui/material'
+import { Box, Button, Checkbox, FormControlLabel, IconButton, InputAdornment, TextField } from '@mui/material'
 import CheckIcon from '@mui/icons-material/Check'
 import { IStore, useAppDispatch } from '@store/store'
 import { registerThunk } from '@store/auth'
@@ -12,6 +12,7 @@ import { AuthError } from '@components/authorization/components/authError/authEr
 import { StyledRegistration } from '@components/authorization/components/registration/styles/registration.styled'
 
 import { commonStyle } from '../../../../styles'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 
 interface IFormInput {
   name: string
@@ -74,6 +75,8 @@ export function Registration() {
   } = useForm<IFormInput>()
 
   const [passwordsNotEqual, setPasswordsNotEqual] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
   const registrationError = useSelector((state: IStore) => state.auth.registerServerError)
@@ -107,6 +110,13 @@ export function Registration() {
     } else {
       setPasswordsNotEqual(false)
     }
+  }
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show)
+  const handleClickShowConfirmPassword = () => setShowConfirmPassword((show) => !show)
+
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
   }
 
   return (
@@ -144,10 +154,22 @@ export function Registration() {
               <Box className="input-container">
                 <TextField
                   className={`input-password input ${errors.password && 'input-error'}`}
-                  type='password'
+                  type={showPassword ? 'text' : 'password'}
                   placeholder='Пароль'
                   color='primary'
                   autoComplete='off'
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>,
+                  }}
                   {...register('password', {
                     required: true,
                     minLength: 8,
@@ -160,10 +182,22 @@ export function Registration() {
               <Box className="input-container">
                 <TextField
                   className={`input-confirm-password input ${errors.confirmPassword && 'input-error'}`}
-                  type='password'
+                  type={showConfirmPassword ? 'text' : 'password'}
                   placeholder='Пароль ещё раз'
                   color='primary'
                   autoComplete='off'
+                  InputProps={{
+                    endAdornment: <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowConfirmPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>,
+                  }}
                   {...register('confirmPassword', {
                     required: true,
                     minLength: 8,

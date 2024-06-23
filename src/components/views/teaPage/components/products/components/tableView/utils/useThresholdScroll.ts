@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 export function useThresholdScroll(threshold = 300) {
   const [isAboveThreshold, setIsAboveThreshold] = useState(false)
-  const lastScrollY = useRef(0) // Используем useRef для сохранения последнего значения скролла
+  const lastScrollY = useRef(0) //Используем useRef для сохранения последнего значения скролла
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,7 +12,7 @@ export function useThresholdScroll(threshold = 300) {
       } else if (isAboveThreshold && currentScrollY <= threshold) {
         setIsAboveThreshold(false)
       }
-      lastScrollY.current = currentScrollY // Обновляем последнее известное значение скролла
+      lastScrollY.current = currentScrollY //Обновляем последнее известное значение скролла
     }
 
     window.addEventListener('scroll', handleScroll)
