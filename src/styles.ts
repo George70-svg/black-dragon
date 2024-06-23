@@ -49,6 +49,11 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
     
     //Стили для mui dropdown
     .MuiPopover-root {
+      width: 100vw;
+      
+      .MuiBackdrop-root {
+        
+      }
       
       .MuiMenu-paper {
         scrollbar-width: none; //Для Firefox
@@ -89,11 +94,29 @@ export const Styles = createGlobalStyle<ColorThemeProps>`
         }
       }
     }
+
+    @media screen and (min-width: 1921px) {
+      width: calc(1920px);
+      margin: 0 auto;
+
+      .MuiPopover-root {
+        width: calc(1920px);
+
+        .MuiBackdrop-root {
+          width: calc(1920px);
+        }
+      }
+    }
   }
 
   #root {
     height: 100%;
     width: calc(100vw - var(--scroll-bar-width));
+
+    @media screen and (min-width: 1921px) {
+      width: calc(1920px - var(--scroll-bar-width));
+      margin: 0 auto;
+    }
   }
 
   a {

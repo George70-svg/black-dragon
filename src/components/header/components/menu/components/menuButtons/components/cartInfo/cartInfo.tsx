@@ -45,7 +45,7 @@ export function CartInfo(props: CartInfoProps) {
           </div>
         )}
 
-        {(hasSpbProducts || hasChinaProducts) && (<div className="cart-info">
+        {(hasSpbProducts || hasChinaProducts) && (<div className="cart-price-weight">
           <div className="cart-weight">
             <p className="sum">Итого</p>
             <p className="weight">{commonWeight} кг</p>

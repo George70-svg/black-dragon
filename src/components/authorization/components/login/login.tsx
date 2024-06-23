@@ -1,7 +1,9 @@
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { ThemeProvider } from 'styled-components'
 import { useForm } from 'react-hook-form'
-import { Box, Button, TextField } from '@mui/material'
+import { Box, Button, IconButton, InputAdornment, TextField } from '@mui/material'
 import { IStore, useAppDispatch } from '@store/store'
 import { loginThunk, setAuthViewThunk } from '@store/auth'
 import { StyledLogin } from '@components/authorization/components/login/styles/login.styled'
@@ -17,6 +19,7 @@ interface IFormInput {
 export function Login() {
   const dispatch = useAppDispatch()
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>()
+  const [showPassword, setShowPassword] = useState(false)
 
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
   const loginError = useSelector((state: IStore) => state.auth.loginServerError)
@@ -24,6 +27,12 @@ export function Login() {
   const theme = {
     color: commonStyle[colorTheme].color,
     secondColor: commonStyle[colorTheme].secondColor
+  }
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show)
+
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
   }
 
   const onSubmit = async (data: IFormInput) => {
@@ -60,10 +69,22 @@ export function Login() {
             <Box className="input-container">
               <TextField
                 className={`input-password input ${errors.password && 'input-error'}`}
-                type='password'
+                type={showPassword ? 'text' : 'password'}
                 placeholder='Пароль'
                 color='primary'
                 autoComplete='off'
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>,
+                }}
                 {...register('password', { required: true })}
               />
             </Box>
