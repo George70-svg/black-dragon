@@ -12,7 +12,7 @@ export const StyledTSelector = styled.div.attrs(() => ({
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
-    min-width: 8rem;
+    width: 8rem;
     height: 100%;
     padding: 0.5rem;
     background-color: ${() => commonStyle.colors.white};

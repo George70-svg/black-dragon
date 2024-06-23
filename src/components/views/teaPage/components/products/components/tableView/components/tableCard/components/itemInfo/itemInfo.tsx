@@ -6,9 +6,15 @@ import { ItemInfoProps } from '@components/views/teaPage/components/products/com
 import { StyledItemInfo } from '@components/views/teaPage/components/products/components/tableView/components/tableCard/components/itemInfo/styles/itemInfo.styled'
 import { ItemNumber } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemNumber/itemNumber'
 import { ItemSelector } from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemSelector/itemSelector'
-import { currencyToCurrency, unitToUnit } from '@utils/common'
+import { currencyToCurrency, generateItemId, unitToUnit } from '@utils/common'
 
 import { commonStyle } from '../../../../../../../../../../../styles'
+import {
+  ItemPrice
+} from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemPrice/itemPrice'
+import {
+  ItemFullPrice
+} from '@components/views/teaPage/components/products/components/tableView/components/tableItem/components/itemFullPrice/itemFullPrice'
 
 export function ItemInfo(props: ItemInfoProps) {
   const colorTheme = useSelector((state: IStore) => state.theme.colorTheme)
@@ -41,17 +47,17 @@ export function ItemInfo(props: ItemInfoProps) {
         </div>
 
         <div className="right">
-          <div className="price">{props.product.price} {currencyToCurrency(props.product.currency)}</div>
+          <ItemPrice product={props.product} itemId={generateItemId(props.product)}/>
 
           <div className="number">
-            <ItemNumber product={props.product} itemId={props.itemId} disabled={!props.product.inStock}/>
+            <ItemNumber product={props.product} itemId={generateItemId(props.product)} disabled={props.product.inStock}/>
             <ItemSelector product={props.product} itemId={props.itemId} isDisabled={false}/>
           </div>
 
           <div className="result">
             <p>Итого</p>
             <p className='dotted' />
-            <p>{ currentProductNumber ? currentProductNumber * props.product.price : 0 } {currencyToCurrency(props.product.currency)}</p>
+            <ItemFullPrice product={props.product} itemId={generateItemId(props.product)}/>
           </div>
         </div>
       </StyledItemInfo>

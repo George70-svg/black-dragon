@@ -29,8 +29,18 @@ const nameColumn = {
   alignBody: 'left',
 }
 
+const priceColumn = {
+  header: () => <div className={ priceColumn.alignHeader }>Цена</div>,
+  body: (product: Product) => <ItemPrice product={product} itemId={generateItemId(product)}/>,
+  name: 'price',
+  width: '6rem',
+  alignHeader: 'center-left',
+  fixedWidth: false,
+  alignBody: 'left',
+}
+
 const minimumOrderColumn = {
-  header: () => <div className={ minimumOrderColumn.alignHeader }>Мин. заказ</div>,
+  header: () => <p className={ minimumOrderColumn.alignHeader }>Мин. заказ</p>,
   body: (product: Product) => <ItemMinOrder
     orderNumber={product.minOrder}
     orderUnit={product.unit}
@@ -38,40 +48,10 @@ const minimumOrderColumn = {
     itemId={generateItemId(product)}
   />,
   name: 'minimumOrder',
-  width: '8rem',
+  width: '3.5rem',
   alignHeader: 'center-left',
   fixedWidth: false,
   alignBody: 'left',
-}
-
-const priceColumn = {
-  header: () => <div className={ priceColumn.alignHeader }>Цена</div>,
-  body: (product: Product) => <ItemPrice product={product} itemId={generateItemId(product)}/>,
-  name: 'price',
-  width: '8rem',
-  alignHeader: 'center-left',
-  fixedWidth: false,
-  alignBody: 'left',
-}
-
-const fullPriceColumn = {
-  header: () => <div className={ priceColumn.alignHeader }>Полная цена</div>,
-  body: (product: Product) => <ItemFullPrice product={product} itemId={generateItemId(product)}/>,
-  name: 'fullPrice',
-  width: '8rem',
-  alignHeader: 'center-left',
-  fixedWidth: false,
-  alignBody: 'left',
-}
-
-const saleColumn = {
-  header: () => <div className={ saleColumn.alignHeader }>Скидка</div>,
-  body: (product: Product) => <ItemSale product={product} itemId={generateItemId(product)}/>,
-  name: 'sale',
-  width: '5rem',
-  alignHeader: 'center-left',
-  fixedWidth: false,
-  alignBody: 'center',
 }
 
 const orderColumn = {
@@ -87,8 +67,8 @@ const weightColumn = {
   header: () => <div/>,
   body: (product: Product) => <ItemSelector product={product} itemId={generateItemId(product)} isDisabled={!product.inStock}/>,
   name: 'weight',
-  width: '5rem',
-  fixedWidth: true,
+  width: '6.5rem',
+  fixedWidth: false,
   alignBody: 'center',
 }
 
@@ -96,8 +76,28 @@ const weightColumnDisabled = {
   header: () => <div/>,
   body: (product: Product) => <ItemSelector product={product} itemId={generateItemId(product)} isDisabled={true}/>,
   name: 'weight',
+  width: '6.5rem',
+  fixedWidth: false,
+  alignBody: 'center',
+}
+
+const fullPriceColumn = {
+  header: () => <div className={ fullPriceColumn.alignHeader }>Полная цена</div>,
+  body: (product: Product) => <ItemFullPrice product={product} itemId={generateItemId(product)}/>,
+  name: 'fullPrice',
+  width: '8rem',
+  alignHeader: 'center-left',
+  fixedWidth: false,
+  alignBody: 'left',
+}
+
+const saleColumn = {
+  header: () => <div className={ saleColumn.alignHeader }>Скидка</div>,
+  body: (product: Product) => <ItemSale product={product} itemId={generateItemId(product)}/>,
+  name: 'sale',
   width: '5rem',
-  fixedWidth: true,
+  alignHeader: 'center-left',
+  fixedWidth: false,
   alignBody: 'center',
 }
 

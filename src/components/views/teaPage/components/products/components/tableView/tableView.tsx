@@ -54,7 +54,7 @@ export function TableView(props: TableViewProps) {
     }
   }, [])
 
-  //Объявление наблюдателя для отслеживания скролла
+  //Объявление наблюдателя для отслеживания скролла и дальнейшей пагинации по скроллу
   useEffect(() => {
     const option = {
       root: null,
@@ -155,15 +155,10 @@ export function TableView(props: TableViewProps) {
             <React.Fragment key={generateItemId(product)}>
               {/*Разделитель категорий товаров*/}
               {product?.group !== props.products[index - 1]?.group && (
-                <tr className="tea-group-separate">
-                  {props.tableDescription.columns.map((column, colIndex) => (
-                    <td key={colIndex}>
-                      {colIndex === 1 ? (
-                        <p
-                          className="product-group">{allGroups.find(item => item.type === product.group)?.name ?? 'Неизвестная группа'}</p>
-                      ) : null}
-                    </td>
-                  ))}
+                <tr className='tea-group-separate'>
+                  <td colSpan={props.tableDescription.columns.length}>
+                    {allGroups.find(item => item.type === product.group)?.name ?? 'Неизвестная группа'}
+                  </td>
                 </tr>
               )}
 

@@ -41,7 +41,7 @@ export const StyledItemInfo = styled.div.attrs(() => ({
     flex-basis: 30%;
     min-width: 13rem;
     
-    .price {
+    .item-price {
       padding: 0.5rem 1rem;
       background-color: ${() => commonStyle.colors.grey246};
       font-size: ${() => commonStyle.fonts.fs28};

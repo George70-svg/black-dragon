@@ -28,7 +28,7 @@ export const initialFilters: ProductFilters = {
   maybePriceEnd: null,
   searchText: null,
   pageNumber: 0,
-  pageSize: 10
+  pageSize: 20
 }
 
 const initialState: IProductsState = {

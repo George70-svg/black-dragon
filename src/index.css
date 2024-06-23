@@ -13,6 +13,7 @@ html {
   --padding-size: 2rem;
   --main-height: calc(100vh - var(--header-height) - (var(--padding-size) * 2));
   --scroll-bar-width: 10px;
+  --max-screen-width: 1920px;
 }
 
 @font-face {

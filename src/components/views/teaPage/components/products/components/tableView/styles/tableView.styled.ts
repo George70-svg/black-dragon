@@ -9,6 +9,7 @@ export const StyledTableView = styled.div.attrs(() => ({
   flex-direction: column;
   flex-grow: 1;
   overflow: visible;
+  position: relative;
 
   .cart-info {
     position: fixed;
@@ -27,7 +28,7 @@ export const StyledTableView = styled.div.attrs(() => ({
   table {
     position: relative;
     border-collapse: collapse;
-
+    
     thead {
       position: sticky;
       z-index: ${() => commonStyle.layers.secondLayer};
@@ -56,6 +57,7 @@ export const StyledTableView = styled.div.attrs(() => ({
             display: flex;
             justify-content: start;
             align-items: center;
+            text-align: left;
           }
         }
       }
@@ -77,15 +79,13 @@ export const StyledTableView = styled.div.attrs(() => ({
         }
       }
 
-      tr.tea-group-separate {
+      .tea-group-separate {
         background-color: ${() => commonStyle.colors.grey224};
         
         td {
-          
-          .product-group {
-            font-size: ${() => commonStyle.fonts.fs20};
-            font-weight: ${() => commonStyle.fontStyles.fw600};
-          }
+          padding-left: 5rem;
+          font-size: ${() => commonStyle.fonts.fs20};
+          font-weight: ${() => commonStyle.fontStyles.fw600};
         }
       }
     }
@@ -100,6 +100,20 @@ export const StyledTableView = styled.div.attrs(() => ({
       top: 50%;
       right: 50%;
       transform: translate(-50%, -50%);
+    }
+  }
+  
+  //Если экран шире full hd, то у нас появляются боковые полосы. Нужно смещать кнопки от краёв.
+  //Поэтому завязываемся на основное разрешение 1920px (возможно, стоит вынести в переменную)
+  @media screen and (min-width: 1921px) {
+    .cart-info {
+      right: 50%;
+      transform: translateX(calc(960px - 2.8rem));
+    }
+
+    .up-button {
+      left: 50%;
+      transform: translateX(calc(-960px + 8rem));
     }
   }
 `
